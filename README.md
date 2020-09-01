@@ -1,5 +1,3 @@
-# clear
-
 ## Blog client
 
 A frontend blog client developed using
