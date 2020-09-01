@@ -1,3 +1,5 @@
+const webpack = require("webpack");
+
 export default {
   /*
    ** Nuxt rendering mode
@@ -60,5 +62,19 @@ export default {
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
    */
-  build: {}
+  build: {
+    /*
+     ** You can extend webpack config here
+     */
+    vendor: ["jquery"],
+    plugins: [
+      new webpack.ProvidePlugin({
+        $: "jquery",
+        jQuery: "jquery",
+        jquery: "jquery",
+        "window.jQuery": "jquery"
+      })
+    ],
+    extend(config, ctx) {}
+  }
 };
