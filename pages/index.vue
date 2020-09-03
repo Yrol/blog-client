@@ -1,9 +1,15 @@
 <template>
-  <div class="container">
-    <p>Home</p>
-  </div>
+  <Navigation />
 </template>
 
 <script>
-export default {};
+import Navigation from "~/components/UI/header.vue";
+export default {
+  components: {
+    Navigation
+  },
+  head: {
+    title: "Home"
+  }
+};
 </script>
