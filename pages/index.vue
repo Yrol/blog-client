@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Navigation from "~/components/UI/header.vue";
+import Navigation from "~/components/site/header.vue";
 export default {
   components: {
     Navigation
