@@ -1,9 +1,9 @@
 <template>
-  <div class="max-w-3xl w-full lg:flex shadow-lg">
+  <div class="w-full lg:flex shadow-lg mb-2">
     <div
       class="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal"
     >
-      <div class="mb-8">
+      <div class="mb-3">
         <div class="text-black font-bold text-xl mb-2">Lorem ipsum dolor sit amet, consectetur?</div>
         <p
           class="text-grey-darker text-base"
@@ -35,9 +35,9 @@
             <p class="text-grey-dark">Aug 18</p>
           </div>
         </div>
-        <div class="w-1/4 h-12">
+        <div class="flex justify-end w-1/4">
           <button
-            class="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1"
+            class="bg-pink-500 right-0 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1"
             type="button"
             style="transition: all .15s ease"
           >
