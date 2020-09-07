@@ -85,20 +85,25 @@
           <li>
             <a
               href="#"
-              class="inline-block text-sm px-3 py-2 leading-none border rounded border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
+              class="inline-block text-sm px-4 py-2 leading-none border rounded border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-3 lg:mt-0"
             >
               <font-awesome-icon :icon="['fab', 'linkedin-in']" />
             </a>
           </li>
+          <li>
+            <a
+              href="#"
+              class="lg:ml-4 flex items-center justify-start lg:mb-0 mb-4 lg:mt-0 mt-4 pointer-cursor"
+            >
+              <img
+                class="rounded-full w-10 h-10 border-2 border-transparent hover:border-indigo-400"
+                src="https://avatars2.githubusercontent.com/u/8627014?s=460&u=d5f69b2710640c2ec400b9018aabd8b1d92eea51&v=4"
+                alt="Yrol Fernando"
+              />
+            </a>
+          </li>
         </ul>
       </nav>
-      <a href="#" class="lg:ml-4 flex items-center justify-start lg:mb-0 mb-4 pointer-cursor">
-        <img
-          class="rounded-full w-10 h-10 border-2 border-transparent hover:border-indigo-400"
-          src="https://avatars2.githubusercontent.com/u/8627014?s=460&u=d5f69b2710640c2ec400b9018aabd8b1d92eea51&v=4"
-          alt="Yrol Fernando"
-        />
-      </a>
     </div>
   </header>
 </template>
