@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full lg:flex shadow-lg mb-2">
+  <div class="w-full lg:flex shadow-lg">
     <div
       class="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal"
     >
