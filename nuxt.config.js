@@ -31,12 +31,17 @@ export default {
   /*
    ** Global CSS
    */
-  css: ["@assets/scss/main.scss"],
+  css: [
+    "@assets/scss/main.scss",
+    "quill/dist/quill.snow.css",
+    "quill/dist/quill.bubble.css",
+    "quill/dist/quill.core.css"
+  ],
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: [],
+  plugins: [{ src: "~plugins/vue-quill-editor.js", ssr: false }],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -89,7 +94,9 @@ export default {
         $: "jquery",
         jQuery: "jquery",
         jquery: "jquery",
-        "window.jQuery": "jquery"
+        "window.jQuery": "jquery",
+        "window.Quill": "quill/dist/quill.js",
+        Quill: "quill/dist/quill.js"
       })
     ],
     extend(config, ctx) {}

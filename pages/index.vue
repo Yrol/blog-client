@@ -7,6 +7,7 @@
         <Card />
         <Card />
         <Card />
+        <RichText />
       </div>
       <div class="w-ful md:w-1/4 lg:pl-0 md:pl-0 p-4">
         <CategoriesCard />
@@ -27,13 +28,15 @@ import Card from "~/components/site/card.vue";
 import CategoriesCard from "~/components/site/categoriescard.vue";
 import Footer from "~/components/site/footer.vue";
 import Pagination from "~/components/site/pagination.vue";
+import RichText from "~/components/site/richtext.vue";
 export default {
   components: {
     Navigation,
     Card,
     CategoriesCard,
     Footer,
-    Pagination
+    Pagination,
+    RichText
   },
   head: {
     title: "Home"
