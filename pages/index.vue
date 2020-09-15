@@ -7,7 +7,9 @@
         <Card />
         <Card />
         <Card />
-        <RichText />
+        <client-only>
+          <RichText />
+        </client-only>
       </div>
       <div class="w-ful md:w-1/4 lg:pl-0 md:pl-0 p-4">
         <CategoriesCard />
