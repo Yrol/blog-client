@@ -10,6 +10,13 @@
         <client-only>
           <RichText />
         </client-only>
+        <FormText
+          rules="required"
+          name="title"
+          label="Article title"
+          placeholder="Article title"
+          class="my-4"
+        ></FormText>
       </div>
       <div class="w-ful md:w-1/4 lg:pl-0 md:pl-0 p-4">
         <CategoriesCard />
@@ -25,12 +32,13 @@
 </template>
 
 <script>
-import Navigation from "~/components/site/Header.vue";
-import Card from "~/components/site/Card.vue";
-import CategoriesCard from "~/components/site/CategoriesCard.vue";
-import Footer from "~/components/site/Footer.vue";
-import Pagination from "~/components/site/Pagination.vue";
-import RichText from "~/components/site/RichText.vue";
+import Navigation from "~/components/Site/Header.vue";
+import Card from "~/components/Site/Card.vue";
+import CategoriesCard from "~/components/Site/CategoriesCard.vue";
+import Footer from "~/components/Site/Footer.vue";
+import Pagination from "~/components/Site/Pagination.vue";
+import RichText from "~/components/Site/RichText.vue";
+import FormText from "~/components/Input/FormText.vue";
 export default {
   components: {
     Navigation,
@@ -38,7 +46,8 @@ export default {
     CategoriesCard,
     Footer,
     Pagination,
-    RichText
+    RichText,
+    FormText
   },
   head: {
     title: "Home"
