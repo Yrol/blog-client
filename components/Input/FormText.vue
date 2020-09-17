@@ -1,5 +1,5 @@
 <template>
-  <div tag="div" :name="name" :vid="name" :rules="rules">
+  <ValidationProvider tag="div" :name="name" :vid="name" :rules="rules" v-slot="{ errors }">
     <label :for="name" class="flex flex-row items-end justify-between font-light uppercase">
       <span class="block text-sm leading-5 text-gray-500">{{ label }}</span>
       <small v-if="!rules && showOptional === true" class="text-gray-400 text-xs">Optional</small>
@@ -40,7 +40,7 @@
         </svg>
       </div>
     </div>
-  </div>
+  </ValidationProvider>
 </template>
 <script>
 export default {
