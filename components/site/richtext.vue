@@ -58,7 +58,7 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  width: 60%;
+  width: 100%;
   margin: 0 auto;
   padding: 50px 0;
   .quill-editor {

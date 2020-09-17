@@ -25,12 +25,12 @@
 </template>
 
 <script>
-import Navigation from "~/components/site/header.vue";
-import Card from "~/components/site/card.vue";
-import CategoriesCard from "~/components/site/categoriescard.vue";
-import Footer from "~/components/site/footer.vue";
-import Pagination from "~/components/site/pagination.vue";
-import RichText from "~/components/site/richtext.vue";
+import Navigation from "~/components/site/Header.vue";
+import Card from "~/components/site/Card.vue";
+import CategoriesCard from "~/components/site/CategoriesCard.vue";
+import Footer from "~/components/site/Footer.vue";
+import Pagination from "~/components/site/Pagination.vue";
+import RichText from "~/components/site/RichText.vue";
 export default {
   components: {
     Navigation,
