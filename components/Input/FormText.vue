@@ -73,7 +73,7 @@ export default {
   watch: {
     value(value) {
       if (value !== this.value) {
-        this.$$emit("input", value);
+        this.$emit("input", value);
       }
     }
   }

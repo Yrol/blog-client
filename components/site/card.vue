@@ -49,5 +49,34 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  name: "Card",
+  props: {
+    value: String,
+    name: String,
+    body: String,
+    title: String,
+    tags: {
+      type: Array,
+      required: false
+    },
+    author: String,
+    publishDate: String
+  },
+  data() {
+    return {
+      proxy: null
+    };
+  },
+  mounted() {
+    this.proxy = this.value;
+  },
+  watch: {
+    value(value) {
+      if (value !== this.value) {
+        this.$emit("input", value);
+      }
+    }
+  }
+};
 </script>
