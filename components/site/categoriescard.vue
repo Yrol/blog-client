@@ -1,8 +1,6 @@
 <template>
   <div class="w-full lg:flex shadow-lg">
-    <div
-      class="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal"
-    >
+    <div class="w-full bg-white p-4 flex flex-col justify-between leading-normal">
       <div>
         <div class="text-black font-bold text-base mb-2">Categories</div>
         <span

@@ -71,7 +71,12 @@ export default {
     this.proxy = this.value;
   },
   watch: {
-    value(value) {
+    value(value){
+      if(value !== this.proxy) {
+        this.proxy = value;
+      }
+    },
+    proxy(value) {
       if (value !== this.value) {
         this.$emit("input", value);
       }

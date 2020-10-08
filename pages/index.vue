@@ -8,14 +8,15 @@
         <Card />
         <Card />
         <client-only>
-          <RichText />
+          <!-- <RichText /> -->
         </client-only>
         <FormText
           rules="required"
-          name="title"
+          name="abn"
           label="Article title"
           placeholder="Article title"
           class="my-4"
+          v-model="abn"
         ></FormText>
       </div>
       <div class="w-ful md:w-1/4 lg:pl-0 md:pl-0 p-4">
@@ -37,7 +38,7 @@ import Card from "~/components/Site/Card.vue";
 import CategoriesCard from "~/components/Site/CategoriesCard.vue";
 import Footer from "~/components/Site/Footer.vue";
 import Pagination from "~/components/Site/Pagination.vue";
-import RichText from "~/components/Site/RichText.vue";
+import RichText from "~/components/Input/RichText.vue";
 import FormText from "~/components/Input/FormText.vue";
 export default {
   components: {
@@ -51,6 +52,20 @@ export default {
   },
   head: {
     title: "Home"
+  },
+  data() {
+    return {
+        abn: null
+    }
+  },
+  created() {
+  },
+  watch:{
+    abn(value){
+      if (value) {
+        console.log(value)
+      }
+    }
   }
 };
 </script>

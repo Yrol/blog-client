@@ -1,8 +1,6 @@
 <template>
   <div class="w-full lg:flex shadow-lg mb-2">
-    <div
-      class="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal"
-    >
+    <div class="w-full bg-white p-4 flex flex-col justify-between leading-normal">
       <div class="mb-3">
         <div class="text-black font-bold text-xl mb-2">Lorem ipsum dolor sit amet, consectetur?</div>
         <p
@@ -52,8 +50,6 @@
 export default {
   name: "Card",
   props: {
-    value: String,
-    name: String,
     body: String,
     title: String,
     tags: {
@@ -63,20 +59,6 @@ export default {
     author: String,
     publishDate: String
   },
-  data() {
-    return {
-      proxy: null
-    };
-  },
-  mounted() {
-    this.proxy = this.value;
-  },
-  watch: {
-    value(value) {
-      if (value !== this.value) {
-        this.$emit("input", value);
-      }
-    }
-  }
+
 };
 </script>
