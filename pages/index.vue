@@ -3,10 +3,42 @@
     <Navigation />
     <div class="flex flex-wrap">
       <div class="w-full md:w-3/4 p-4">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        <Card
+          title="Lorem ipsum dolor sit amet, consectetur?"
+          body="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
+          quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
+          nihil."
+          author="Yrol Fernando"
+          publishDate="05 Oct 2020"
+          tags="tags"
+        />
+        <Card
+          title="Lorem ipsum dolor sit amet, consectetur?"
+          body="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
+          quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
+          nihil."
+          author="Yrol Fernando"
+          publishDate="05 Oct 2020"
+          tags="tags"
+        />
+        <Card
+          title="Lorem ipsum dolor sit amet, consectetur?"
+          body="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
+          quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
+          nihil."
+          author="Yrol Fernando"
+          publishDate="05 Oct 2020"
+          tags="tags"
+        />
+        <Card
+          title="Lorem ipsum dolor sit amet, consectetur?"
+          body="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
+          quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
+          nihil."
+          author="Yrol Fernando"
+          publishDate="05 Oct 2020"
+          tags="tags"
+        />
         <client-only>
           <!-- <RichText /> -->
         </client-only>
@@ -48,24 +80,24 @@ export default {
     Footer,
     Pagination,
     RichText,
-    FormText
+    FormText,
   },
   head: {
-    title: "Home"
+    title: "Home",
   },
   data() {
     return {
-        abn: null
-    }
+      abn: null,
+      tags: ["#react", "#javascript", "#tailwind"],
+    };
   },
-  created() {
-  },
-  watch:{
-    abn(value){
+  created() {},
+  watch: {
+    abn(value) {
       if (value) {
-        console.log(value)
+        console.log(value);
       }
-    }
-  }
+    },
+  },
 };
 </script>
