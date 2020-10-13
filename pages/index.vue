@@ -42,6 +42,9 @@
         <client-only>
           <RichTextQuillEditor />
         </client-only>
+        <client-only>
+          <RichTextSimpleMDE />
+        </client-only>
         <FormText
           rules="required"
           name="abn"
@@ -72,6 +75,7 @@ import Footer from "~/components/Site/Footer";
 import Pagination from "~/components/Site/Pagination";
 import RichTextQuillEditor from "~/components/Input/RichTextQuillEditor";
 import FormText from "~/components/Input/FormText";
+import RichTextSimpleMDE from "~/components/Input/RichTextSimpleMDE";
 export default {
   components: {
     Navigation,
@@ -80,6 +84,7 @@ export default {
     Footer,
     Pagination,
     RichTextQuillEditor,
+    RichTextSimpleMDE,
     FormText,
   },
   head: {

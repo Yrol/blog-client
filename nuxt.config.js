@@ -35,7 +35,8 @@ export default {
     "@assets/scss/main.scss",
     "quill/dist/quill.snow.css",
     "quill/dist/quill.bubble.css",
-    "quill/dist/quill.core.css"
+    "quill/dist/quill.core.css",
+    'simplemde/dist/simplemde.min.css'
   ],
   /*
    ** Plugins to load before mounting the App
@@ -43,7 +44,8 @@ export default {
    */
   plugins: [
     { src: "~plugins/vue-quill-editor.js", ssr: false },
-    { src: "~plugins/validation.js", ssr: false }
+    { src: "~plugins/validation.js", ssr: false },
+    { src: '~plugins/nuxt-simplemde-plugin.js', ssr: false }
   ],
   /*
    ** Auto import components
