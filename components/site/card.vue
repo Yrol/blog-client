@@ -11,23 +11,13 @@
           {{ body }}
         </p>
         <div class="mb-2 mt-2">
-          <a href="/t/react" class="text-sm text-gray-600 p-1 hover:text-black">
-            <span class="text-opacity-50">#</span>
-            react
-          </a>
           <a
-            href="/t/javascript"
             class="text-sm text-gray-600 p-1 hover:text-black"
+            v-for="(tag, index) in tags"
+            :href="`/t/${tag}`"
+            :key="`${index}`"
           >
-            <span class="text-opacity-50">#</span>
-            javascript
-          </a>
-          <a
-            href="/t/tailwind"
-            class="text-sm text-gray-600 p-1 hover:text-black"
-          >
-            <span class="text-opacity-50">#</span>
-            tailwind
+            <span class="text-opacity-50">{{ tag }}</span>
           </a>
         </div>
       </div>
@@ -68,10 +58,7 @@ export default {
       type: String,
       required: true,
     },
-    tags: {
-      type: Array,
-      required: false,
-    },
+    tags: [],
     author: String,
     publishDate: String,
   },

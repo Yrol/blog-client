@@ -10,7 +10,7 @@
           nihil."
           author="Yrol Fernando"
           publishDate="05 Oct 2020"
-          tags="tags"
+          v-bind:tags="tags"
         />
         <Card
           title="Lorem ipsum dolor sit amet, consectetur?"
@@ -19,7 +19,7 @@
           nihil."
           author="Yrol Fernando"
           publishDate="05 Oct 2020"
-          tags="tags"
+          v-bind:tags="tags"
         />
         <Card
           title="Lorem ipsum dolor sit amet, consectetur?"
@@ -28,7 +28,7 @@
           nihil."
           author="Yrol Fernando"
           publishDate="05 Oct 2020"
-          tags="tags"
+          v-bind:tags="tags"
         />
         <Card
           title="Lorem ipsum dolor sit amet, consectetur?"
@@ -37,10 +37,10 @@
           nihil."
           author="Yrol Fernando"
           publishDate="05 Oct 2020"
-          tags="tags"
+          v-bind:tags="tags"
         />
         <client-only>
-          <!-- <RichText /> -->
+          <RichText />
         </client-only>
         <FormText
           rules="required"
