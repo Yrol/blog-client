@@ -40,7 +40,7 @@
           v-bind:tags="tags"
         />
         <client-only>
-          <RichText />
+          <RichTextQuillEditor />
         </client-only>
         <FormText
           rules="required"
@@ -65,13 +65,13 @@
 </template>
 
 <script>
-import Navigation from "~/components/Site/Header.vue";
-import Card from "~/components/Site/Card.vue";
-import CategoriesCard from "~/components/Site/CategoriesCard.vue";
-import Footer from "~/components/Site/Footer.vue";
-import Pagination from "~/components/Site/Pagination.vue";
-import RichText from "~/components/Input/RichText.vue";
-import FormText from "~/components/Input/FormText.vue";
+import Navigation from "~/components/Site/Header";
+import Card from "~/components/Site/Card";
+import CategoriesCard from "~/components/Site/CategoriesCard";
+import Footer from "~/components/Site/Footer";
+import Pagination from "~/components/Site/Pagination";
+import RichTextQuillEditor from "~/components/Input/RichTextQuillEditor";
+import FormText from "~/components/Input/FormText";
 export default {
   components: {
     Navigation,
@@ -79,7 +79,7 @@ export default {
     CategoriesCard,
     Footer,
     Pagination,
-    RichText,
+    RichTextQuillEditor,
     FormText,
   },
   head: {

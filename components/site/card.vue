@@ -58,7 +58,10 @@ export default {
       type: String,
       required: true,
     },
-    tags: [],
+    tags: {
+      type: Array,
+      default: () => [],
+    },
     author: String,
     publishDate: String,
   },
