@@ -39,7 +39,10 @@
             type="button"
             style="transition: all 0.15s ease"
           >
-            <font-awesome-icon :icon="['fas', 'book-reader']" />Read more
+            <font-awesome-icon
+              :icon="['fas', 'book-reader']"
+              class="fa-fw fa-lg mr-1 fa-square fa-w-14"
+            /><span>Read more </span>
           </button>
         </div>
       </div>
