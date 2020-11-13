@@ -36,27 +36,29 @@
     </div>
     <div class="flex flex-wrap">
       <div class="w-full md:w-3/4 p-4">
-        <FormText
-          rules="required"
-          name="abn"
-          label="Article title"
-          placeholder="Article title"
-          class="my-4"
-          v-model="abn"
-        ></FormText>
+        <client-only>
+          <FormText
+            rules="required"
+            name="abn"
+            label="Article title"
+            placeholder="Article title"
+            class="my-4"
+            v-model="abn"
+          ></FormText>
+        </client-only>
       </div>
     </div>
-    <div class="flex flex-wrap">
-      <div class="w-full md:w-3/4 p-4">
+    <div class="flex">
+      <client-only>
         <FormCheckbox
-          v-for="{ brand, index } in carbrands"
+          v-for="(brand, index) in carbrands"
           :key="index"
           :val="brand"
-          v-model="carbrands"
+          v-model="checkBoxRequirement[index]"
         >
           {{ brand }}
         </FormCheckbox>
-      </div>
+      </client-only>
     </div>
     <div class="flex flex-wrap border-t border-gray-200">
       <div class="w-full md:w-3/4">
@@ -95,6 +97,7 @@ export default {
   data() {
     return {
       abn: null,
+      checkBoxRequirement: [true, false, true, true],
       tags: ["#react", "#javascript", "#tailwind"],
       carbrands: ["Toyota", "Nissan", "Isuzu", "Ford"],
     };

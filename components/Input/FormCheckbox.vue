@@ -14,18 +14,16 @@
         @change="change"
         class="hidden"
       />
-      <!-- <font-awesome-icon
+      <font-awesome-icon
         v-if="isChecked"
         :icon="['fas', 'check-square']"
-        class="fa-fw fa-lg mr-2 fa-square fa-w-14 text-purple-600"
+        class="fa-fw fa-lg fa-square fa-w-14 text-purple-600"
       ></font-awesome-icon>
       <font-awesome-icon
         v-else
-        :icon="['far', 'square']"
-        class="fa-fw fa-lg mr-2 fa-square fa-w-14"
-      ></font-awesome-icon> -->
-      <i v-if="isChecked" class="fas fa-check-square"></i>
-      <i v-else class="far fa-square"></i>
+        :icon="['fas', 'square']"
+        class="fa-fw fa-lg fa-square fa-w-14"
+      ></font-awesome-icon>
       <slot></slot>
     </label>
   </ValidationProvider>

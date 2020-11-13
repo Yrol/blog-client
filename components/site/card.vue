@@ -39,7 +39,7 @@
             type="button"
             style="transition: all 0.15s ease"
           >
-            <i class="fas fa-heart"></i> Read more
+            <font-awesome-icon :icon="['fas', 'book-reader']" />Read more
           </button>
         </div>
       </div>
