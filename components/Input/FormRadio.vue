@@ -18,7 +18,7 @@
       />
       <font-awesome-icon
         v-else
-        :icon="['fal', 'circle']"
+        :icon="['fas', 'circle']"
         class="fa-fw mr-1 subpixel-antialiased"
         :class="{ 'text-red-600': errors[0] }"
       />

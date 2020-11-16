@@ -5,6 +5,9 @@
     <div class="flex flex-wrap">
       <div class="w-full md:w-3/4 p-4">
         <!-- Card -->
+        <h4 class="leading-none my-2 tracking-wider text-gray-600 font-light">
+          Card
+        </h4>
         <Card
           title="Lorem ipsum dolor sit amet, consectetur?"
           body="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
@@ -48,17 +51,29 @@
         </client-only>
       </div>
     </div>
-    <div class="flex">
-      <client-only>
-        <FormCheckbox
-          v-for="(brand, index) in carbrands"
-          :key="index"
-          :val="brand"
-          v-model="checkBoxRequirement[index]"
+    <div class="flex flex-wrap">
+      <div class="w-full md:w-3/4 p-4">
+        <client-only>
+          <FormCheckbox
+            v-for="(brand, index) in carbrands"
+            :key="index"
+            :val="brand"
+            v-model="checkBoxRequirement[index]"
+          >
+            {{ brand }}
+          </FormCheckbox>
+        </client-only>
+      </div>
+    </div>
+    <div class="flex flex-wrap">
+      <div class="w-full md:w-3/4 p-4">
+        <FormRadio class="mx-2" name="myRadio" rules="required" :val="false"
+          >AM</FormRadio
         >
-          {{ brand }}
-        </FormCheckbox>
-      </client-only>
+        <FormRadio class="mx-2" name="myRadio" rules="required" :val="true"
+          >PM</FormRadio
+        >
+      </div>
     </div>
     <div class="flex flex-wrap border-t border-gray-200">
       <div class="w-full md:w-3/4">
