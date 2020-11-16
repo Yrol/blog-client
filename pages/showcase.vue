@@ -93,9 +93,9 @@
             v-model="processingDate"
             name="processingDate"
             :showOptional="false"
-            :dateRange="{ enable: true, end: processingDate, start: startDate }"
+            :dateRange="{ enable: true, end: processingDate, start: endDate }"
             rules="required"
-            label="Limited date range"
+            label="Limited date range (Allow only 1 month from today)"
             placeholder="01-01-1970"
           ></FormDatePicker>
         </div>
