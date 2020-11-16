@@ -67,12 +67,38 @@
     </div>
     <div class="flex flex-wrap">
       <div class="w-full md:w-3/4 p-4">
-        <FormRadio class="mx-2" name="myRadio" rules="required" :val="false"
-          >AM</FormRadio
-        >
-        <FormRadio class="mx-2" name="myRadio" rules="required" :val="true"
-          >PM</FormRadio
-        >
+        <client-only>
+          <FormRadio class="mx-2" name="myRadio" rules="required" :val="false"
+            >AM</FormRadio
+          >
+          <FormRadio class="mx-2" name="myRadio" rules="required" :val="true"
+            >PM</FormRadio
+          >
+        </client-only>
+      </div>
+    </div>
+    <div class="flex flex-wrap">
+      <div class="w-full md:w-2/4 p-4">
+        <client-only>
+          <FormDatePicker
+            v-model="processingDate"
+            name="processingDate"
+            rules="required"
+            label="Processing Date"
+            placeholder="01-01-1970"
+          ></FormDatePicker>
+        </client-only>
+        <div class="w-full md:w-2/4 p-4">
+          <FormDatePicker
+            v-model="processingDate"
+            name="processingDate"
+            :showOptional="false"
+            :dateRange="{ enable: true, end: processingDate, start: startDate }"
+            rules="required"
+            label="Limited date range"
+            placeholder="01-01-1970"
+          ></FormDatePicker>
+        </div>
       </div>
     </div>
     <div class="flex flex-wrap border-t border-gray-200">
@@ -94,6 +120,7 @@ import RichTextQuillEditor from "~/components/Input/RichTextQuillEditor";
 import FormText from "~/components/Input/FormText";
 import RichTextSimpleMDE from "~/components/Input/RichTextSimpleMDE";
 import FormCheckbox from "~/components/Input/FormCheckbox";
+import FormDatePicker from "~/components/Input/FormDatePicker";
 export default {
   components: {
     Navigation,
@@ -113,8 +140,11 @@ export default {
     return {
       abn: null,
       checkBoxRequirement: [true, false, true, true],
+      crd: null,
       tags: ["#react", "#javascript", "#tailwind"],
       carbrands: ["Toyota", "Nissan", "Isuzu", "Ford"],
+      processingDate: new Date(),
+      endDate: new Date(+new Date() + 2678400000),
     };
   },
   created() {},

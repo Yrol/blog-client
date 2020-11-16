@@ -15,7 +15,7 @@
     </label>
     <div class="mt-1 relative rounded-md shadow-sm">
       <font-awesome-icon
-        :icon="['fal', icon || 'calendar-alt']"
+        :icon="['fas', icon || 'calendar-alt']"
         class="fa-lg h-full mx-4 text-gray-400 absolute z-10"
         :class="{ 'text-red-600': errors[0] }"
       ></font-awesome-icon>
