@@ -68,11 +68,15 @@
     <div class="flex flex-wrap">
       <div class="w-full md:w-3/4 p-4">
         <client-only>
-          <FormRadio class="mx-2" name="myRadio" rules="required" :val="false"
-            >AM</FormRadio
-          >
-          <FormRadio class="mx-2" name="myRadio" rules="required" :val="true"
-            >PM</FormRadio
+          <FormRadio
+            v-for="(val, index) in radio"
+            :key="index"
+            class="mx-2"
+            :val="radio[index]"
+            name="myRadio"
+            rules="required"
+            v-model="defaultCheck"
+            >{{ val }}</FormRadio
           >
         </client-only>
       </div>
@@ -145,6 +149,8 @@ export default {
       carbrands: ["Toyota", "Nissan", "Isuzu", "Ford"],
       processingDate: new Date(),
       endDate: new Date(+new Date() + 2678400000),
+      radio: ["AM", "PM"],
+      defaultCheck: "AM",
     };
   },
   created() {},
