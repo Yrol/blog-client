@@ -46,6 +46,7 @@
             label="Article title"
             placeholder="Article title"
             class="my-4"
+            icon="camera"
             v-model="abn"
           ></FormText>
         </client-only>
@@ -105,6 +106,17 @@
         </div>
       </div>
     </div>
+    <div class="flex flex-wrap">
+      <div class="w-full md:w-3/4 p-4">
+        <FormTextarea
+          v-model="textAreaData"
+          name="textarea"
+          label="Additional information"
+          placeholder="Optional"
+          icon="camera"
+        ></FormTextarea>
+      </div>
+    </div>
     <div class="flex flex-wrap border-t border-gray-200">
       <div class="w-full md:w-3/4">
         <Pagination />
@@ -122,6 +134,7 @@ import Footer from "~/components/Site/Footer";
 import Pagination from "~/components/Site/Pagination";
 import RichTextQuillEditor from "~/components/Input/RichTextQuillEditor";
 import FormText from "~/components/Input/FormText";
+import FormTextarea from "~/components/Input/FormTextarea";
 import RichTextSimpleMDE from "~/components/Input/RichTextSimpleMDE";
 import FormCheckbox from "~/components/Input/FormCheckbox";
 import FormDatePicker from "~/components/Input/FormDatePicker";
@@ -151,6 +164,7 @@ export default {
       endDate: new Date(+new Date() + 2678400000),
       radio: ["AM", "PM"],
       defaultCheck: "AM",
+      textAreaData: null,
     };
   },
   created() {},
