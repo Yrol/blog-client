@@ -130,6 +130,11 @@
         </client-only>
       </div>
     </div>
+    <div class="flex flex-wrap">
+      <div class="w-full md:w-3/4 p-4">
+        <client-only><FileDrop v-model="file"> </FileDrop> </client-only>
+      </div>
+    </div>
     <div class="flex flex-wrap border-t border-gray-200">
       <div class="w-full md:w-3/4">
         <Pagination />
@@ -152,6 +157,8 @@ import RichTextSimpleMDE from "~/components/Input/RichTextSimpleMDE";
 import FormCheckbox from "~/components/Input/FormCheckbox";
 import FormDatePicker from "~/components/Input/FormDatePicker";
 import FormToggle from "~/components/Input/FormToggle";
+import FileDrop from "~/components/Input/FileDrop";
+
 export default {
   components: {
     Navigation,
@@ -164,6 +171,7 @@ export default {
     FormText,
     FormCheckbox,
     FormToggle,
+    FileDrop,
   },
   head: {
     title: "Showcase",
@@ -181,6 +189,7 @@ export default {
       defaultCheck: "AM",
       textAreaData: null,
       formToggle: true,
+      file: null,
     };
   },
   created() {},
