@@ -93,7 +93,11 @@
             placeholder="01-01-1970"
           ></FormDatePicker>
         </client-only>
-        <div class="w-full md:w-2/4 p-4">
+      </div>
+    </div>
+    <div class="flex flex-wrap">
+      <div class="w-full md:w-2/4 p-4">
+        <client-only>
           <FormDatePicker
             v-model="processingDate"
             name="processingDate"
@@ -103,18 +107,27 @@
             label="Limited date range (Allow only 1 month from today)"
             placeholder="01-01-1970"
           ></FormDatePicker>
-        </div>
+        </client-only>
       </div>
     </div>
     <div class="flex flex-wrap">
       <div class="w-full md:w-3/4 p-4">
-        <FormTextarea
-          v-model="textAreaData"
-          name="textarea"
-          label="Additional information"
-          placeholder="Optional"
-          icon="camera"
-        ></FormTextarea>
+        <client-only>
+          <FormTextarea
+            v-model="textAreaData"
+            name="textarea"
+            label="Additional information"
+            placeholder="Optional"
+            icon="camera"
+          ></FormTextarea>
+        </client-only>
+      </div>
+    </div>
+    <div class="flex flex-wrap">
+      <div class="w-full md:w-3/4 p-4">
+        <client-only>
+          <FormToggle v-model="formToggle"></FormToggle>
+        </client-only>
       </div>
     </div>
     <div class="flex flex-wrap border-t border-gray-200">
@@ -138,6 +151,7 @@ import FormTextarea from "~/components/Input/FormTextarea";
 import RichTextSimpleMDE from "~/components/Input/RichTextSimpleMDE";
 import FormCheckbox from "~/components/Input/FormCheckbox";
 import FormDatePicker from "~/components/Input/FormDatePicker";
+import FormToggle from "~/components/Input/FormToggle";
 export default {
   components: {
     Navigation,
@@ -149,6 +163,7 @@ export default {
     RichTextSimpleMDE,
     FormText,
     FormCheckbox,
+    FormToggle,
   },
   head: {
     title: "Showcase",
@@ -165,6 +180,7 @@ export default {
       radio: ["AM", "PM"],
       defaultCheck: "AM",
       textAreaData: null,
+      formToggle: true,
     };
   },
   created() {},
