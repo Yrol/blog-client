@@ -33,7 +33,7 @@
     <div class="flex flex-wrap">
       <div class="w-full md:w-3/4 p-4">
         <client-only>
-          <RichTextSimpleMDE />
+          <RichTextSimpleMDE v-model="richTextContent" />
         </client-only>
       </div>
     </div>
@@ -190,11 +190,16 @@ export default {
       textAreaData: null,
       formToggle: true,
       file: null,
+      richTextContent: "Richtext content",
     };
   },
-  created() {},
   watch: {
     abn(value) {
+      if (value) {
+        console.log(value);
+      }
+    },
+    richTextContent(value) {
       if (value) {
         console.log(value);
       }
