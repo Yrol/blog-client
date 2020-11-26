@@ -10,9 +10,7 @@
         </h4>
         <Card
           title="Lorem ipsum dolor sit amet, consectetur?"
-          body="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
-          quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
-          nihil."
+          :body="`Test`"
           author="Yrol Fernando"
           publishDate="05 Oct 2020"
           v-bind:tags="tags"
@@ -158,6 +156,7 @@ import FormCheckbox from "~/components/Input/FormCheckbox";
 import FormDatePicker from "~/components/Input/FormDatePicker";
 import FormToggle from "~/components/Input/FormToggle";
 import FileDrop from "~/components/Input/FileDrop";
+import md from "marked";
 
 export default {
   components: {
@@ -176,6 +175,18 @@ export default {
   head: {
     title: "Showcase",
   },
+  computed: {
+    richTextBody() {
+      //console.log(this.richTextContent);
+      return this.richTextContent.split("").reverse().join("");
+    },
+    now: function () {
+      return Date.now();
+    },
+  },
+  created() {
+    this.richTextContent = "";
+  },
   data() {
     return {
       abn: null,
@@ -190,7 +201,7 @@ export default {
       textAreaData: null,
       formToggle: true,
       file: null,
-      richTextContent: "Richtext content",
+      richTextContent: "",
     };
   },
   watch: {
@@ -200,9 +211,7 @@ export default {
       }
     },
     richTextContent(value) {
-      if (value) {
-        console.log(value);
-      }
+      this.richTextContent = value;
     },
   },
 };

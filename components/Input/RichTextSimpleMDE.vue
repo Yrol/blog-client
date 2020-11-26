@@ -12,8 +12,6 @@ export default {
   props: {
     value: String,
     name: String,
-    icon: String,
-    label: String,
   },
   data() {
     return {
@@ -31,8 +29,7 @@ export default {
     },
     proxy(value) {
       if (value !== this.value) {
-        console.log(value);
-        this.$emit("vue-simplemde", value);
+        this.$emit("input", value);
       }
     },
   },
