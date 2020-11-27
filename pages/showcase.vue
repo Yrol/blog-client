@@ -37,6 +37,11 @@
     </div>
     <div class="flex flex-wrap">
       <div class="w-full md:w-3/4 p-4">
+        <span v-html="richTextBody"></span>
+      </div>
+    </div>
+    <div class="flex flex-wrap">
+      <div class="w-full md:w-3/4 p-4">
         <client-only>
           <FormText
             rules="required"
@@ -177,8 +182,7 @@ export default {
   },
   computed: {
     richTextBody() {
-      //console.log(this.richTextContent);
-      return this.richTextContent.split("").reverse().join("");
+      return md.parse(this.richTextContent);
     },
     now: function () {
       return Date.now();
@@ -202,6 +206,7 @@ export default {
       formToggle: true,
       file: null,
       richTextContent: "",
+      bodyText: "",
     };
   },
   watch: {
