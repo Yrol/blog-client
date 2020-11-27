@@ -24,13 +24,6 @@
     <div class="flex flex-wrap">
       <div class="w-full md:w-3/4 p-4">
         <client-only>
-          <RichTextQuillEditor />
-        </client-only>
-      </div>
-    </div>
-    <div class="flex flex-wrap">
-      <div class="w-full md:w-3/4 p-4">
-        <client-only>
           <RichTextSimpleMDE v-model="richTextContent" />
         </client-only>
       </div>
@@ -153,7 +146,6 @@ import Card from "~/components/Site/Card";
 import CategoriesCard from "~/components/Site/CategoriesCard";
 import Footer from "~/components/Site/Footer";
 import Pagination from "~/components/Site/Pagination";
-import RichTextQuillEditor from "~/components/Input/RichTextQuillEditor";
 import FormText from "~/components/Input/FormText";
 import FormTextarea from "~/components/Input/FormTextarea";
 import RichTextSimpleMDE from "~/components/Input/RichTextSimpleMDE";
@@ -170,7 +162,6 @@ export default {
     CategoriesCard,
     Footer,
     Pagination,
-    RichTextQuillEditor,
     RichTextSimpleMDE,
     FormText,
     FormCheckbox,

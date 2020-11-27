@@ -40,9 +40,6 @@
           v-bind:tags="tags"
         />
         <client-only>
-          <RichTextQuillEditor />
-        </client-only>
-        <client-only>
           <RichTextSimpleMDE />
         </client-only>
         <FormText
@@ -73,7 +70,6 @@ import Card from "~/components/Site/Card";
 import CategoriesCard from "~/components/Site/CategoriesCard";
 import Footer from "~/components/Site/Footer";
 import Pagination from "~/components/Site/Pagination";
-import RichTextQuillEditor from "~/components/Input/RichTextQuillEditor";
 import FormText from "~/components/Input/FormText";
 import RichTextSimpleMDE from "~/components/Input/RichTextSimpleMDE";
 export default {
@@ -83,7 +79,6 @@ export default {
     CategoriesCard,
     Footer,
     Pagination,
-    RichTextQuillEditor,
     RichTextSimpleMDE,
     FormText,
   },

@@ -33,9 +33,6 @@ export default {
    */
   css: [
     "@assets/scss/main.scss",
-    "quill/dist/quill.snow.css",
-    "quill/dist/quill.bubble.css",
-    "quill/dist/quill.core.css",
     'simplemde/dist/simplemde.min.css'
   ],
   /*
@@ -43,7 +40,6 @@ export default {
    ** https://nuxtjs.org/guide/plugins
    */
   plugins: [
-    { src: "~plugins/vue-quill-editor.js", ssr: false },
     { src: "~plugins/validation.js", ssr: false },
     { src: '~plugins/nuxt-simplemde-plugin.js', ssr: false },
     { src: "~plugins/datePicker.js", ssr: false}
@@ -100,9 +96,7 @@ export default {
         $: "jquery",
         jQuery: "jquery",
         jquery: "jquery",
-        "window.jQuery": "jquery",
-        "window.Quill": "quill/dist/quill.js",
-        Quill: "quill/dist/quill.js"
+        "window.jQuery": "jquery"
       })
     ],
     extend(config, ctx) {}
