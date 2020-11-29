@@ -7,9 +7,7 @@
         <div class="text-black font-bold text-xl mb-2">
           {{ title }}
         </div>
-        <p class="text-grey-darker text-base">
-          {{ body }}
-        </p>
+        <span v-html="bodyText" class="text-grey-darker text-base"></span>
         <div class="mb-2 mt-2">
           <a
             class="text-sm text-gray-600 p-1 hover:text-black"
@@ -50,6 +48,7 @@
   </div>
 </template>
 <script>
+import md from "marked";
 export default {
   name: "Card",
   props: {
@@ -67,6 +66,11 @@ export default {
     },
     author: String,
     publishDate: String,
+  },
+  computed: {
+    bodyText() {
+      return md.parse(this.body);
+    },
   },
 };
 </script>
