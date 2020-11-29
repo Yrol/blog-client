@@ -12,6 +12,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.14.0",
     "@fortawesome/free-regular-svg-icons": "^5.14.0",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@nuxtjs/auth": "^4.9.1",
     "@nuxtjs/axios": "^5.12.2",
     "dotenv": "^8.2.0",
     "jquery": "^3.5.1",
@@ -21,8 +22,8 @@
     "nuxt-fontawesome": "^0.4.0",
     "sass-loader": "^10.0.1",
     "vee-validate": "^3.3.9",
-    "vuejs-datepicker": "^1.6.2",
-    "vue-simplemde": "^1.1.2"
+    "vue-simplemde": "^1.1.2",
+    "vuejs-datepicker": "^1.6.2"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^2.1.0"

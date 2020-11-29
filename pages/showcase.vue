@@ -33,6 +33,12 @@
         <span v-html="richTextBody"></span>
       </div>
     </div>
+    <!-- Show only if logged in using nuxt auth-->
+    <div v-if="$auth.loggedIn" class="flex flex-wrap">
+      <div class="w-full md:w-3/4 p-4">
+        <span>User has logged in</span>
+      </div>
+    </div>
     <div class="flex flex-wrap">
       <div class="w-full md:w-3/4 p-4">
         <client-only>
