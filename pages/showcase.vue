@@ -162,6 +162,7 @@ import FileDrop from "~/components/Input/FileDrop";
 import md from "marked";
 
 export default {
+  name: "Showcase",
   components: {
     Navigation,
     Card,
