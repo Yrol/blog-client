@@ -83,7 +83,7 @@ export default {
     strategies: {
       local: {
         endpoints: {
-          login: { url: '/api/login', method: 'post', propertyName: 'token' }, //token property in the JSON response contains the actual token
+          login: { url: 'http://localhost:8080/api/login', method: 'post', propertyName: 'token' }, //token property in the JSON response contains the actual token
           logout: { url: '/api/logout', method: 'post' },
           user: { url: '/api/auth/me', method: 'get', propertyName: 'data' } //token property in the JSON response contains the actual user info
         },

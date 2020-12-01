@@ -12,17 +12,18 @@
             <div class="mt-5">
               <FormText
                 rules="required"
-                name="username"
-                label="Username"
-                placeholder="Username"
+                name="email"
+                label="Email"
+                placeholder="Email"
                 class="my-4"
                 icon="user"
-                v-model="username"
+                v-model="email"
               ></FormText>
             </div>
             <div class="mt-5">
               <FormText
                 rules="required"
+                type="password"
                 name="password"
                 label="Password"
                 placeholder="Password"
@@ -32,11 +33,20 @@
               ></FormText>
             </div>
             <div class="mt-10">
-              <input
+              <button
                 type="submit"
-                value="Login"
-                class="py-3 bg-green-500 hover:bg-green-600 rounded text-white text-center w-full"
-              />
+                class="w-full flex justify-center items-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:border-purple-700 focus:shadow-outline-indigo active:bg-purple-700 transition duration-150 ease-in-out"
+                :class="{ submitting: submitting }"
+              >
+                <span>
+                  <font-awesome-icon
+                    :icon="['fas', 'sign-in-alt']"
+                    class="fa-fw fa-lg mr-1"
+                  />
+                  Login
+                </span>
+                <div class="loading"></div>
+              </button>
             </div>
           </form>
         </div>
@@ -45,17 +55,18 @@
   </client-only>
 </template>
 <script>
-import FormText from "~/components/Input/FormText";
+import FormText from '~/components/Input/FormText';
 export default {
-  name: "Mystery",
+  name: 'Mystery',
   head: {
-    title: "Mystery",
+    title: 'Mystery',
   },
   data() {
     return {
-      username: null,
+      email: null,
       password: null,
       submitting: false,
+      errors: [],
     };
   },
   methods: {
@@ -65,6 +76,25 @@ export default {
       }
 
       this.submitting = true;
+
+      this.$refs.loginForm.validate().then((result) => {
+        let formData = new FormData();
+        formData.append('email', this.email);
+        formData.append('password', this.password);
+        this.$auth
+          .loginWith('local', {
+            data: formData,
+          })
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((error) => {
+            this.$refs.loginForm.setErrors(error.response.data.errors || {});
+          })
+          .finally(() => {
+            this.submitting = false;
+          });
+      });
     },
   },
 };
