@@ -86,7 +86,7 @@ export default {
             data: formData,
           })
           .then((res) => {
-            console.log(res);
+            console.log(res.data.token);
           })
           .catch((error) => {
             this.$refs.loginForm.setErrors(error.response.data.errors || {});

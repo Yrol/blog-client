@@ -36,7 +36,8 @@
     <!-- Show only if logged in using nuxt auth-->
     <div v-if="$auth.loggedIn" class="flex flex-wrap">
       <div class="w-full md:w-3/4 p-4">
-        <span>User has logged in</span>
+        <span>User has logged and the token is</span>
+        <p class="flex flex-wrap">{{ `${this.$auth.getToken('local')}` }}</p>
       </div>
     </div>
     <div class="flex flex-wrap">
@@ -147,22 +148,22 @@
 </template>
 
 <script>
-import Navigation from "~/components/Site/Header";
-import Card from "~/components/Site/Card";
-import CategoriesCard from "~/components/Site/CategoriesCard";
-import Footer from "~/components/Site/Footer";
-import Pagination from "~/components/Site/Pagination";
-import FormText from "~/components/Input/FormText";
-import FormTextarea from "~/components/Input/FormTextarea";
-import RichTextSimpleMDE from "~/components/Input/RichTextSimpleMDE";
-import FormCheckbox from "~/components/Input/FormCheckbox";
-import FormDatePicker from "~/components/Input/FormDatePicker";
-import FormToggle from "~/components/Input/FormToggle";
-import FileDrop from "~/components/Input/FileDrop";
-import md from "marked";
+import Navigation from '~/components/Site/Header';
+import Card from '~/components/Site/Card';
+import CategoriesCard from '~/components/Site/CategoriesCard';
+import Footer from '~/components/Site/Footer';
+import Pagination from '~/components/Site/Pagination';
+import FormText from '~/components/Input/FormText';
+import FormTextarea from '~/components/Input/FormTextarea';
+import RichTextSimpleMDE from '~/components/Input/RichTextSimpleMDE';
+import FormCheckbox from '~/components/Input/FormCheckbox';
+import FormDatePicker from '~/components/Input/FormDatePicker';
+import FormToggle from '~/components/Input/FormToggle';
+import FileDrop from '~/components/Input/FileDrop';
+import md from 'marked';
 
 export default {
-  name: "Showcase",
+  name: 'Showcase',
   components: {
     Navigation,
     Card,
@@ -176,7 +177,7 @@ export default {
     FileDrop,
   },
   head: {
-    title: "Showcase",
+    title: 'Showcase',
   },
   computed: {
     richTextBody() {
@@ -187,24 +188,24 @@ export default {
     },
   },
   created() {
-    this.richTextContent = "";
+    this.richTextContent = '';
   },
   data() {
     return {
       abn: null,
       checkBoxRequirement: [true, false, true, true],
       crd: null,
-      tags: ["#react", "#javascript", "#tailwind"],
-      carbrands: ["Toyota", "Nissan", "Isuzu", "Ford"],
+      tags: ['#react', '#javascript', '#tailwind'],
+      carbrands: ['Toyota', 'Nissan', 'Isuzu', 'Ford'],
       processingDate: new Date(),
       endDate: new Date(+new Date() + 2678400000),
-      radio: ["AM", "PM"],
-      defaultCheck: "AM",
+      radio: ['AM', 'PM'],
+      defaultCheck: 'AM',
       textAreaData: null,
       formToggle: true,
       file: null,
-      richTextContent: "",
-      bodyText: "",
+      richTextContent: '',
+      bodyText: '',
     };
   },
   watch: {
