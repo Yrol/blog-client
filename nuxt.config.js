@@ -54,7 +54,8 @@ export default {
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
-    "@nuxtjs/tailwindcss"
+    "@nuxtjs/tailwindcss",
+    "@nuxtjs/dotenv"
   ],
   /*
    ** Nuxt.js modules
@@ -83,9 +84,9 @@ export default {
     strategies: {
       local: {
         endpoints: {
-          login: { url: 'http://localhost:8080/api/login', method: 'post', propertyName: 'token' }, //token property in the JSON response contains the actual token
-          logout: { url: '/api/logout', method: 'post' },
-          user: { url: '/api/auth/me', method: 'get', propertyName: 'data' } //token property in the JSON response contains the actual user info
+          login: { url: process.env.API_URL + '/login', method: 'post', propertyName: 'token' }, //token property in the JSON response contains the actual token
+          logout: { url: process.env.API_URL + '/logout', method: 'post' },
+          user: { url: process.env.API_URL + '/me', method: 'get', propertyName: 'data' } //token property in the JSON response contains the actual user info
         },
         // tokenRequired: true,
         // tokenType: 'bearer',
@@ -93,10 +94,6 @@ export default {
         // autoFetchUser: true
       }
     }
-  },
-
-  axios: {
-    baseUrl: process.env.API_URL
   },
 
   /*
