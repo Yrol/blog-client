@@ -17,7 +17,7 @@ export default {
         const activities = await agent.Posts.posts();
         console.log(activities);
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     },
   },
