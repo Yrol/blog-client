@@ -102,16 +102,42 @@
             </a>
           </li>
           <li>
-            <a
-              href="#"
-              class="lg:ml-4 flex items-center justify-start lg:mb-0 mb-4 lg:mt-0 mt-4 pointer-cursor"
-            >
-              <img
-                class="rounded-full w-10 h-10 border-2 border-transparent hover:border-indigo-400"
-                src="https://avatars2.githubusercontent.com/u/8627014?s=460&u=d5f69b2710640c2ec400b9018aabd8b1d92eea51&v=4"
-                alt="Yrol Fernando"
-              />
-            </a>
+            <div class="dropdown">
+              <button
+                href="#"
+                class="lg:ml-4 flex items-center justify-start lg:mb-0 mb-4 lg:mt-0 mt-4 pointer-cursor"
+              >
+                <img
+                  class="rounded-full w-10 h-10 border-2 border-transparent hover:border-indigo-400"
+                  src="https://avatars2.githubusercontent.com/u/8627014?s=460&u=d5f69b2710640c2ec400b9018aabd8b1d92eea51&v=4"
+                  alt="Yrol Fernando"
+                />
+              </button>
+              <div
+                class="origin-top-right absolute dropdown-menu hidden right-0 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+              >
+                <div
+                  class="py-1"
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-labelledby="options-menu"
+                >
+                  <a
+                    href="#"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                    role="menuitem"
+                    >Account</a
+                  >
+                  <button
+                    type="submit"
+                    class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
+                    role="menuitem"
+                  >
+                    Sign out
+                  </button>
+                </div>
+              </div>
+            </div>
           </li>
         </ul>
       </nav>
