@@ -71,7 +71,7 @@ export default {
     };
   },
   methods: {
-    login() {
+    async login() {
       if (this.submitting) {
         return;
       }
@@ -82,7 +82,7 @@ export default {
         let formData = new FormData();
         formData.append('email', this.email);
         formData.append('password', this.password);
-        this.$auth
+        await this.$auth
           .loginWith('local', {
             data: formData,
           })
