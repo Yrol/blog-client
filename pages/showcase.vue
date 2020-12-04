@@ -34,7 +34,7 @@
       </div>
     </div>
     <!-- Show only if logged in using nuxt auth-->
-    <div v-if="$auth.loggedIn" class="flex flex-wrap">
+    <div v-if="isAuthenticated" class="flex flex-wrap">
       <div class="w-full md:w-3/4 p-4">
         <span>User has logged and the token is</span>
         <p class="flex flex-wrap">{{ `${this.$auth.getToken('local')}` }}</p>
@@ -161,6 +161,7 @@ import FormDatePicker from '~/components/Input/FormDatePicker';
 import FormToggle from '~/components/Input/FormToggle';
 import FileDrop from '~/components/Input/FileDrop';
 import md from 'marked';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'Showcase',
@@ -180,6 +181,7 @@ export default {
     title: 'Showcase',
   },
   computed: {
+    ...mapGetters(['isAuthenticated', 'loggedInUser']),
     richTextBody() {
       return md.parse(this.richTextContent);
     },

@@ -59,7 +59,7 @@ const requests = {
 }
 
 const Posts = {
-  posts: () => axios.get('/article').then(responseBody),
+  posts: () => axios.get('/articles').then(responseBody),
   details: (id) => requests.get(`/articles/${id}`), //accepts a string argument
   create: (post) => requests.post('/articles', post), //accepts an IActivity as argument
   update: (post) => requests.put(`/articles/${post.id}`, post), //accepts an IActivity as argument

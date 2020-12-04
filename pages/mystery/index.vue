@@ -61,6 +61,7 @@ export default {
   head: {
     title: 'Mystery',
   },
+  middleware: 'authenticated',
   data() {
     return {
       email: null,
