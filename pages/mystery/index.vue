@@ -71,7 +71,7 @@ export default {
     };
   },
   methods: {
-    async login() {
+    login() {
       if (this.submitting) {
         return;
       }
@@ -82,19 +82,21 @@ export default {
         let formData = new FormData();
         formData.append('email', this.email);
         formData.append('password', this.password);
-        await this.$auth
-          .loginWith('local', {
-            data: formData,
-          })
-          .then((res) => {
-            console.log(res.data.token);
-          })
-          .catch((error) => {
-            this.$refs.loginForm.setErrors(error.response.data.errors || {});
-          })
-          .finally(() => {
-            this.submitting = false;
-          });
+        (async () => {
+          await this.$auth
+            .loginWith('local', {
+              data: formData,
+            })
+            .then((res) => {
+              console.log(res.data.token);
+            })
+            .catch((error) => {
+              this.$refs.loginForm.setErrors(error.response.data.errors || {});
+            })
+            .finally(() => {
+              this.submitting = false;
+            });
+        })();
       });
     },
   },
