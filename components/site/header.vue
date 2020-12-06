@@ -114,6 +114,7 @@
                 />
               </button>
               <div
+                v-if="isAuthenticated"
                 class="origin-top-right absolute dropdown-menu hidden right-0 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
               >
                 <div
@@ -128,13 +129,15 @@
                     role="menuitem"
                     >Account</a
                   >
-                  <button
-                    type="submit"
-                    class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
-                    role="menuitem"
-                  >
-                    Sign out
-                  </button>
+                  <form @submit.prevent="signout">
+                    <button
+                      type="submit"
+                      class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
+                      role="menuitem"
+                    >
+                      Sign out
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>
@@ -146,5 +149,24 @@
 </template>
 
 <script>
-export default {};
+import { mapGetters } from 'vuex';
+export default {
+  name: 'SiteHeader',
+  data() {
+    return {};
+  },
+  computed: {
+    ...mapGetters(['isAuthenticated', 'loggedInUser']),
+  },
+  methods: {
+    async signout() {
+      await this.$auth.logout(/* .... */).then((res, redirect) => {
+        const path = '/';
+        if (this.$route.path !== path) {
+          this.$router.push(path);
+        }
+      });
+    },
+  },
+};
 </script>
