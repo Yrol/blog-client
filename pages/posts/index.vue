@@ -1,5 +1,4 @@
 <template></template>
-
 <script>
 import '../../api/agent';
 import agent from '../../api/agent';

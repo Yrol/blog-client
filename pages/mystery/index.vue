@@ -11,18 +11,17 @@
           <form @submit.prevent="handleSubmit(login)">
             <div class="mt-5">
               <FormText
-                rules="required"
                 name="email"
                 label="Email"
                 placeholder="Email"
                 class="my-4"
                 icon="user"
                 v-model="email"
+                rules="required"
               ></FormText>
             </div>
             <div class="mt-5">
               <FormText
-                rules="required"
                 type="password"
                 name="password"
                 label="Password"
@@ -30,23 +29,18 @@
                 class="my-4"
                 icon="key"
                 v-model="password"
+                rules="required"
               ></FormText>
             </div>
             <div class="mt-10">
-              <button
-                type="submit"
-                class="w-full flex justify-center items-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:border-purple-700 focus:shadow-outline-indigo active:bg-purple-700 transition duration-150 ease-in-out"
-                :class="{ submitting: submitting }"
+              <Button
+                :variant="variant"
+                :loading="submitting"
+                :disableButton="buttonDisable"
+                icon="sign-in-alt"
               >
-                <span>
-                  <font-awesome-icon
-                    :icon="['fas', 'sign-in-alt']"
-                    class="fa-fw fa-lg mr-1"
-                  />
-                  Login
-                </span>
-                <div class="loading"></div>
-              </button>
+                Login
+              </Button>
             </div>
           </form>
         </div>
@@ -56,6 +50,7 @@
 </template>
 <script>
 import FormText from '~/components/Input/FormText';
+import Button from '~/components/Input/Button';
 export default {
   name: 'Mystery',
   head: {
@@ -68,6 +63,8 @@ export default {
       password: null,
       submitting: false,
       errors: [],
+      buttonDisable: false,
+      variant: 'success',
     };
   },
   methods: {
@@ -77,6 +74,7 @@ export default {
       }
 
       this.submitting = true;
+      this.buttonDisable = true;
 
       this.$refs.loginForm.validate().then((result) => {
         let formData = new FormData();
@@ -95,6 +93,7 @@ export default {
             })
             .finally(() => {
               this.submitting = false;
+              this.buttonDisable = false;
             });
         })();
       });
