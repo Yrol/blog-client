@@ -85,11 +85,11 @@ export default {
   props: {
     body: {
       type: String,
-      required: true,
+      required: false,
     },
     title: {
       type: String,
-      required: true,
+      required: false,
     },
     tags: {
       type: Array,

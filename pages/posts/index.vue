@@ -1,21 +1,39 @@
 <template>
-  <Card
-    title=""
-    body="is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
-    author="Yrol Fernando"
-    publishDate="05 Oct 2020"
-  />
+  <div>
+    <Navigation />
+    <div class="flex flex-wrap">
+      <div class="w-full md:w-3/4 p-4">
+        <span v-if="!postsLoaded">
+          <Card v-for="index in 5" :key="index" :dataReady="false" />
+        </span>
+        <span></span>
+      </div>
+      <div class="w-ful md:w-1/4 lg:pl-0 md:pl-0 p-4">
+        <CategoriesCard />
+      </div>
+    </div>
+  </div>
 </template>
 <script>
 import agent from '../../api/agent';
+import Navigation from '../../components/Site/Header';
 import Card from '../../components/Site/Card';
+import CategoriesCard from '../../components/Site/CategoriesCard';
 export default {
   name: 'Posts',
   head: {
     title: 'Posts',
   },
+  components: {
+    Navigation,
+    Card,
+    CategoriesCard,
+  },
   data() {
-    return {};
+    return {
+      postsLoaded: false,
+      postCount: 0,
+    };
   },
   methods: {
     async getPosts() {
