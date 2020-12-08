@@ -8,6 +8,7 @@
           body="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
           quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
           nihil."
+          :dataReady="true"
           author="Yrol Fernando"
           publishDate="05 Oct 2020"
           v-bind:tags="tags"
@@ -17,6 +18,7 @@
           body="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
           quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
           nihil."
+          :dataReady="true"
           author="Yrol Fernando"
           publishDate="05 Oct 2020"
           v-bind:tags="tags"
@@ -26,6 +28,7 @@
           body="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
           quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
           nihil."
+          :dataReady="true"
           author="Yrol Fernando"
           publishDate="05 Oct 2020"
           v-bind:tags="tags"
@@ -35,6 +38,7 @@
           body="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
           quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
           nihil."
+          :dataReady="true"
           author="Yrol Fernando"
           publishDate="05 Oct 2020"
           v-bind:tags="tags"
@@ -65,13 +69,13 @@
 </template>
 
 <script>
-import Navigation from "~/components/Site/Header";
-import Card from "~/components/Site/Card";
-import CategoriesCard from "~/components/Site/CategoriesCard";
-import Footer from "~/components/Site/Footer";
-import Pagination from "~/components/Site/Pagination";
-import FormText from "~/components/Input/FormText";
-import RichTextSimpleMDE from "~/components/Input/RichTextSimpleMDE";
+import Navigation from '~/components/Site/Header';
+import Card from '~/components/Site/Card';
+import CategoriesCard from '~/components/Site/CategoriesCard';
+import Footer from '~/components/Site/Footer';
+import Pagination from '~/components/Site/Pagination';
+import FormText from '~/components/Input/FormText';
+import RichTextSimpleMDE from '~/components/Input/RichTextSimpleMDE';
 export default {
   components: {
     Navigation,
@@ -83,12 +87,12 @@ export default {
     FormText,
   },
   head: {
-    title: "Home",
+    title: 'Home',
   },
   data() {
     return {
       abn: null,
-      tags: ["#react", "#javascript", "#tailwind"],
+      tags: ['#react', '#javascript', '#tailwind'],
     };
   },
   created() {},

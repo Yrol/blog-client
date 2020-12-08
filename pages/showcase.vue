@@ -5,16 +5,16 @@
     <div class="flex flex-wrap">
       <div class="w-full md:w-3/4 p-4">
         <!-- Card -->
-        <h4 class="leading-none my-2 tracking-wider text-gray-600 font-light">
-          Card
-        </h4>
         <Card
           title="Lorem ipsum dolor sit amet, consectetur?"
           body="is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
           author="Yrol Fernando"
           publishDate="05 Oct 2020"
           v-bind:tags="tags"
+          :dataReady="true"
         />
+        <!-- Card Skeleton mode (will be used when loading the posts)-->
+        <Card :dataReady="false" />
       </div>
       <div class="w-ful md:w-1/4 lg:pl-0 md:pl-0 p-4">
         <!-- Categories Card -->
