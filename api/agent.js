@@ -52,20 +52,25 @@ axios.interceptors.response.use(undefined, error => {
 const responseBody = (response) => response.data;
 
 const requests = {
-  get: (url) => axios.get(url).then(responseBody),// taking only 1 argument - url
-  post: (url, body) => axios.post(url, body).then(responseBody), //taking 2 arguments - url & body
-  put: (url, body) => axios.put(url, body).then(responseBody), //taking 2 arguments - url & body
+  get: (url) => axios.get(url).then(responseBody),
+  post: (url, body) => axios.post(url, body).then(responseBody),
+  put: (url, body) => axios.put(url, body).then(responseBody),
   del: (url) => axios.delete(url).then(responseBody)
 }
 
 const Posts = {
   posts: () => axios.get('/articles').then(responseBody),
-  details: (id) => requests.get(`/articles/${id}`), //accepts a string argument
-  create: (post) => requests.post('/articles', post), //accepts an IActivity as argument
-  update: (post) => requests.put(`/articles/${post.id}`, post), //accepts an IActivity as argument
-  delete: (id) => requests.del(`/articles/${id}`),  //accepts a string argument
+  details: (id) => requests.get(`/articles/${id}`),
+  create: (post) => requests.post('/articles', post),
+  update: (post) => requests.put(`/articles/${post.id}`, post),
+  delete: (id) => requests.del(`/articles/${id}`),
+}
+
+const Categories = {
+  categories: () => axios.get('categories/active').then(responseBody),
 }
 
 export default{
-  Posts
+  Posts,
+  Categories
 }
