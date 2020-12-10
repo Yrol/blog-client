@@ -6,7 +6,17 @@
         <span v-if="loading">
           <Card v-for="index in 5" :key="index" :dataReady="false" />
         </span>
-        <span></span>
+        <span v-else>
+          <Card
+            v-for="(activity, index) in activities.data"
+            :key="index"
+            :dataReady="true"
+            :title="activity.title"
+            :body="activity.body"
+            :author="activity.user.name"
+            :publishDate="activity.created_at_dates.created_at"
+          />
+        </span>
       </div>
       <div class="w-ful md:w-1/4 lg:pl-0 md:pl-0 p-4">
         <CategoriesCard />
@@ -31,7 +41,8 @@ export default {
   },
   data() {
     return {
-      loading: true,
+      activities: [],
+      loading: false,
       postCount: 0,
       page: 0,
     };
@@ -40,8 +51,7 @@ export default {
     async getPosts() {
       this.loading = true;
       try {
-        const activities = await agent.Posts.posts();
-        console.log(activities);
+        this.activities = await agent.Posts.posts();
       } catch (error) {
         //console.log(error);
       } finally {
