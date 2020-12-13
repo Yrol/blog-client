@@ -19,7 +19,7 @@
           >
         </div>
 
-        <div v-if="!categoriesLoaded">
+        <div v-if="!categoriesLoaded && !error">
           <p
             class="leading-relaxed mb-3 w-full h-3 animate-pulse bg-gray-400"
           ></p>
