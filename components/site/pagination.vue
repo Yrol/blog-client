@@ -71,14 +71,11 @@
 export default {
   name: 'Pagination',
   data() {
-    return {
-      pageNumber: 1,
-    };
+    return {};
   },
   methods: {
     getPageNumber(pNumber) {
-      this.pageNumber = pNumber;
-      console.log(this.pageNumber);
+      this.$emit('update-pagenumber', pNumber);
     },
   },
 };
