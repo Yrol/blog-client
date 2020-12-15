@@ -152,7 +152,7 @@ import Navigation from '~/components/Site/Header';
 import Card from '~/components/Site/Card';
 import CategoriesCard from '~/components/Site/CategoriesCard';
 import Footer from '~/components/Site/Footer';
-import Pagination from '~/components/Site/Pagination';
+import Pagination from '~/components/Site/pagination';
 import FormText from '~/components/Input/FormText';
 import FormTextarea from '~/components/Input/FormTextarea';
 import RichTextSimpleMDE from '~/components/Input/RichTextSimpleMDE';
