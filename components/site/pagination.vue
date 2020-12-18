@@ -1,17 +1,5 @@
 <template>
   <div class="bg-white px-4 py-3 flex items-center justify-between sm:px-6">
-    <div class="flex-1 flex justify-between sm:hidden">
-      <a
-        href="#"
-        class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
-        >Previous</a
-      >
-      <a
-        href="#"
-        class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
-        >Next</a
-      >
-    </div>
     <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
       <div>
         <p class="text-sm leading-5 text-gray-700">
@@ -48,8 +36,8 @@
           >
             {{ index + 1 }}
           </button>
-          <a
-            href="#"
+          <nuxt-link
+            :to="{ name: 'posts', params: { page: prevPage } }"
             class="-ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
             aria-label="Next"
           >
@@ -60,7 +48,7 @@
                 clip-rule="evenodd"
               />
             </svg>
-          </a>
+          </nuxt-link>
         </nav>
       </div>
     </div>
@@ -72,6 +60,38 @@ export default {
   name: 'Pagination',
   data() {
     return {};
+  },
+  props: {
+    total: {
+      type: Number,
+      default: 0,
+    },
+    perPage: {
+      type: Number,
+      default: 5,
+    },
+  },
+  computed: {
+    buttonStyles() {
+      return 'border rounded px-4 py-1 text-sm bg-white flex justify-center items-center sm:uppercase hover:bg-blue-500 hover:text-white transform duration-500 ease-in-out';
+    },
+    disabledStyle() {
+      return 'border rounded px-4 py-1 text-sm bg-white flex justify-center items-center sm:uppercase text-gray-300';
+    },
+    totalPages() {
+      return Math.ceil(this.total / this.perPage);
+    },
+    currentPage() {
+      return parseInt(this.$route.params.page) || 1;
+    },
+    prevPage() {
+      return this.currentPage > 1 ? this.currentPage - 1 : 1;
+    },
+    nextPage() {
+      return this.currentPage < this.totalPages
+        ? this.currentPage + 1
+        : this.totalPages;
+    },
   },
   methods: {
     getPageNumber(pNumber) {
