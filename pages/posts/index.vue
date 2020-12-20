@@ -58,11 +58,15 @@ export default {
       this.loading = true;
       try {
         this.activities = await agent.Posts.posts();
+        console.log(this.activities);
       } catch (error) {
         //console.log(error);
       } finally {
         this.loading = false;
       }
+    },
+    updatePageNumber(e) {
+      console.log(e);
     },
   },
   created() {
