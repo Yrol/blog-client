@@ -59,7 +59,7 @@ const requests = {
 }
 
 const Posts = {
-  posts: (pid, axios) => axios.get(`/articles?page=${pid}`).then(responseBody),
+  posts: (pid) => axios.get(`/articles?page=${pid}`).then(responseBody),
   details: (id) => requests.get(`/articles/${id}`),
   create: (post) => requests.post('/articles', post),
   update: (post) => requests.put(`/articles/${post.id}`, post),
