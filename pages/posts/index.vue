@@ -57,7 +57,7 @@ export default {
     async getPosts() {
       this.loading = true;
       try {
-        this.activities = await agent.Posts.posts();
+        this.activities = await agent.Posts.posts(1);
         console.log(this.activities);
       } catch (error) {
         //console.log(error);

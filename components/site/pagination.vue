@@ -8,14 +8,14 @@
           to
           <span class="font-medium">10</span>
           of
-          <span class="font-medium">97</span>
+          <span class="font-medium">{{ total }}</span>
           results
         </p>
       </div>
       <div>
         <nav class="relative z-0 inline-flex shadow-sm">
-          <a
-            href="#"
+          <nuxt-link
+            :to="{ name: 'posts-page-page', params: { page: prevPage } }"
             class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
             aria-label="Previous"
           >
@@ -26,18 +26,18 @@
                 clip-rule="evenodd"
               />
             </svg>
-          </a>
-          <button
-            v-for="(item, index) in total"
+          </nuxt-link>
+          <nuxt-link
+            v-for="(item, index) in totalPages"
             :key="index"
-            href="#"
+            :to="{ name: 'posts-page-page', params: { page: index + 1 } }"
             class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
             @click="getPageNumber(index + 1)"
           >
             {{ index + 1 }}
-          </button>
+          </nuxt-link>
           <nuxt-link
-            :to="{ name: 'posts', params: { page: prevPage } }"
+            :to="{ name: 'posts-page-page', params: { page: nextPage } }"
             class="-ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
             aria-label="Next"
           >

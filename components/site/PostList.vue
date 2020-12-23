@@ -2,20 +2,15 @@
   <div>
     <div class="flex flex-wrap">
       <div class="w-full md:w-3/4 p-4">
-        <span v-if="loadingStatus">
-          <Card v-for="index in 5" :key="index" :dataReady="false" />
-        </span>
-        <span v-else>
-          <Card
-            v-for="(post, index) in posts.data"
-            :key="index"
-            :dataReady="true"
-            :title="post.title"
-            :body="post.body"
-            :author="post.user.name"
-            :publishDate="post.created_at_dates.created_at"
-          />
-        </span>
+        <Card
+          v-for="(post, index) in posts"
+          :key="index"
+          :dataReady="true"
+          :title="post.title"
+          :body="post.body"
+          :author="post.user.name"
+          :publishDate="post.created_at_dates.created_at"
+        />
       </div>
       <div class="w-ful md:w-1/4 lg:pl-0 md:pl-0 p-4">
         <CategoriesCard />
