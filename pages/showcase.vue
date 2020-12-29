@@ -140,7 +140,11 @@
     </div>
     <div class="flex flex-wrap border-t border-gray-200">
       <div class="w-full md:w-3/4">
-        <Pagination @update-pagenumber="updatePageNumber" />
+        <Pagination
+          :total="20"
+          :perPage="2"
+          @update-pagenumber="updatePageNumber"
+        />
       </div>
     </div>
     <Footer />

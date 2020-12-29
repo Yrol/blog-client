@@ -18,7 +18,11 @@
     </div>
     <div class="flex flex-wrap border-t border-gray-200">
       <div class="w-full md:w-3/4">
-        <Pagination @update-pagenumber="updatePageNumber" />
+        <Pagination
+          @update-pagenumber="updatePageNumber"
+          :total="total"
+          :perPage="postsPerPage"
+        />
       </div>
     </div>
   </div>
@@ -41,9 +45,9 @@ export default {
       type: Number,
       default: 0,
     },
-    loadingStatus: {
-      type: Boolean,
-      default: true,
+    postsPerPage: {
+      type: Number,
+      default: 0,
     },
   },
   methods: {

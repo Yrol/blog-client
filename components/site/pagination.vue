@@ -1,5 +1,8 @@
 <template>
-  <div class="bg-white px-4 py-3 flex items-center justify-between sm:px-6">
+  <div
+    v-if="totalPages > 0"
+    class="bg-white px-4 py-3 flex items-center justify-between sm:px-6"
+  >
     <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
       <div>
         <p class="text-sm leading-5 text-gray-700">
@@ -16,7 +19,7 @@
         <nav class="relative z-0 inline-flex shadow-sm">
           <nuxt-link
             :to="{ name: 'posts-page-page', params: { page: prevPage } }"
-            class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
+            :class="[previousBtnStyle]"
             aria-label="Previous"
           >
             <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -28,7 +31,7 @@
             </svg>
           </nuxt-link>
           <nuxt-link
-            v-for="(item, index) in totalPages"
+            v-for="(item, index) in Array(totalPages)"
             :key="index"
             :to="{ name: 'posts-page-page', params: { page: index + 1 } }"
             class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
@@ -38,7 +41,7 @@
           </nuxt-link>
           <nuxt-link
             :to="{ name: 'posts-page-page', params: { page: nextPage } }"
-            class="-ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
+            :class="[nextBtnStyle]"
             aria-label="Next"
           >
             <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -59,24 +62,42 @@
 export default {
   name: 'Pagination',
   data() {
-    return {};
+    return {
+      disabled: true,
+    };
   },
   props: {
     total: {
       type: Number,
-      default: 10,
+      default: 0,
     },
     perPage: {
       type: Number,
-      default: 5,
+      default: 0,
     },
   },
   computed: {
-    buttonStyles() {
-      return 'border rounded px-4 py-1 text-sm bg-white flex justify-center items-center sm:uppercase hover:bg-blue-500 hover:text-white transform duration-500 ease-in-out';
+    nextBtnStyle() {
+      return {
+        'cursor-not-allowed text-gray-300': this.disableNextBtn == true,
+        '-ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm leading-5 font-medium': true,
+        'text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150':
+          this.disableNextBtn == false,
+      };
     },
-    disabledStyle() {
-      return 'border rounded px-4 py-1 text-sm bg-white flex justify-center items-center sm:uppercase text-gray-300';
+    previousBtnStyle() {
+      return {
+        'cursor-not-allowed text-gray-300': this.disableBtnPrev == true,
+        'text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150':
+          this.disableBtnPrev == false,
+        'relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm leading-5 font-medium': true,
+      };
+    },
+    disableBtnPrev() {
+      return this.currentPage <= 1 ? true : false;
+    },
+    disableNextBtn() {
+      return this.currentPage >= this.totalPages ? true : false;
     },
     totalPages() {
       return Math.ceil(this.total / this.perPage);

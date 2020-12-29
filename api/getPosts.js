@@ -4,8 +4,8 @@ export default async ($axios, params, error) => {
 
   const allPosts = await $axios.$get(`/articles?page=${params.page}`);
 
-  if (allPosts.length) {
-    return error({ statusCode: 404, message: 'No articles found!' });
+  if (!allPosts.data.length) {
+    throw error({ statusCode: 404, message: 'No articles found!' });
   }
 
   return {
