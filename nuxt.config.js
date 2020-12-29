@@ -28,6 +28,14 @@ export default {
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
   },
+  /**
+   * Customized loading indicator and customizing the top loading bar
+   */
+  loading: {
+    color: '#f66d9b',
+    height: '5px'
+  },
+  //loading:'~/components/Site/Loading.vue',//using the custom loading component
   /*
    ** Global CSS
    */
