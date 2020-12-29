@@ -3,6 +3,22 @@
     v-if="totalPages > 0"
     class="bg-white px-4 py-3 flex items-center justify-between sm:px-6"
   >
+    <div class="flex-1 flex justify-between sm:hidden">
+      <nuxt-link
+        :to="{ name: 'posts-page-page', params: { page: prevPage } }"
+        aria-label="Previous"
+        class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500"
+      >
+        Previous
+      </nuxt-link>
+      <nuxt-link
+        :to="{ name: 'posts-page-page', params: { page: nextPage } }"
+        aria-label="Next"
+        class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500"
+      >
+        Next
+      </nuxt-link>
+    </div>
     <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
       <div>
         <p class="text-sm leading-5 text-gray-700">
@@ -120,10 +136,10 @@ export default {
     },
     paginationBtnStyle(pageId) {
       return {
-        '-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium': true,
-        'bg-pink-500 text-white hover:text-white focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-white transition ease-in-out duration-150':
+        '-ml-px relative inline-flex items-center px-4 py-2 border bg-white text-sm leading-5 font-medium': true,
+        'bg-pink-500 border-pink-500 text-white hover:text-white focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-white transition ease-in-out duration-150':
           this.currentPage == pageId,
-        'text-gray-700 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150':
+        'text-gray-700 hover:text-gray-500 border-gray-300 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150':
           this.currentPage != pageId,
       };
     },
