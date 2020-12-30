@@ -1,107 +1,46 @@
 <template>
   <div>
-    <Navigation />
-    <div class="flex flex-wrap">
-      <div class="w-full md:w-3/4 p-4">
-        <Card
-          title="Lorem ipsum dolor sit amet, consectetur?"
-          body="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
-          quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
-          nihil."
-          :dataReady="true"
-          author="Yrol Fernando"
-          publishDate="05 Oct 2020"
-          v-bind:tags="tags"
-        />
-        <Card
-          title="Lorem ipsum dolor sit amet, consectetur?"
-          body="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
-          quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
-          nihil."
-          :dataReady="true"
-          author="Yrol Fernando"
-          publishDate="05 Oct 2020"
-          v-bind:tags="tags"
-        />
-        <Card
-          title="Lorem ipsum dolor sit amet, consectetur?"
-          body="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
-          quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
-          nihil."
-          :dataReady="true"
-          author="Yrol Fernando"
-          publishDate="05 Oct 2020"
-          v-bind:tags="tags"
-        />
-        <Card
-          title="Lorem ipsum dolor sit amet, consectetur?"
-          body="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
-          quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
-          nihil."
-          :dataReady="true"
-          author="Yrol Fernando"
-          publishDate="05 Oct 2020"
-          v-bind:tags="tags"
-        />
-        <client-only>
-          <RichTextSimpleMDE />
-        </client-only>
-        <FormText
-          rules="required"
-          name="abn"
-          label="Article title"
-          placeholder="Article title"
-          class="my-4"
-          v-model="abn"
-        ></FormText>
-      </div>
-      <div class="w-ful md:w-1/4 lg:pl-0 md:pl-0 p-4">
-        <CategoriesCard />
-      </div>
-    </div>
-    <div class="flex flex-wrap border-t border-gray-200">
-      <div class="w-full md:w-3/4">
-        <Pagination />
-      </div>
-    </div>
+    <Header />
+    <PostList :posts="posts" :postsPerPage="postsPerPage" :total="totalPosts" />
     <Footer />
   </div>
 </template>
-
 <script>
-import Navigation from '~/components/Site/Header';
-import Card from '~/components/Site/Card';
-import CategoriesCard from '~/components/Site/CategoriesCard';
-import Footer from '~/components/Site/Footer';
-import Pagination from '~/components/Site/pagination';
-import FormText from '~/components/Input/FormText';
-import RichTextSimpleMDE from '~/components/Input/RichTextSimpleMDE';
+import PostList from '../components/Site/PostList';
+import Header from '../components/Site/Header';
+import Footer from '../components/Site/Footer';
+import getPosts from '../api/getPosts';
 export default {
+  name: 'HomePage',
   components: {
-    Navigation,
-    Card,
-    CategoriesCard,
+    PostList,
+    Header,
     Footer,
-    Pagination,
-    RichTextSimpleMDE,
-    FormText,
-  },
-  head: {
-    title: 'Home',
   },
   data() {
     return {
-      abn: null,
-      tags: ['#react', '#javascript', '#tailwind'],
+      posts: [],
+      totalPosts: 0,
+      postsPerPage: 0,
     };
   },
-  created() {},
-  watch: {
-    abn(value) {
-      if (value) {
-        console.log(value);
-      }
-    },
+  async asyncData({ $axios, app, params, error }) {
+    return await getPosts($axios, params, error)
+      .then((res) => {
+        console.log(res.allPosts.meta.total);
+        console.log(res.allPosts.meta.per_page);
+        return {
+          posts: res.allPosts.data,
+          totalPosts: res.allPosts.meta.total,
+          postsPerPage: res.allPosts.meta.per_page,
+        };
+      })
+      .catch((e) => {});
+  },
+  head() {
+    return {
+      title: 'Home',
+    };
   },
 };
 </script>
