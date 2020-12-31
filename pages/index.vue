@@ -24,8 +24,8 @@ export default {
       postsPerPage: 0,
     };
   },
-  async asyncData({ $axios, app, params, error }) {
-    return await getPosts($axios, params, error)
+  async asyncData({ $axios, store, app, params, error }) {
+    return await getPosts($axios, store, params, error)
       .then((res) => {
         return {
           posts: res.allPosts.data,
