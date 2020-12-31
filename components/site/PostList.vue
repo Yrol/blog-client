@@ -20,8 +20,8 @@
       <div class="w-full md:w-3/4">
         <Pagination
           @update-pagenumber="updatePageNumber"
-          :total="total"
-          :perPage="postsPerPage"
+          :total="totalPosts"
+          :perPage="perPage"
         />
       </div>
     </div>
@@ -30,24 +30,23 @@
 <script>
 import Pagination from '../Site/pagination';
 import CategoriesCard from '../Site/CategoriesCard';
+import { mapGetters } from 'vuex';
 export default {
   name: 'PostList',
   components: {
     Pagination,
     CategoriesCard,
   },
+  computed: {
+    ...mapGetters({
+      totalPosts: 'pagination/totalPosts',
+      perPage: 'pagination/perPagePosts',
+    }),
+  },
   props: {
     posts: {
       type: Array,
       default: Array,
-    },
-    total: {
-      type: Number,
-      default: 0,
-    },
-    postsPerPage: {
-      type: Number,
-      default: 0,
     },
   },
   methods: {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header />
-    <PostList :posts="posts" :postsPerPage="postsPerPage" :total="totalPosts" />
+    <PostList :posts="posts" />
     <Footer />
   </div>
 </template>
@@ -27,12 +27,8 @@ export default {
   async asyncData({ $axios, app, params, error }) {
     return await getPosts($axios, params, error)
       .then((res) => {
-        console.log(res.allPosts.meta.total);
-        console.log(res.allPosts.meta.per_page);
         return {
           posts: res.allPosts.data,
-          totalPosts: res.allPosts.meta.total,
-          postsPerPage: res.allPosts.meta.per_page,
         };
       })
       .catch((e) => {});

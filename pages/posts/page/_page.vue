@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header />
-    <PostList :posts="posts" :postsPerPage="postsPerPage" :total="totalPosts" />
+    <PostList :posts="posts" />
     <Footer />
   </div>
 </template>
@@ -10,6 +10,7 @@ import PostList from '../../../components/Site/PostList';
 import Header from '../../../components/Site/Header';
 import Footer from '../../../components/Site/Footer';
 import getPosts from '../../../api/getPosts';
+
 export default {
   name: 'PostListPage',
   components: {
@@ -24,15 +25,11 @@ export default {
       postsPerPage: 0,
     };
   },
-  async asyncData({ $axios, app, params, error }) {
-    return await getPosts($axios, params, error)
+  async asyncData({ $axios, store, app, params, error }) {
+    return await getPosts($axios, store, params, error)
       .then((res) => {
-        console.log(res.allPosts.meta.total);
-        console.log(res.allPosts.meta.per_page);
         return {
           posts: res.allPosts.data,
-          totalPosts: res.allPosts.meta.total,
-          postsPerPage: res.allPosts.meta.per_page,
         };
       })
       .catch((e) => {});
