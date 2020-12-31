@@ -19,7 +19,7 @@
           >
         </div>
 
-        <div v-if="!categoriesLoaded && !error">
+        <div v-if="categoriesList.length == 0 && !error">
           <p
             class="leading-relaxed mb-3 w-full h-3 animate-pulse bg-gray-400"
           ></p>
@@ -29,7 +29,7 @@
         </div>
         <div v-else>
           <span
-            v-for="(item, index) in categories.data"
+            v-for="(item, index) in categoriesList"
             :key="index"
             class="text-xs mb-2 font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 uppercase last:mr-0 mr-1"
             >{{ item.title }}</span
@@ -42,6 +42,7 @@
 
 <script>
 import agent from '../../api/agent';
+import { mapGetters } from 'vuex';
 export default {
   name: 'CategoriesCard',
   data() {
@@ -51,6 +52,11 @@ export default {
       categoriesLoaded: false,
     };
   },
+  computed: {
+    ...mapGetters({
+      categoriesList: 'generic/categoriesList',
+    }),
+  },
   methods: {
     async getCategories() {
       this.error = false;
@@ -58,6 +64,7 @@ export default {
       this.categories = [];
       try {
         this.categories = await agent.Categories.categories();
+        this.$store.dispatch('generic/categoriesList', this.categories.data);
         this.categoriesLoaded = true;
       } catch (error) {
         this.error = true;
