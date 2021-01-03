@@ -47,9 +47,7 @@ export default {
   name: 'CategoriesCard',
   data() {
     return {
-      categories: [],
       error: false,
-      categoriesLoaded: false,
     };
   },
   computed: {
@@ -60,12 +58,9 @@ export default {
   methods: {
     async getCategories() {
       this.error = false;
-      this.categoriesLoaded = false;
-      this.categories = [];
       try {
-        this.categories = await agent.Categories.categories();
-        this.$store.dispatch('generic/categoriesList', this.categories.data);
-        this.categoriesLoaded = true;
+        let categories = await agent.Categories.categories();
+        this.$store.dispatch('generic/categoriesList', categories.data);
       } catch (error) {
         this.error = true;
       }

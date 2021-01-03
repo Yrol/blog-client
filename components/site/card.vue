@@ -62,8 +62,14 @@
             <p class="text-grey-dark animate-pulse w-12 h-2 bg-gray-400"></p>
           </div>
         </div>
-        <div v-if="dataReady" class="flex justify-end w-1/4">
-          <button
+        <div v-if="toLocation && articleSlug" class="flex justify-end w-1/4">
+          <nuxt-link
+            :to="{
+              name: toLocation,
+              params: {
+                slug: articleSlug,
+              },
+            }"
             class="bg-pink-500 right-0 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1"
             type="button"
             style="transition: all 0.15s ease"
@@ -72,7 +78,7 @@
               :icon="['fas', 'book-reader']"
               class="fa-fw fa-lg mr-1 fa-square fa-w-14"
             /><span>Read more </span>
-          </button>
+          </nuxt-link>
         </div>
       </div>
     </div>
@@ -98,6 +104,14 @@ export default {
     dataReady: {
       type: Boolean,
       default: false,
+    },
+    articleSlug: {
+      type: String,
+      default: '',
+    },
+    toLocation: {
+      type: String,
+      default: '',
     },
     author: String,
     publishDate: String,

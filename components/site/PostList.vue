@@ -8,6 +8,8 @@
           :dataReady="true"
           :title="post.title"
           :body="post.body"
+          :articleSlug="post.slug"
+          :toLocation="toLocation"
           :author="post.user.name"
           :publishDate="post.created_at_dates.created_at"
         />
@@ -42,6 +44,11 @@ export default {
       totalPosts: 'pagination/totalPosts',
       perPage: 'pagination/perPagePosts',
     }),
+  },
+  data() {
+    return {
+      toLocation: 'posts-slug',
+    };
   },
   props: {
     posts: {
