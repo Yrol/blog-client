@@ -1,12 +1,26 @@
 <template>
-  <span v-if="error">{{ error }}</span>
-  <span v-else>This is for testing</span>
+  <div>
+    <Header />
+    <div v-if="error"></div>
+    <div v-else>
+      <PostView :articleData="post" />
+    </div>
+    <Footer />
+  </div>
 </template>
 
 <script>
 import getSinglePost from '../../api/getSinglePost';
+import Header from '../../components/Site/Header';
+import Footer from '../../components/Site/Footer';
+import PostView from '../../components/Site/PostView';
 export default {
   name: 'PostPage',
+  components: {
+    Header,
+    Footer,
+    PostView,
+  },
   computed: {
     error() {
       if (this.errorStatus == 404) {
@@ -26,6 +40,7 @@ export default {
   async asyncData({ $axios, store, app, params, error }) {
     return await getSinglePost($axios, store, params, error)
       .then((res) => {
+        console.log(res);
         return {
           post: res.post.data,
         };
@@ -37,17 +52,9 @@ export default {
       });
   },
   props: {
-    body: {
-      type: String,
-      default: '',
-    },
     title: {
       type: String,
       default: '',
-    },
-    tags: {
-      type: Array,
-      default: () => [],
     },
   },
   head() {
