@@ -20,11 +20,18 @@
         </div>
       </div>
       <div class="flex mb-4">
-        <div class="flex items-center w-3/4 h-12">
+        <div class="flex items-center w-3/4">
           <div class="text-sm">
-            <p class="text-black leading-none">{{ articleData.user.name }}</p>
-            <p class="text-grey-dark">
-              {{ articleData.created_at_dates.created_at }}
+            <p class="text-gray-600">
+              Category:
+              <span
+                class="text-xs mb-2 font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 uppercase last:mr-0 mr-1"
+              >
+                {{ articleData.category.title }}
+              </span>
+            </p>
+            <p class="text-gray-600">
+              Published: {{ articleData.created_at_dates.created_at }}
             </p>
           </div>
         </div>
