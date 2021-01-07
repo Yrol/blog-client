@@ -11,11 +11,11 @@
               : 'animate-pulse bg-gray-500 mb-2 h-6 w-2/4',
           ]"
         >
-          <span v-if="title">{{ title }}</span>
+          <span v-if="postData.title">{{ postData.title }}</span>
         </div>
         <span
           v-if="dataReady"
-          v-html="bodyText"
+          v-html="getBodyText(postData.body)"
           class="text-grey-darker text-base"
         ></span>
         <div v-else>
@@ -43,14 +43,24 @@
       </div>
       <div class="flex mb-4">
         <div v-if="dataReady" class="flex items-center w-3/4 h-12">
-          <img
+          <!-- <img
             class="w-10 h-10 rounded-full mr-4"
             src="https://avatars2.githubusercontent.com/u/8627014?s=460&u=d5f69b2710640c2ec400b9018aabd8b1d92eea51&v=4"
             alt="Avatar of Yrol Fernando"
-          />
+          /> -->
           <div class="text-sm">
-            <p class="text-black leading-none">{{ author }}</p>
-            <p class="text-grey-dark">{{ publishDate }}</p>
+            <!-- <p class="text-black leading-none">{{ author }}</p> -->
+            <p class="text-gray-600">
+              Category:
+              <span
+                class="text-xs mb-2 font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 uppercase last:mr-0 mr-1"
+              >
+                {{ postData.category.title }}
+              </span>
+            </p>
+            <p class="text-gray-600">
+              Published: {{ postData.created_at_dates.created_at }}
+            </p>
           </div>
         </div>
         <div v-else class="flex items-center w-3/4">
@@ -62,15 +72,15 @@
             <p class="text-grey-dark animate-pulse w-12 h-2 bg-gray-400"></p>
           </div>
         </div>
-        <div v-if="toLocation && articleSlug" class="flex justify-end w-1/4">
+        <div v-if="toLocation && postData.slug" class="flex justify-end w-1/4">
           <nuxt-link
             :to="{
               name: toLocation,
               params: {
-                slug: articleSlug,
+                slug: postData.slug,
               },
             }"
-            class="bg-pink-500 right-0 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1"
+            class="bg-pink-500 flex flex-wrap content-center text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1"
             type="button"
             style="transition: all 0.15s ease"
           >
@@ -89,14 +99,6 @@ import md from 'marked';
 export default {
   name: 'Card',
   props: {
-    body: {
-      type: String,
-      required: false,
-    },
-    title: {
-      type: String,
-      required: false,
-    },
     tags: {
       type: Array,
       default: () => [],
@@ -105,20 +107,24 @@ export default {
       type: Boolean,
       default: false,
     },
-    articleSlug: {
-      type: String,
-      default: '',
-    },
     toLocation: {
       type: String,
       default: '',
     },
-    author: String,
-    publishDate: String,
+    postData: {},
   },
   computed: {
     bodyText() {
       return md.parse(this.body);
+    },
+  },
+  methods: {
+    getBodyText(str) {
+      let wordCount = str.match(/(\w+)/g).length;
+      if (wordCount > 30) {
+        return str.replace(/(([^\s]+\s\s*){30})(.*)/, '$1…');
+      }
+      return str;
     },
   },
 };

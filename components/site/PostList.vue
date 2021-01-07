@@ -6,12 +6,8 @@
           v-for="(post, index) in posts"
           :key="index"
           :dataReady="true"
-          :title="post.title"
-          :body="post.body"
-          :articleSlug="post.slug"
           :toLocation="toLocation"
-          :author="post.user.name"
-          :publishDate="post.created_at_dates.created_at"
+          :postData="post"
         />
       </div>
       <div class="w-ful md:w-1/4 lg:pl-0 md:pl-0 p-4">
