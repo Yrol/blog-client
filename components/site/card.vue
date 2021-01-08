@@ -11,7 +11,7 @@
               : 'animate-pulse bg-gray-500 mb-2 h-6 w-2/4',
           ]"
         >
-          <span v-if="postData.title">{{ postData.title }}</span>
+          <span v-if="dataReady && postData.title">{{ postData.title }}</span>
         </div>
         <span
           v-if="dataReady"
@@ -30,7 +30,7 @@
           ></p>
         </div>
 
-        <div class="mb-2 mt-2">
+        <div v-if="dataReady" class="mb-2 mt-2">
           <a
             class="text-sm text-gray-600 p-1 hover:text-black"
             v-for="(tag, index) in tags"
@@ -72,7 +72,10 @@
             <p class="text-grey-dark animate-pulse w-12 h-2 bg-gray-400"></p>
           </div>
         </div>
-        <div v-if="toLocation && postData.slug" class="flex justify-end w-1/4">
+        <div
+          v-if="dataReady && toLocation && postData.slug"
+          class="flex justify-end w-1/4"
+        >
           <nuxt-link
             :to="{
               name: toLocation,
