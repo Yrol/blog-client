@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navigation />
+    <Header />
 
     <div class="flex flex-wrap">
       <div class="w-full md:w-3/4 p-4">
@@ -150,7 +150,7 @@
 </template>
 
 <script>
-import Navigation from '~/components/Site/Header';
+import Header from '~/components/Site/Header';
 import Card from '~/components/Site/Card';
 import CategoriesCard from '~/components/Site/CategoriesCard';
 import Footer from '~/components/Site/Footer';
@@ -168,7 +168,7 @@ import { mapGetters } from 'vuex';
 export default {
   name: 'Showcase',
   components: {
-    Navigation,
+    Header,
     Card,
     CategoriesCard,
     Footer,
