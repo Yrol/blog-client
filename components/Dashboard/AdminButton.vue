@@ -2,7 +2,7 @@
   <nuxt-link
     class="admin-button button"
     type="button"
-    :to="url"
+    :to="defaultToPath"
     :alt="alt"
     :class="classes"
   >
@@ -24,6 +24,7 @@ export default {
   data() {
     return {
       buttonClass: '',
+      defaultToPath: '#',
     };
   },
   computed: {

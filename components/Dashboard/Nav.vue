@@ -3,12 +3,14 @@
     <div class="c-nav__header">
       <button @click="isClosed = !isClosed">
         <svg
+          class="fill-current text-gray-900"
           xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          height="24"
-          width="24"
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
         >
-          <use xlink:href="#c-icon-menu"></use>
+          <title>menu</title>
+          <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
         </svg>
       </button>
     </div>
@@ -34,7 +36,11 @@
             :class="{ active: item.isActive }"
             class="flex py-4 px-6 text-gray-1 hover:border-l-3 hover:border-solid hover:border-primary-normal hover:bg-primary-light hover:text-primary-normal"
           >
-            <svg
+            <font-awesome-icon
+              :icon="['fas', item.icon]"
+              class="fa-fw fa-sm mr-1 fa-square fa-w-14"
+            />
+            <!-- <svg
               xmlns="http://www.w3.org/2000/svg"
               xmlns:xlink="http://www.w3.org/1999/xlink"
               height="24"
@@ -42,7 +48,7 @@
               class="fill-current"
             >
               <use v-bind="{ 'xlink:href': item.icon }"></use>
-            </svg>
+            </svg> -->
             <span class="ml-3">{{ item.title }}</span>
           </router-link>
         </li>

@@ -30,7 +30,7 @@
 </template>
 <script>
 export default {
-  name: "FormCheckbox",
+  name: 'FormCheckbox',
   inheritAttrs: true,
   props: {
     value: [String, Array, Boolean],
@@ -48,9 +48,9 @@ export default {
       },
     },
     isChecked() {
-      if (typeof this.value === "string") {
+      if (typeof this.value === 'string') {
         return this.val === this.value;
-      } else if (typeof this.value === "boolean") {
+      } else if (typeof this.value === 'boolean') {
         return this.value === true;
       }
       return this.val ? this.value.includes(this.val) : false;
@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     change() {
-      this.$emit("input", this.proxy);
+      this.$emit('input', this.proxy);
     },
   },
 };

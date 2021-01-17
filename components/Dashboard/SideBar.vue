@@ -9,7 +9,7 @@
       <div class="flex flex-col items-start">
         <div class="flex items-center">
           <span class="text-black-1 text-3xl mr-2">81°F</span>
-          <img src="../assets/img/sidebar/sun.png" alt="Sun icon" />
+          <!-- <img src="../assets/images/sidebar/sun.png" alt="Sun icon" /> -->
         </div>
         <p class="text-gray-0">New York, NY</p>
       </div>
