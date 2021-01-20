@@ -38,7 +38,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .admin-button {
   transition: all 0.25s ease;
 }

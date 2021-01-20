@@ -1,151 +1,116 @@
 <template>
-  <nav class="c-nav bg-white" :class="{ 'is-closed': isClosed }">
-    <div class="c-nav__header">
-      <button @click="isClosed = !isClosed">
+  <header
+    class="flex justify-between items-center py-4 px-6 bg-white border-b-4 border-indigo-600"
+  >
+    <div class="flex items-center">
+      <button
+        @click="isOpen = true"
+        class="text-gray-500 focus:outline-none lg:hidden"
+      >
         <svg
-          class="fill-current text-gray-900"
+          class="h-6 w-6"
+          viewBox="0 0 24 24"
+          fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          viewBox="0 0 20 20"
         >
-          <title>menu</title>
-          <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+          <path
+            d="M4 6H20M4 12H20M4 18H11"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
         </svg>
       </button>
-    </div>
-    <div class="c-nav__user hidden md:block">
-      <avatar
-        :class="{ hidden: isClosed }"
-        type="nav"
-        :name="personName"
-        :img="this.user.img"
-        :img-size="{ w: 26, h: 26 }"
-        :professionnal-function="this.user.professionnalFunction"
-      >
-      </avatar>
-    </div>
-    <div
-      class="c-nav__menu flex flex-col justify-between"
-      :class="[mode === 'mobile' ? 'is-mobile' : '']"
-    >
-      <ul>
-        <li class="c-nav__menuitem" v-for="item in menuListItem" :key="item.id">
-          <router-link
-            :to="item.url"
-            :class="{ active: item.isActive }"
-            class="flex py-4 px-6 text-gray-1 hover:border-l-3 hover:border-solid hover:border-primary-normal hover:bg-primary-light hover:text-primary-normal"
-          >
-            <font-awesome-icon
-              :icon="['fas', item.icon]"
-              class="fa-fw fa-sm mr-1 fa-square fa-w-14"
+
+      <div class="relative mx-4 lg:mx-0">
+        <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
+          <svg class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
             />
-            <!-- <svg
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              height="24"
-              width="24"
-              class="fill-current"
-            >
-              <use v-bind="{ 'xlink:href': item.icon }"></use>
-            </svg> -->
-            <span class="ml-3">{{ item.title }}</span>
-          </router-link>
-        </li>
-      </ul>
-      <a
-        @click="isClosed = !isClosed"
-        class="p-5 bg-primary-light text-primary w-full cursor-pointer md:hidden"
-        >Close</a
-      >
+          </svg>
+        </span>
+
+        <input
+          class="form-input w-32 sm:w-64 rounded-md pl-10 pr-4 focus:border-indigo-600"
+          type="text"
+          placeholder="Search"
+        />
+      </div>
     </div>
-  </nav>
+
+    <div class="flex items-center">
+      <button class="flex mx-4 text-gray-600 focus:outline-none">
+        <svg
+          class="h-6 w-6"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15 17H20L18.5951 15.5951C18.2141 15.2141 18 14.6973 18 14.1585V11C18 8.38757 16.3304 6.16509 14 5.34142V5C14 3.89543 13.1046 3 12 3C10.8954 3 10 3.89543 10 5V5.34142C7.66962 6.16509 6 8.38757 6 11V14.1585C6 14.6973 5.78595 15.2141 5.40493 15.5951L4 17H9M15 17V18C15 19.6569 13.6569 21 12 21C10.3431 21 9 19.6569 9 18V17M15 17H9"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+
+      <div class="relative">
+        <button
+          @click="dropdownOpen = !dropdownOpen"
+          class="relative z-10 block h-8 w-8 rounded-full overflow-hidden shadow focus:outline-none"
+        >
+          <img
+            class="h-full w-full object-cover"
+            src="https://avatars2.githubusercontent.com/u/8627014?s=460&u=d5f69b2710640c2ec400b9018aabd8b1d92eea51&v=4"
+            alt="Your avatar"
+          />
+        </button>
+
+        <div
+          v-show="dropdownOpen"
+          @click="dropdownOpen = false"
+          class="fixed inset-0 h-full w-full z-10"
+        ></div>
+
+        <div
+          v-show="dropdownOpen"
+          class="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-20"
+        >
+          <a
+            href="#"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
+            >Profile</a
+          >
+          <a
+            href="#"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
+            >Products</a
+          >
+          <nuxt-link
+            to="/"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
+            >Log out</nuxt-link
+          >
+        </div>
+      </div>
+    </div>
+  </header>
 </template>
-
 <script>
-import Avatar from './Avatar';
-
 export default {
-  name: 'Nav',
-  components: { Avatar },
-  props: {
-    mode: String,
-    menuListItem: Array,
-    user: Object,
-  },
   data() {
     return {
-      isClosed: true,
-      personName: this.user.firstName + ' ' + this.user.lastName,
+      isOpen: false,
+      dropdownOpen: false,
     };
   },
 };
 </script>
-
-<style>
-.c-nav {
-  grid-area: nav;
-  width: 215px;
-  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
-}
-.c-nav.is-closed {
-  width: 80px;
-}
-
-.c-nav__header {
-  padding: 30px;
-  display: flex;
-  justify-content: left;
-}
-
-.c-nav__user {
-  height: 100px;
-  padding: 30px;
-}
-
-.c-nav__menu.is-mobile {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: #fff;
-  z-index: 10000;
-  transition: opacity 0.15s ease, transform 0.3s ease;
-  opacity: 1;
-  transform: translateX(0);
-}
-.c-nav.is-closed .c-nav__menu.is-mobile {
-  opacity: 0;
-  transform: translateX(-100%);
-}
-.c-nav__menuitem a {
-  width: 100%;
-  transition: border 0.1s linear, width 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.c-nav__menuitem a svg {
-  width: 24px;
-  height: 24px;
-}
-.c-nav .c-nav__menuitem a span {
-  transition: visibility 0.1s 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.c-nav.is-closed .c-nav__menuitem a span {
-  visibility: hidden;
-  transition: visibility 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Actve state */
-/* .c-nav__menuitem a.is-active {
-  @apply border-l-3 border-solid border-primary-normal bg-primary-light text-primary-normal;
-} */
-
-@media (min-width: 768px) {
-  .c-nav__menuitem a {
-    width: 215px;
-  }
-}
-</style>
