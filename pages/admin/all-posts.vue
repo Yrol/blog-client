@@ -1,0 +1,18 @@
+<template>
+  <div>
+    <h3 class="text-gray-700 text-3xl font-medium">All Posts</h3>
+  </div>
+</template>
+<script>
+export default {
+  name: 'AllPosts',
+  head: {
+    title: 'All Posts',
+  },
+  layout: 'adminLayout',
+
+  data() {
+    return {};
+  },
+};
+</script>

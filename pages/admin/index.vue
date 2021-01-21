@@ -1,8 +1,11 @@
-<template></template>
+<template>
+  <div>
+    <h3 class="text-gray-700 text-3xl font-medium">Dashboard</h3>
+    <StatsPanel />
+  </div>
+</template>
 <script>
-import md from 'marked';
-import RichTextSimpleMDE from '~/components/Input/RichTextSimpleMDE';
-import AdminCard from '~/components/Dashboard/AdminCard';
+import StatsPanel from '~/components/Dashboard/StatsPanel';
 export default {
   name: 'Admin',
   head: {
@@ -10,13 +13,10 @@ export default {
   },
   layout: 'adminLayout',
   components: {
-    RichTextSimpleMDE,
-    AdminCard,
+    StatsPanel,
   },
   data() {
-    return {
-      richTextContent: '',
-    };
+    return {};
   },
 };
 </script>
