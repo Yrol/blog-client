@@ -4,7 +4,7 @@
   >
     <div class="flex items-center">
       <button
-        @click="isOpen = true"
+        @click="drawerEventhandler()"
         class="text-gray-500 focus:outline-none lg:hidden"
       >
         <svg
@@ -111,6 +111,11 @@ export default {
       isOpen: false,
       dropdownOpen: false,
     };
+  },
+  methods: {
+    drawerEventhandler() {
+      this.$bus.$emit('drawer-state', true);
+    },
   },
 };
 </script>

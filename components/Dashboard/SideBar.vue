@@ -43,6 +43,7 @@
           v-for="(menuItem, index) in menuListItems"
           :key="`${index}`"
           class="flex items-center duration-200 mt-4 py-2 px-6 border-l-4"
+          @click.native="isOpen = false"
           :class="[$route.name === menuItem.name ? activeClass : inactiveClass]"
           :to="menuItem.url"
         >
@@ -109,6 +110,11 @@ export default {
         },
       ],
     };
+  },
+  created() {
+    this.$bus.$on('drawer-state', (state) => {
+      this.isOpen = state;
+    });
   },
 };
 </script>

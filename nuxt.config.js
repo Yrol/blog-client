@@ -50,7 +50,8 @@ export default {
   plugins: [
     { src: "~plugins/validation.js", ssr: false },
     { src: '~plugins/nuxt-simplemde-plugin.js', ssr: false },
-    { src: "~plugins/datePicker.js", ssr: false}
+    { src: "~plugins/datePicker.js", ssr: false},
+    '~plugins/eventBus.js'
   ],
   /*
    ** Auto import components
