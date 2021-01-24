@@ -85,7 +85,7 @@ export default {
           icon: 'plus',
           title: 'New Post',
           url: '/admin/new-post',
-          name: 'admin-new-posts',
+          name: 'admin-new-post',
         },
         {
           id: 3,
