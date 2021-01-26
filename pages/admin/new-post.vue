@@ -90,7 +90,10 @@ export default {
       postTitle: '',
       buttonDisable: false,
       variant: 'success',
+      loading: false,
+      errors: Array,
       submitting: false,
+      categoriesList: Array,
       postOptions: [
         { display: 'Live', option: 'is_live', selected: true },
         {
@@ -124,7 +127,19 @@ export default {
       }
     },
 
-    async fetchCategories() {},
+    async fetchCategories() {
+      try {
+        let categories = await agent.Categories.categories();
+        this.categoriesList = categories.data;
+        console.log(this.categoriesList);
+      } catch (error) {
+      } finally {
+        this.loading = false;
+      }
+    },
+  },
+  beforeMount() {
+    this.fetchCategories();
   },
 };
 </script>
