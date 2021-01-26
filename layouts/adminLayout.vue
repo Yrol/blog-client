@@ -19,6 +19,7 @@ import Sidebar from '~/components/Dashboard/Sidebar';
 import Nav from '~/components/Dashboard/Nav';
 
 export default {
+  middleware: 'unauthinticated',
   components: { Sidebar, Nav },
 };
 </script>
