@@ -11,91 +11,101 @@
       class="flex flex-row items-end justify-between font-light uppercase"
     >
       <span class="block text-sm leading-5 text-gray-500">{{ label }}</span>
-      <small
-        v-if="!rules && showOptional === true"
-        class="text-gray-400 text-xs"
-        >Optional</small
-      >
     </label>
-    <div class="mt-1 relative rounded-md shadow-sm">
-      <div
-        class="absolute inset-y-0 left-0 flex items-center pointer-events-none"
+    <div class="relative text-lg w-48">
+      <input type="text" v-model="proxy" class="hidden" />
+      <button
+        class="flex items-center justify-between px-3 py-2 bg-white w-full border border-gray-500 rounded-lg"
+        @click="isOptionsExpanded = !isOptionsExpanded"
+        @blur="isOptionsExpanded = false"
       >
-        <font-awesome-icon
-          v-if="icon"
-          :icon="['fas', icon]"
-          class="fa-lg mx-4 text-gray-400 absolute"
-          :class="{ 'text-red-600': errors[0] }"
-        ></font-awesome-icon>
-      </div>
-      <select
-        class="form-input block w-full h-12 py-3 px-2 sm:text-sm sm:leading-5"
-        :class="{
-          'pl-12': icon,
-          'border-red-300 text-red-600 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red':
-            errors[0],
-        }"
-        :data-vv-as="label"
-        v-model="proxy"
-      >
-        <option v-if="placeholder" value="" disabled selected hidden>
-          {{ placeholder }}
-        </option>
-        <option
-          v-for="(option, key) in options"
-          v-bind:value="option.id"
-          :key="key"
-        >
-          {{ option.name }}
-        </option>
-      </select>
-      <div
-        v-if="errors[0]"
-        class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"
-      >
+        <span>{{ selectedOption }}</span>
         <svg
-          class="h-5 w-5 text-red-500"
-          fill="currentColor"
-          viewBox="0 0 20 20"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          class="h-4 w-4 transform transition-transform duration-200 ease-in-out"
+          :class="isOptionsExpanded ? 'rotate-180' : 'rotate-0'"
         >
           <path
-            fill-rule="evenodd"
-            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-            clip-rule="evenodd"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 9l-7 7-7-7"
           />
         </svg>
-      </div>
+      </button>
+      <transition
+        enter-active-class="transform transition duration-500 ease-custom"
+        enter-class="-translate-y-1/2 scale-y-0 opacity-0"
+        enter-to-class="translate-y-0 scale-y-100 opacity-100"
+        leave-active-class="transform transition duration-300 ease-custom"
+        leave-class="translate-y-0 scale-y-100 opacity-100"
+        leave-to-class="-translate-y-1/2 scale-y-0 opacity-0"
+      >
+        <ul
+          v-show="isOptionsExpanded"
+          class="absolute z-40 left-0 right-0 mb-4 bg-white divide-y rounded-lg shadow-lg overflow-hidden"
+        >
+          <li
+            v-for="(option, index) in options"
+            :key="index"
+            v-bind:value="option.value"
+            class="px-3 py-2 transition-colors duration-300 hover:bg-gray-200"
+            @mousedown.prevent="setOption(option)"
+          >
+            {{ option.name }}
+          </li>
+        </ul>
+      </transition>
     </div>
   </ValidationProvider>
 </template>
+
 <script>
 export default {
   name: 'DropDown',
   props: {
     value: String,
-    name: String,
-    errors: [],
     options: Array,
-    type: {
-      type: String,
-      default: 'text',
-    },
-    icon: String,
-    label: String,
-    placeholder: String,
+    name: String,
     rules: String,
-    showOptional: {
-      type: Boolean,
-      default: true,
-    },
+    errors: [],
+    label: String,
+    initialSelected: String,
   },
   data() {
     return {
+      isOptionsExpanded: false,
+      selectedOption: null,
       proxy: null,
     };
   },
+  methods: {
+    setOption(option) {
+      this.selectedOption = option.name;
+      this.proxy = option.value;
+      this.isOptionsExpanded = false;
+    },
+    setInitialSelected() {
+      if (this.initialSelected) {
+        for (let key in this.options) {
+          if (this.options[key].value === this.initialSelected) {
+            this.selectedOption = this.options[key].name;
+            this.proxy = this.options[key].value;
+          }
+        }
+      } else {
+        if (this.options.length > 0) {
+          this.selectedOption = this.proxy = this.options[0].name;
+          this.proxy = this.options[0].value;
+        }
+      }
+    },
+  },
   mounted() {
     this.proxy = this.value;
+    this.setInitialSelected();
   },
   watch: {
     value(value) {
@@ -111,3 +121,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.ease-custom {
+  transition-timing-function: cubic-bezier(0.61, -0.53, 0.43, 1.43);
+}
+</style>

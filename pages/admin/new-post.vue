@@ -20,8 +20,10 @@
               name="category"
               label="Category"
               rules="required"
+              icon="folder"
               placeholder="Please choose a category"
               :options="categoryOptions"
+              :initialSelected="selectedCategory"
               class="my-4"
               v-model="postCategory"
             />
@@ -117,9 +119,10 @@ export default {
         },
       ],
       categoryOptions: [
-        { id: '1', name: 'Nissan' },
-        { id: '2', name: 'Toyota' },
+        { value: '1', name: 'Nissan' },
+        { value: '2', name: 'Toyota' },
       ],
+      selectedCategory: '2',
     };
   },
   methods: {
