@@ -13,9 +13,24 @@
       <span class="block text-sm leading-5 text-gray-500">{{ label }}</span>
     </label>
     <div class="relative text-lg w-48">
+      <div
+        class="absolute inset-y-0 left-0 flex items-center pointer-events-none"
+      >
+        <font-awesome-icon
+          v-if="icon"
+          :icon="['fas', icon]"
+          class="fa-lg mx-4 text-gray-400 absolute"
+          :class="{ 'text-red-600': errors[0] }"
+        ></font-awesome-icon>
+      </div>
       <input type="text" v-model="proxy" class="hidden" />
-      <button
+      <span
         class="flex items-center justify-between px-3 py-2 bg-white w-full border border-gray-500 rounded-lg"
+        :class="{
+          'pl-12': icon,
+          'border-red-300 text-red-600 flex items-center justify-between px-3 py-2 bg-white w-full focus:border-red-300 focus:shadow-outline-red rounded-lg':
+            errors[0],
+        }"
         @click="isOptionsExpanded = !isOptionsExpanded"
         @blur="isOptionsExpanded = false"
       >
@@ -34,7 +49,7 @@
             d="M19 9l-7 7-7-7"
           />
         </svg>
-      </button>
+      </span>
       <transition
         enter-active-class="transform transition duration-500 ease-custom"
         enter-class="-translate-y-1/2 scale-y-0 opacity-0"
@@ -73,6 +88,7 @@ export default {
     errors: [],
     label: String,
     initialSelected: String,
+    icon: String,
   },
   data() {
     return {

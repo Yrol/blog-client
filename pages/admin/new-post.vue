@@ -1,17 +1,17 @@
 <template>
   <div>
-    <div v-if="isLoading">
-      <AdminLoader title="Loading..." />
-    </div>
-    <div v-else>
-      <h3 class="text-gray-700 text-3xl font-medium">New Post</h3>
-      <client-only>
+    <client-only>
+      <div v-if="isLoading">
+        <AdminLoader title="Loading..." />
+      </div>
+      <div v-else>
+        <h3 class="text-gray-700 text-3xl font-medium">New Post</h3>
         <ValidationObserver ref="postForm" v-slot="{ handleSubmit }">
           <form @submit.prevent="handleSubmit(submitPost)">
             <div class="min-w-full">
               <FormText
                 rules="required"
-                name="abn"
+                name="title"
                 label="Post title"
                 placeholder="Post title"
                 class="my-4"
@@ -21,7 +21,7 @@
             </div>
             <div class="min-w-full">
               <DropDown
-                name="category"
+                name="category_id"
                 label="Category"
                 rules="required"
                 icon="folder"
@@ -76,8 +76,8 @@
             </div>
           </form>
         </ValidationObserver>
-      </client-only>
-    </div>
+      </div>
+    </client-only>
   </div>
 </template>
 <script>
@@ -135,16 +135,18 @@ export default {
       this.isSubmitting = true;
 
       let formData = {
-        post_title: this.postTitle,
+        title: this.postTitle,
         body: this.richTextContent,
         is_live: this.postOptions[0].selected,
         close_to_comments: this.postOptions[1].selected,
-        category_id: this.postCategory,
+        category_id: Number(this.postCategory),
       };
 
       try {
         await agent.Posts.create(formData);
       } catch (error) {
+        console.log(error);
+        this.$refs.postForm.setErrors(error.data.errors || {});
       } finally {
         this.isSubmitting = false;
       }
@@ -161,7 +163,6 @@ export default {
             categoryObj['name'] = category.title;
             this.categoriesList.push(categoryObj);
           });
-          console.log(this.categoriesList);
         }
       } catch (error) {
       } finally {
