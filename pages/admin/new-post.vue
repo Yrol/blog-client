@@ -26,8 +26,7 @@
                 rules="required"
                 icon="folder"
                 placeholder="Please choose a category"
-                :options="categoryOptions"
-                :initialSelected="selectedCategory"
+                :options="categoriesList"
                 class="my-4"
                 v-model="postCategory"
               />
@@ -116,7 +115,7 @@ export default {
       isLoading: false,
       errors: Array,
       isSubmitting: false,
-      categoriesList: Array,
+      categoriesList: [],
       postOptions: [
         { display: 'Live', option: 'is_live', selected: true },
         {
@@ -125,11 +124,6 @@ export default {
           selected: true,
         },
       ],
-      categoryOptions: [
-        { value: '1', name: 'Nissan' },
-        { value: '2', name: 'Toyota' },
-      ],
-      selectedCategory: '2',
     };
   },
   methods: {
@@ -160,8 +154,15 @@ export default {
       this.isLoading = true;
       try {
         let categories = await agent.Categories.categories();
-        this.categoriesList = categories.data;
-        console.log(this.categoriesList);
+        if (categories.data.length > 0) {
+          categories.data.forEach((category) => {
+            let categoryObj = {};
+            categoryObj['value'] = category.id.toString();
+            categoryObj['name'] = category.title;
+            this.categoriesList.push(categoryObj);
+          });
+          console.log(this.categoriesList);
+        }
       } catch (error) {
       } finally {
         this.isLoading = false;

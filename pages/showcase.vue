@@ -43,13 +43,30 @@
         <client-only>
           <FormText
             rules="required"
-            name="abn"
+            name="Article title"
             label="Article title"
             placeholder="Article title"
             class="my-4"
             icon="camera"
-            v-model="abn"
+            v-model="formText"
           ></FormText>
+        </client-only>
+      </div>
+    </div>
+    <div class="flex flex-wrap">
+      <div class="w-full md:w-3/4 p-4">
+        <client-only>
+          <DropDown
+            name="category"
+            label="Category"
+            rules="required"
+            icon="folder"
+            placeholder="Please choose a category"
+            :options="categoriesList"
+            :initialSelected="selectedCategory"
+            class="my-4"
+            v-model="categories"
+          />
         </client-only>
       </div>
     </div>
@@ -162,6 +179,7 @@ import FormCheckbox from '~/components/Input/FormCheckbox';
 import FormDatePicker from '~/components/Input/FormDatePicker';
 import FormToggle from '~/components/Input/FormToggle';
 import FileDrop from '~/components/Input/FileDrop';
+import DropDown from '~/components/Input/DropDown';
 import md from 'marked';
 import { mapGetters } from 'vuex';
 
@@ -178,6 +196,7 @@ export default {
     FormCheckbox,
     FormToggle,
     FileDrop,
+    DropDown,
   },
   head: {
     title: 'Showcase',
@@ -196,7 +215,7 @@ export default {
   },
   data() {
     return {
-      abn: null,
+      formText: null,
       checkBoxRequirement: [true, false, true, true],
       crd: null,
       tags: ['#react', '#javascript', '#tailwind'],
@@ -221,6 +240,12 @@ export default {
           'pariatur-quaerat-voluptatem-et-cumque-perspiciatis-velit-architecto',
         created_at_dates: { created_at: 'Aug 16 2020' },
       },
+      categoriesList: [
+        { value: '1', name: 'Nissan' },
+        { value: '2', name: 'Toyota' },
+      ],
+      selectedCategory: '2',
+      categories: '',
     };
   },
   methods: {
@@ -229,13 +254,18 @@ export default {
     },
   },
   watch: {
-    abn(value) {
+    formText(value) {
       if (value) {
         console.log(value);
       }
     },
     richTextContent(value) {
       this.richTextContent = value;
+    },
+    categories(value) {
+      if (value) {
+        console.log(value);
+      }
     },
   },
 };
