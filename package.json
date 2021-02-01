@@ -21,6 +21,7 @@
     "node-sass": "^4.14.1",
     "nuxt": "^2.14.0",
     "nuxt-fontawesome": "^0.4.0",
+    "nuxt-tailvue": "^1.0.52",
     "sass-loader": "^10.0.1",
     "vee-validate": "^3.3.9",
     "vue-simplemde": "^1.1.2",

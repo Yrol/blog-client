@@ -142,14 +142,14 @@ export default {
         category_id: Number(this.postCategory),
       };
 
-      try {
-        await agent.Posts.create(formData);
-      } catch (error) {
-        console.log(error);
-        this.$refs.postForm.setErrors(error.data.errors || {});
-      } finally {
-        this.isSubmitting = false;
-      }
+      // try {
+      //   await agent.Posts.create(formData);
+      // } catch (error) {
+      //   console.log(error);
+      //   this.$refs.postForm.setErrors(error.data.errors || {});
+      // } finally {
+      //   this.isSubmitting = false;
+      // }
     },
 
     async fetchCategories() {
@@ -169,6 +169,7 @@ export default {
         this.isLoading = false;
       }
     },
+    clearPostData() {},
   },
   beforeMount() {
     this.fetchCategories();
