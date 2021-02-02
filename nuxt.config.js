@@ -72,6 +72,7 @@ export default {
   modules: [
     "@nuxtjs/axios",
     "@nuxtjs/auth",
+    ['nuxt-tailvue', {toast: true}],
     [
       "nuxt-fontawesome",
       {
