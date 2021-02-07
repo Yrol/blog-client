@@ -83,13 +83,12 @@
 <script>
 import md from 'marked';
 import RichTextSimpleMDE from '~/components/Input/RichTextSimpleMDE';
-import AdminCard from '~/components/Dashboard/AdminCard';
 import FormText from '~/components/Input/FormText';
 import Button from '~/components/Input/Button';
 import FormCheckbox from '~/components/Input/FormCheckbox';
 import DropDown from '~/components/Input/DropDown';
 import AdminLoader from '~/components/Dashboard/AdminLoader';
-import agent from '../../api/agent';
+import agent from '~/api/agent';
 export default {
   name: 'NewPost',
   head: {
@@ -98,7 +97,6 @@ export default {
   layout: 'adminLayout',
   components: {
     RichTextSimpleMDE,
-    AdminCard,
     FormText,
     Button,
     FormCheckbox,
@@ -165,8 +163,8 @@ export default {
       this.isLoading = true;
       try {
         let categories = await agent.Categories.categories();
-        if (categories.data.length > 0) {
-          categories.data.forEach((category) => {
+        if (categories.length > 0) {
+          categories.forEach((category) => {
             let categoryObj = {};
             categoryObj['value'] = category.id.toString();
             categoryObj['name'] = category.title;

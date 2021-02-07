@@ -41,13 +41,11 @@
           </a>
         </div>
       </div>
-      <div class="flex mb-4">
-        <div v-if="dataReady" class="flex items-center w-3/4 h-12">
-          <!-- <img
-            class="w-10 h-10 rounded-full mr-4"
-            src="https://avatars2.githubusercontent.com/u/8627014?s=460&u=d5f69b2710640c2ec400b9018aabd8b1d92eea51&v=4"
-            alt="Avatar of Yrol Fernando"
-          /> -->
+      <div class="mb-4 w-full flex flex-wrap">
+        <div
+          v-if="dataReady"
+          class="h-16 border-8:transparent w-full md:w-1/2 lg:w-1/4 md:h-16"
+        >
           <div class="text-sm">
             <!-- <p class="text-black leading-none">{{ author }}</p> -->
             <p class="text-gray-600">
@@ -63,9 +61,16 @@
             </p>
           </div>
         </div>
-        <div v-else class="flex items-center w-3/4">
-          <img class="w-10 h-10 rounded-full mr-4 animate-pulse bg-gray-500" />
-          <div class="text-sm">
+        <div
+          v-else
+          class="flex flex-wrap items-center h-12 border-8:transparent"
+        >
+          <div>
+            <img
+              class="w-10 h-10 rounded-full mr-4 animate-pulse bg-gray-500"
+            />
+          </div>
+          <div class="text-sm justify-center">
             <p
               class="text-black mb-3 leading-none w-12 h-2 animate-pulse bg-gray-400"
             ></p>
@@ -74,7 +79,7 @@
         </div>
         <div
           v-if="dataReady && toLocation && postData.slug"
-          class="flex justify-end w-1/4"
+          class="md:flex flex-wrap md:justify-end md:content-end md:h-16 border-8:transparent w-full md:w-1/2 lg:w-3/4"
         >
           <nuxt-link
             :to="{
@@ -83,7 +88,7 @@
                 slug: postData.slug,
               },
             }"
-            class="bg-pink-500 flex flex-wrap content-center text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1"
+            class="bg-pink-500 lg:w-1/4 flex h-10 flex-wrap content-center justify-center text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1"
             type="button"
             style="transition: all 0.15s ease"
           >

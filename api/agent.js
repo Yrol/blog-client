@@ -59,6 +59,7 @@ const requests = {
 }
 
 const Posts = {
+  all: (pageId) => requests.get(`/articles?page=${pageId}`),
   details: (id) => requests.get(`/articles/${id}`),
   create: (post) => requests.post('/articles', post),
   update: (post) => requests.put(`/articles/${post.id}`, post),
@@ -66,7 +67,7 @@ const Posts = {
 }
 
 const Categories = {
-  categories: () => axios.get('categories/active').then(responseBody),
+  categories: () => requests.get('categories/active').then(responseBody),
 }
 
 export default{

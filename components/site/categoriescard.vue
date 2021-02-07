@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import agent from '../../api/agent';
+import agent from '~/api/agent';
 import { mapGetters } from 'vuex';
 export default {
   name: 'CategoriesCard',
@@ -60,7 +60,7 @@ export default {
       this.error = false;
       try {
         let categories = await agent.Categories.categories();
-        this.$store.dispatch('generic/categoriesList', categories.data);
+        this.$store.dispatch('generic/categoriesList', categories);
       } catch (error) {
         this.error = true;
       }
