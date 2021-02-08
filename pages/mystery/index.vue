@@ -38,6 +38,8 @@
                 :loading="submitting"
                 :disableButton="buttonDisable"
                 icon="sign-in-alt"
+                size="small"
+                width="full"
               >
                 Login
               </Button>

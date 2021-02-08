@@ -46,6 +46,10 @@ export default {
       type: String,
       default: 'medium',
     },
+    width: {
+      type: String,
+      default: '',
+    },
     type: {
       type: String,
       default: '',
@@ -73,10 +77,12 @@ export default {
       return {
         'base-spinner': this.loading == true,
         'cursor-not-allowed': this.disableButton == true,
-        'base-button inline-flex w-full align-middle align-items-center justify-center text-sm font-medium rounded-md text-white focus:outline-none border-2': true,
+        'base-button inline-flex align-middle align-items-center justify-center text-sm font-medium rounded-md text-white focus:outline-none border-2': true,
 
         'rounded-lg': this.rounded === 'medium',
         'rounded-full': this.rounded === 'large',
+
+        'w-full': this.width === 'full',
 
         'px-6 py-3': this.size == 'normal',
         'px-4 py-2': this.size == 'small',

@@ -2,10 +2,10 @@
   <div>
     <h3 class="text-gray-700 text-3xl font-medium">All Posts</h3>
     <div v-if="loading">
-      <AdminCard />
+      <AdminCard v-for="item in 3" :key="item" :dataReady="false" />
     </div>
     <div v-else>
-      <AdminCard />
+      <AdminCard :dataReady="true" :postData="posts" />
     </div>
   </div>
 </template>
@@ -25,7 +25,7 @@ export default {
     return {
       posts: { title: 'Test title', body: 'Test body' },
       error: false,
-      loading: false,
+      loading: true,
     };
   },
   async fetch() {
