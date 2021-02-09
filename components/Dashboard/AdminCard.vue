@@ -98,6 +98,7 @@
             :disableButton="false"
             size="small"
             icon="edit"
+            @click="goToEdit()"
           >
           </Button>
           <Button
@@ -106,6 +107,7 @@
             :disableButton="false"
             size="small"
             icon="trash-alt"
+            @click="deletePost(postData.id)"
           >
           </Button>
         </div>
@@ -115,6 +117,7 @@
 </template>
 <script>
 import md from 'marked';
+import Modal from '~/components/Site/Modal';
 export default {
   name: 'Card',
   props: {
@@ -152,6 +155,12 @@ export default {
     },
     updatePublishStatus() {
       this.updatingPublishStatus = true;
+    },
+
+    goToEdit() {},
+
+    deletePost(pid) {
+      this.$emit('delete-post', pid);
     },
   },
 };
