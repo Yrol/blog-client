@@ -53,13 +53,11 @@
               <span
                 class="text-xs mb-2 font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 uppercase last:mr-0 mr-1"
               >
-                <!-- {{ postData.category.title }} -->
-                UT
+                {{ postData.category.title }}
               </span>
             </p>
             <p class="text-gray-600">
-              <!-- Published: {{ postData.created_at_dates.created_at }} -->
-              Published: Jan 31 2021
+              Published: {{ postData.created_at_dates.created_at }}
             </p>
           </div>
         </div>

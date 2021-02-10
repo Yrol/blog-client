@@ -6,9 +6,11 @@
     </div>
     <div v-else>
       <AdminCard
+        v-for="(post, index) in posts"
+        :key="index"
         @delete-post="deletePost"
         :dataReady="true"
-        :postData="posts"
+        :postData="post"
       />
     </div>
     <div class="flex flex-wrap">
@@ -98,21 +100,24 @@ export default {
       loading: true,
       showModal: false,
       modalSubmitting: false,
+      deletePostId: Number,
     };
   },
   methods: {
-    deletePost(e) {
-      console.log(e);
+    deletePost(deleteId) {
+      this.deletePostId = deleteId;
       this.showModal = true;
     },
-    modalOk() {},
+    modalOk() {
+      this.showModal = false;
+    },
   },
   async fetch() {
     try {
       this.error = false;
       this.loading = true;
       let posts = await agent.Posts.all();
-      console.log(posts);
+      this.posts = posts.data;
     } catch (error) {
       this.error = true;
     } finally {
