@@ -93,7 +93,7 @@
           <Button
             variant="primary"
             :loading="false"
-            :disableButton="false"
+            :disableButton="updatingPublishStatus"
             size="small"
             icon="edit"
             @click="goToEdit()"
@@ -102,7 +102,7 @@
           <Button
             variant="danger"
             :loading="false"
-            :disableButton="false"
+            :disableButton="updatingPublishStatus"
             size="small"
             icon="trash-alt"
             @click="deletePost(postData.id)"
@@ -116,6 +116,7 @@
 <script>
 import md from 'marked';
 import Modal from '~/components/Site/Modal';
+import agent from '~/api/agent';
 export default {
   name: 'Card',
   props: {
@@ -131,7 +132,9 @@ export default {
       type: String,
       default: '',
     },
-    postData: {},
+    postData: {
+      type: Object,
+    },
   },
   data() {
     return {
@@ -151,8 +154,26 @@ export default {
       }
       return str;
     },
-    updatePublishStatus() {
+    async updatePublishStatus() {
       this.updatingPublishStatus = true;
+      let formData = new FormData();
+      formData.append('is_live', this.postData.is_live);
+      try {
+        await agent.Posts.updateStatus(formData, this.postData.slug);
+      } catch (error) {
+        if (error.data.errors) {
+          let errors = error.data.errors;
+          for (var key in errors) {
+            this.$toast.show({
+              type: 'danger',
+              title: 'Error',
+              message: errors[key][0],
+            });
+          }
+        }
+      } finally {
+        this.updatingPublishStatus = false;
+      }
     },
 
     goToEdit() {},

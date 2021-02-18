@@ -95,7 +95,7 @@ export default {
   },
   data() {
     return {
-      posts: { id: 1, title: 'Test title', body: 'Test body' },
+      posts: {},
       error: false,
       loading: true,
       showModal: false,

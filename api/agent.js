@@ -62,8 +62,9 @@ const Posts = {
   all: (pageId) => requests.get(`/articles?page=${pageId}`),
   details: (id) => requests.get(`/articles/${id}`),
   create: (post) => requests.post('/articles', post),
-  update: (post) => requests.put(`/articles/${post.id}`, post),
+  update: (post) => requests.put(`/articles/${post.slug}`, post),
   delete: (id) => requests.del(`/articles/${id}`),
+  updateStatus: (post, id) => requests.post(`/articles/${id}/publish`, post),
 }
 
 const Categories = {
