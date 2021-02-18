@@ -77,8 +77,8 @@ export default {
           id: 1,
           icon: 'newspaper',
           title: 'All posts',
-          url: '/admin/all-posts',
-          name: 'admin-all-posts',
+          url: '/admin/posts',
+          name: 'admin-posts-page-page',
         },
         {
           id: 2,

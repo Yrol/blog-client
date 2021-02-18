@@ -116,7 +116,9 @@ export default {
     try {
       this.error = false;
       this.loading = true;
-      let posts = await agent.Posts.all();
+      let posts = await agent.Posts.all(
+        isNaN(this.$route.params.page) ? 1 : this.$route.params.page
+      );
       this.posts = posts.data;
     } catch (error) {
       this.error = true;
