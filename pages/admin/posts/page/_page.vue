@@ -84,6 +84,8 @@
 import AdminCard from '~/components/Dashboard/AdminCard';
 import Modal from '~/components/Site/Modal';
 import agent from '~/api/agent';
+import Pagination from '~/components/Site/pagination';
+import { mapGetters } from 'vuex';
 export default {
   name: 'AllPosts',
   head: {
@@ -92,6 +94,14 @@ export default {
   layout: 'adminLayout',
   components: {
     AdminCard,
+    Pagination,
+  },
+  computed: {
+    ...mapGetters({
+      totalPosts: 'admin/admin-posts/totalPosts',
+      perPage: 'admin/admin-posts/perPagePosts',
+      allposts: 'admin/admin-posts/posts',
+    }),
   },
   data() {
     return {
@@ -119,6 +129,10 @@ export default {
       let posts = await agent.Posts.all(
         isNaN(this.$route.params.page) ? 1 : this.$route.params.page
       );
+      console.log(posts);
+      this.$store.dispatch('admin/admin-posts/totalPosts', posts);
+      this.$store.dispatch('admin/admin-posts/perPagePosts', posts);
+      this.$store.dispatch('admin/admin-posts/posts', posts);
       this.posts = posts.data;
     } catch (error) {
       this.error = true;
