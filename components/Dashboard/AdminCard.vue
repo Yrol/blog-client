@@ -117,6 +117,7 @@
 import md from 'marked';
 import Modal from '~/components/Site/Modal';
 import agent from '~/api/agent';
+import { mapGetters } from 'vuex';
 export default {
   name: 'Card',
   props: {
@@ -159,7 +160,10 @@ export default {
       let formData = new FormData();
       formData.append('is_live', this.postData.is_live);
       try {
-        await agent.Posts.updateStatus(formData, this.postData.slug);
+        let update = await agent.Posts.updateStatus(
+          formData,
+          this.postData.slug
+        );
       } catch (error) {
         if (error.data.errors) {
           let errors = error.data.errors;

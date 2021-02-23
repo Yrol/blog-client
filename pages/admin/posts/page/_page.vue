@@ -100,7 +100,7 @@ export default {
     ...mapGetters({
       totalPosts: 'admin/admin-posts/totalPosts',
       perPage: 'admin/admin-posts/perPagePosts',
-      allposts: 'admin/admin-posts/posts',
+      currentPagePosts: 'admin/admin-posts/posts',
     }),
   },
   data() {
@@ -129,7 +129,6 @@ export default {
       let posts = await agent.Posts.all(
         isNaN(this.$route.params.page) ? 1 : this.$route.params.page
       );
-      console.log(posts);
       this.$store.dispatch('admin/admin-posts/totalPosts', posts);
       this.$store.dispatch('admin/admin-posts/perPagePosts', posts);
       this.$store.dispatch('admin/admin-posts/posts', posts);
