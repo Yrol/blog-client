@@ -6,7 +6,7 @@
     </div>
     <div v-else>
       <AdminCard
-        v-for="(post, index) in posts"
+        v-for="(post, index) in currentPagePosts"
         :key="index"
         @delete-post="deletePost"
         :dataReady="true"
@@ -100,12 +100,11 @@ export default {
     ...mapGetters({
       totalPosts: 'admin/admin-posts/totalPosts',
       perPage: 'admin/admin-posts/perPagePosts',
-      currentPagePosts: 'admin/admin-posts/posts',
+      currentPagePosts: 'admin/admin-posts/allPosts',
     }),
   },
   data() {
     return {
-      posts: {},
       error: false,
       loading: true,
       showModal: false,
@@ -132,7 +131,6 @@ export default {
       this.$store.dispatch('admin/admin-posts/totalPosts', posts);
       this.$store.dispatch('admin/admin-posts/perPagePosts', posts);
       this.$store.dispatch('admin/admin-posts/posts', posts);
-      this.posts = posts.data;
     } catch (error) {
       this.error = true;
     } finally {

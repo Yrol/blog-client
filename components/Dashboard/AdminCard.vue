@@ -88,7 +88,7 @@
             size="small"
             @click="updatePublishStatus()"
           >
-            Unpublish
+            {{ isLive == 0 ? 'Publish' : 'Unpublish' }}
           </Button>
           <Button
             variant="primary"
@@ -115,7 +115,6 @@
 </template>
 <script>
 import md from 'marked';
-import Modal from '~/components/Site/Modal';
 import agent from '~/api/agent';
 import { mapGetters } from 'vuex';
 export default {
@@ -143,6 +142,12 @@ export default {
     };
   },
   computed: {
+    ...mapGetters({
+      postStatus: 'admin/admin-posts/postStatus',
+    }),
+    isLive() {
+      return this.postStatus(this.postData.id);
+    },
     bodyText() {
       return md.parse(this.body);
     },
@@ -158,12 +163,19 @@ export default {
     async updatePublishStatus() {
       this.updatingPublishStatus = true;
       let formData = new FormData();
-      formData.append('is_live', this.postData.is_live);
+      formData.append('is_live', this.isLive == 0 ? 1 : 0);
       try {
         let update = await agent.Posts.updateStatus(
           formData,
           this.postData.slug
         );
+        let isLiveStatus = update.is_live;
+        if (isLiveStatus == 1 || isLiveStatus == 0) {
+          this.$store.dispatch('admin/admin-posts/postStatus', {
+            id: this.postData.id,
+            state: isLiveStatus,
+          });
+        }
       } catch (error) {
         if (error.data.errors) {
           let errors = error.data.errors;
