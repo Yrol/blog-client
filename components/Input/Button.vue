@@ -163,7 +163,7 @@ export default {
         case 'white':
           switch (this.variantType) {
             case 'normal':
-              return 'border-white bg-white bg-white text-blue-600 hover:text-blue-800';
+              return 'border-grey-200 bg-white text-gray-500 hover:text-grey-800';
               break;
             default:
               break;

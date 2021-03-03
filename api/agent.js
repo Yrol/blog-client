@@ -63,7 +63,7 @@ const Posts = {
   details: (id) => requests.get(`/articles/${id}`),
   create: (post) => requests.post('/articles', post),
   update: (post) => requests.put(`/articles/${post.slug}`, post),
-  delete: (id) => requests.del(`/articles/${id}`),
+  delete: (slug) => requests.del(`/articles/${slug}`),
   updateStatus: (post, id) => requests.post(`/articles/${id}/publish`, post),
 }
 

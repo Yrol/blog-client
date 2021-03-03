@@ -105,7 +105,7 @@
             :disableButton="updatingPublishStatus"
             size="small"
             icon="trash-alt"
-            @click="deletePost(postData.id)"
+            @click="deletePost(postData.slug, postData.id)"
           >
           </Button>
         </div>
@@ -116,9 +116,13 @@
 <script>
 import md from 'marked';
 import agent from '~/api/agent';
+import Button from '~/components/Input/Button';
 import { mapGetters } from 'vuex';
 export default {
   name: 'Card',
+  components: {
+    Button,
+  },
   props: {
     tags: {
       type: Array,
@@ -194,8 +198,8 @@ export default {
 
     goToEdit() {},
 
-    deletePost(pid) {
-      this.$emit('delete-post', pid);
+    deletePost(slug, id) {
+      this.$emit('delete-post', slug, id);
     },
   },
 };

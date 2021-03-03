@@ -47,6 +47,9 @@
                 <p class="text-sm leading-5 text-gray-500">
                   This action will permanently delete the post.
                 </p>
+                <p class="text-sm leading-5 text-gray-500">
+                  {{ deletePostSlug }}
+                </p>
               </div>
             </div>
           </div>
@@ -54,26 +57,28 @@
 
         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
           <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
-            <button
-              @click="modalOk"
-              type="button"
-              class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5"
-              :class="{ submitting: modalSubmitting }"
+            <Button
+              variant="danger"
+              @click="deletePostConfirmAction()"
+              :loading="modalSubmitting"
+              :disableButton="modalSubmitting ? true : false"
+              size="small"
+              width="full"
             >
               Yes, Proceed
-
-              <div class="loading"></div>
-            </button>
+            </Button>
           </span>
 
           <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-            <button
-              @click="showModal = false"
-              type="button"
-              class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-purple-300 focus:shadow-outline-purple transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+            <Button
+              variant="white"
+              @click="modalNo()"
+              :disableButton="modalSubmitting ? true : false"
+              size="small"
+              width="full"
             >
               No
-            </button>
+            </Button>
           </span>
         </div>
       </Modal>
@@ -83,6 +88,7 @@
 <script>
 import AdminCard from '~/components/Dashboard/AdminCard';
 import Modal from '~/components/Site/Modal';
+import Button from '~/components/Input/Button';
 import agent from '~/api/agent';
 import Pagination from '~/components/Site/pagination';
 import { mapGetters } from 'vuex';
@@ -95,6 +101,8 @@ export default {
   components: {
     AdminCard,
     Pagination,
+    Modal,
+    Button,
   },
   computed: {
     ...mapGetters({
@@ -109,15 +117,41 @@ export default {
       loading: true,
       showModal: false,
       modalSubmitting: false,
+      deletePostSlug: String,
       deletePostId: Number,
     };
   },
   methods: {
-    deletePost(deleteId) {
-      this.deletePostId = deleteId;
+    deletePost(slug, id) {
+      this.deletePostSlug = slug;
+      this.deletePostId = id;
       this.showModal = true;
     },
-    modalOk() {
+    async deletePostConfirmAction() {
+      this.modalSubmitting = true;
+      try {
+        await agent.Posts.delete(this.deletePostSlug);
+        this.$store.dispatch('admin/admin-posts/deletePost', {
+          id: this.deletePostId,
+        });
+      } catch (error) {
+        if (error.data.errors) {
+          let errors = error.data.errors;
+          for (var key in errors) {
+            this.$toast.show({
+              type: 'danger',
+              title: 'Error',
+              message: errors[key],
+            });
+          }
+        }
+      } finally {
+        this.modalSubmitting = false;
+        this.showModal = false;
+      }
+    },
+    modalNo() {
+      this.modalSubmitting = false;
       this.showModal = false;
     },
   },

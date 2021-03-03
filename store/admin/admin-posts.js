@@ -21,7 +21,6 @@ export const getters = {
       return
     }
     let post = state.posts.find(post => post.id == id)
-
     return post.is_live;
   }
 }
@@ -39,6 +38,10 @@ export const mutations = {
   SET_POST_STATUS(state, payload){
     let post = state.posts.find(post => post.id === payload.id)
     post.is_live = payload.state
+  },
+  DELETE_POST(state, payload){
+    let postIndex = state.posts.findIndex(post => post.id === payload.id)
+    state.posts.splice(postIndex, 1)
   }
 }
 
@@ -64,6 +67,11 @@ export const actions = {
   postStatus({commit}, payload){
     if(payload && payload.hasOwnProperty('id') && payload.hasOwnProperty('state')){
       commit('SET_POST_STATUS', payload);
+    }
+  },
+  deletePost({commit}, payload){
+    if(payload && payload.hasOwnProperty('id')){
+      commit('DELETE_POST', payload);
     }
   },
   clear({commit}){
