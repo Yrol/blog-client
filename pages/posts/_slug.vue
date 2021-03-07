@@ -11,9 +11,9 @@
 
 <script>
 import getSinglePost from '../../api/getSinglePost';
-import Header from '../../components/Site/Header';
-import Footer from '../../components/Site/Footer';
-import PostView from '../../components/Site/PostView';
+import Header from '~/components/Site/Header';
+import Footer from '~/components/Site/Footer';
+import PostView from '~/components/Site/PostView';
 export default {
   name: 'PostPage',
   components: {

@@ -6,10 +6,10 @@
   </div>
 </template>
 <script>
-import PostList from '../../../components/Site/PostList';
-import Header from '../../../components/Site/Header';
-import Footer from '../../../components/Site/Footer';
-import getPosts from '../../../api/getPosts';
+import PostList from '~/components/Site/PostList';
+import Header from '~/components/Site/Header';
+import Footer from '~/components/Site/Footer';
+import getPosts from '~/api/getPosts';
 
 export default {
   name: 'PostListPage',

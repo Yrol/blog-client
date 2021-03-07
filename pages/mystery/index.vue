@@ -55,6 +55,10 @@ import FormText from '~/components/Input/FormText';
 import Button from '~/components/Input/Button';
 export default {
   name: 'Mystery',
+  components: {
+    FormText,
+    Button,
+  },
   head: {
     title: 'Mystery',
   },

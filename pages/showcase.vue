@@ -261,6 +261,7 @@ import FormToggle from '~/components/Input/FormToggle';
 import FileDrop from '~/components/Input/FileDrop';
 import DropDown from '~/components/Input/DropDown';
 import Button from '~/components/Input/Button';
+import FormRadio from '~/components/Input/FormRadio';
 import Modal from '~/components/Site/Modal';
 import md from 'marked';
 import { mapGetters } from 'vuex';
@@ -283,6 +284,7 @@ export default {
     FormTextarea,
     FormDatePicker,
     Button,
+    FormRadio,
   },
   head: {
     title: 'Showcase',
