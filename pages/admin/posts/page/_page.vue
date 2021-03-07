@@ -90,7 +90,7 @@ import AdminCard from '~/components/Dashboard/AdminCard';
 import Modal from '~/components/Site/Modal';
 import Button from '~/components/Input/Button';
 import agent from '~/api/agent';
-import Pagination from '~/components/Site/pagination';
+import Pagination from '~/components/Site/Pagination';
 import { mapGetters } from 'vuex';
 export default {
   name: 'AllPosts',

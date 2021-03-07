@@ -1,6 +1,6 @@
 <template>
   <div class="flex h-screen bg-gray-200 font-roboto">
-    <Sidebar />
+    <SideBar />
 
     <div class="flex-1 flex flex-col overflow-hidden">
       <Nav />
@@ -15,11 +15,11 @@
 </template>
 
 <script>
-import Sidebar from '~/components/Dashboard/Sidebar';
+import SideBar from '~/components/Dashboard/SideBar';
 import Nav from '~/components/Dashboard/Nav';
 
 export default {
   middleware: 'unauthinticated',
-  components: { Sidebar, Nav },
+  components: { SideBar, Nav },
 };
 </script>

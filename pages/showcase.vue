@@ -251,7 +251,7 @@ import Header from '~/components/Site/Header';
 import Card from '~/components/Site/Card';
 import CategoriesCard from '~/components/Site/CategoriesCard';
 import Footer from '~/components/Site/Footer';
-import Pagination from '~/components/Site/pagination';
+import Pagination from '~/components/Site/Pagination';
 import FormText from '~/components/Input/FormText';
 import FormTextarea from '~/components/Input/FormTextarea';
 import RichTextSimpleMDE from '~/components/Input/RichTextSimpleMDE';
@@ -280,6 +280,9 @@ export default {
     FileDrop,
     DropDown,
     Modal,
+    FormTextarea,
+    FormDatePicker,
+    Button,
   },
   head: {
     title: 'Showcase',

@@ -26,14 +26,16 @@
   </div>
 </template>
 <script>
-import Pagination from '~/components/Site/pagination';
+import Pagination from '~/components/Site/Pagination';
 import CategoriesCard from '~/components/Site/CategoriesCard';
+import Card from '~/components/Site/Card';
 import { mapGetters } from 'vuex';
 export default {
   name: 'PostList',
   components: {
     Pagination,
     CategoriesCard,
+    Card,
   },
   computed: {
     ...mapGetters({
