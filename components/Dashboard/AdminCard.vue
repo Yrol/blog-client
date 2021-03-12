@@ -114,7 +114,6 @@
   </div>
 </template>
 <script>
-import md from 'marked';
 import agent from '~/api/agent';
 import Button from '~/components/Input/Button';
 import { mapGetters } from 'vuex';
@@ -153,7 +152,7 @@ export default {
       return this.postStatus(this.postData.id);
     },
     bodyText() {
-      return md.parse(this.body);
+      return this.body;
     },
   },
   methods: {

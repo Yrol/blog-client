@@ -261,7 +261,6 @@ import Button from '~/components/Input/Button';
 import FormRadio from '~/components/Input/FormRadio';
 import Modal from '~/components/Site/Modal';
 import Vue2Editor from '~/components/Input/Vue2Editor';
-import md from 'marked';
 import { mapGetters } from 'vuex';
 
 export default {

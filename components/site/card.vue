@@ -103,7 +103,6 @@
   </div>
 </template>
 <script>
-import md from 'marked';
 export default {
   name: 'Card',
   props: {
@@ -123,7 +122,7 @@ export default {
   },
   computed: {
     bodyText() {
-      return md.parse(this.body);
+      return this.body;
     },
   },
   methods: {
