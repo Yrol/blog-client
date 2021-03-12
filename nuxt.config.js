@@ -41,7 +41,6 @@ export default {
    */
   css: [
     "@assets/scss/main.scss",
-    'simplemde/dist/simplemde.min.css'
   ],
   /*
    ** Plugins to load before mounting the App
@@ -49,8 +48,8 @@ export default {
    */
   plugins: [
     { src: "~plugins/validation.js", ssr: false },
-    { src: '~plugins/nuxt-simplemde-plugin.js', ssr: false },
     { src: "~plugins/datePicker.js", ssr: false},
+    { src: "@/plugins/vue2-editor.js", ssr: false },
     '~plugins/eventBus.js'
   ],
   /*

@@ -48,8 +48,8 @@
                     </svg>
                     Body content
                   </p>
-                  <div class="text-gray-900 font-bold text-xl mb-2">
-                    <RichTextSimpleMDE v-model="richTextContent" />
+                  <div>
+                    <Vue2Editor v-model="richTextContent" />
                   </div>
                 </div>
               </div>
@@ -81,10 +81,9 @@
   </div>
 </template>
 <script>
-import md from 'marked';
-import RichTextSimpleMDE from '~/components/Input/RichTextSimpleMDE';
 import FormText from '~/components/Input/FormText';
 import Button from '~/components/Input/Button';
+import Vue2Editor from '~/components/Input/Vue2Editor';
 import FormCheckbox from '~/components/Input/FormCheckbox';
 import DropDown from '~/components/Input/DropDown';
 import AdminLoader from '~/components/Dashboard/AdminLoader';
@@ -96,16 +95,16 @@ export default {
   },
   layout: 'adminLayout',
   components: {
-    RichTextSimpleMDE,
     FormText,
     Button,
     FormCheckbox,
     DropDown,
     AdminLoader,
+    Vue2Editor,
   },
   data() {
     return {
-      richTextContent: '',
+      richTextContent: '<ul><li>Item One</li><li>Item Two</li></ul>',
       postTitle: '',
       postCategory: '',
       buttonDisable: false,

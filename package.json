@@ -24,8 +24,8 @@
     "nuxt-tailvue": "^1.0.52",
     "sass-loader": "^10.0.1",
     "vee-validate": "^3.3.9",
-    "vue-simplemde": "^1.1.2",
-    "vuejs-datepicker": "^1.6.2"
+    "vuejs-datepicker": "^1.6.2",
+    "vue2-editor": "2.8.1"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^3.3.3"

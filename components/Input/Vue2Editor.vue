@@ -1,17 +1,17 @@
 <template>
-  <div class="wrap">
+  <div>
     <client-only>
-      <vue-simplemde v-model="proxy" />
+      <VueEditor v-model="proxy" />
     </client-only>
   </div>
 </template>
 
+
 <script>
 export default {
-  name: "SimpleMDE",
+  name: 'Vue2Editor',
   props: {
     value: String,
-    name: String,
   },
   data() {
     return {
@@ -29,9 +29,10 @@ export default {
     },
     proxy(value) {
       if (value !== this.value) {
-        this.$emit("input", value);
+        this.$emit('input', value);
       }
     },
   },
 };
 </script>
+

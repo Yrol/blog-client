@@ -21,9 +21,7 @@
     </div>
     <div class="flex flex-wrap">
       <div class="w-full md:w-3/4 p-4">
-        <client-only>
-          <RichTextSimpleMDE v-model="richTextContent" />
-        </client-only>
+        <Vue2Editor v-model="richTextContent" />
       </div>
     </div>
     <div class="flex flex-wrap">
@@ -254,7 +252,6 @@ import Footer from '~/components/Site/Footer';
 import Pagination from '~/components/Site/Pagination';
 import FormText from '~/components/Input/FormText';
 import FormTextarea from '~/components/Input/FormTextarea';
-import RichTextSimpleMDE from '~/components/Input/RichTextSimpleMDE';
 import FormCheckbox from '~/components/Input/FormCheckbox';
 import FormDatePicker from '~/components/Input/FormDatePicker';
 import FormToggle from '~/components/Input/FormToggle';
@@ -263,6 +260,7 @@ import DropDown from '~/components/Input/DropDown';
 import Button from '~/components/Input/Button';
 import FormRadio from '~/components/Input/FormRadio';
 import Modal from '~/components/Site/Modal';
+import Vue2Editor from '~/components/Input/Vue2Editor';
 import md from 'marked';
 import { mapGetters } from 'vuex';
 
@@ -274,7 +272,6 @@ export default {
     CategoriesCard,
     Footer,
     Pagination,
-    RichTextSimpleMDE,
     FormText,
     FormCheckbox,
     FormToggle,
@@ -285,6 +282,7 @@ export default {
     FormDatePicker,
     Button,
     FormRadio,
+    Vue2Editor,
   },
   head: {
     title: 'Showcase',
@@ -292,7 +290,8 @@ export default {
   computed: {
     ...mapGetters(['isAuthenticated', 'loggedInUser']),
     richTextBody() {
-      return md.parse(this.richTextContent);
+      //return md.parse(this.richTextContent);
+      return this.richTextContent;
     },
     now: function () {
       return Date.now();
