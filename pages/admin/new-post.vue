@@ -113,14 +113,7 @@ export default {
       errors: Array,
       isSubmitting: false,
       categoriesList: [],
-      postOptions: [
-        { display: 'Live', option: 'is_live', selected: true },
-        {
-          display: 'Disable comments',
-          option: 'close_to_comments',
-          selected: true,
-        },
-      ],
+      postOptions: [],
     };
   },
   methods: {
@@ -142,6 +135,7 @@ export default {
       try {
         await agent.Posts.create(formData);
         this.clearPostData();
+        this.resetPostOptions();
         this.$toast.show({
           type: 'success',
           title: 'Success',
@@ -184,19 +178,21 @@ export default {
     clearPostData() {
       this.richTextContent = '';
       this.postTitle = '';
-      this.postCategory = '';
-      (this.postOptions = [
+      this.$refs.postForm.reset();
+    },
+    resetPostOptions() {
+      this.postOptions = [
         { display: 'Live', option: 'is_live', selected: true },
         {
           display: 'Disable comments',
           option: 'close_to_comments',
           selected: true,
         },
-      ]),
-        this.$refs.postForm.reset();
+      ];
     },
   },
   beforeMount() {
+    this.resetPostOptions();
     this.fetchCategories();
   },
 };
