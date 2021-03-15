@@ -141,6 +141,12 @@ export default {
 
       try {
         await agent.Posts.create(formData);
+        this.clearPostData();
+        this.$toast.show({
+          type: 'success',
+          title: 'Success',
+          message: 'Post has been created successfully.',
+        });
       } catch (error) {
         if (error.data.errors) {
           let errors = error.data.errors;
@@ -175,7 +181,20 @@ export default {
         this.isLoading = false;
       }
     },
-    clearPostData() {},
+    clearPostData() {
+      this.richTextContent = '';
+      this.postTitle = '';
+      this.postCategory = '';
+      (this.postOptions = [
+        { display: 'Live', option: 'is_live', selected: true },
+        {
+          display: 'Disable comments',
+          option: 'close_to_comments',
+          selected: true,
+        },
+      ]),
+        this.$refs.postForm.reset();
+    },
   },
   beforeMount() {
     this.fetchCategories();

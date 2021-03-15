@@ -7,7 +7,10 @@
         <div class="text-black font-bold text-xl mb-2">
           <span>{{ articleData.title }}</span>
         </div>
-        <span class="text-grey-darker text-base">{{ articleData.body }}</span>
+        <span
+          class="text-grey-darker text-base"
+          v-html="articleData.body"
+        ></span>
         <div class="mb-2 mt-2">
           <a
             class="text-sm text-gray-600 p-1 hover:text-black"
