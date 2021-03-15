@@ -49,7 +49,7 @@ export default {
   plugins: [
     { src: "~plugins/validation.js", ssr: false },
     { src: "~plugins/datePicker.js", ssr: false},
-    { src: "@/plugins/vue2-editor.js", ssr: false },
+    { src: "~plugins/vue2-editor.js", ssr: false },
     '~plugins/eventBus.js'
   ],
   /*

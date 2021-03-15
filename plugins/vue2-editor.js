@@ -1,19 +1,6 @@
-import Vue from "vue";
-import Vue2Editor from "vue2-editor";
-Vue.use(Vue2Editor);
+import Vue from "vue"
+import { VueEditor } from "vue2-editor"
 
-// Vue.prototype.$editorMounted = false;
-// Vue.prototype.$editorReady = false;
-// Vue.prototype.$isMounted = false;
+//Vue.use(VueEditor);
+Vue.component('vue-editor', VueEditor)
 
-Vue.mixin({
-  data() {
-    return {
-      isMounted: false
-    };
-  },
-  mounted() {
-    // this.$editorMounted = true;
-    this.isMounted = true;
-  }
-});

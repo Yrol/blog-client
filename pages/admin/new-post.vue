@@ -104,7 +104,7 @@ export default {
   },
   data() {
     return {
-      richTextContent: '<ul><li>Item One</li><li>Item Two</li></ul>',
+      richTextContent: '',
       postTitle: '',
       postCategory: '',
       buttonDisable: false,
