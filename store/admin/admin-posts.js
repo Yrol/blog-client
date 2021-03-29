@@ -22,6 +22,10 @@ export const getters = {
     }
     let post = state.posts.find(post => post.id == id)
     return post.is_live;
+  },
+  post:(state) => (slug) => {
+    let post = state.posts.find(post => post.slug == slug)
+    return post;
   }
 }
 

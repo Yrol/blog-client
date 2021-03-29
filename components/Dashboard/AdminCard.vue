@@ -173,10 +173,11 @@ export default {
           this.postData.slug
         );
         let isLiveStatus = update.is_live;
+        console.log(isLiveStatus);
         if (isLiveStatus == 1 || isLiveStatus == 0) {
           this.$store.dispatch('admin/admin-posts/postStatus', {
             id: this.postData.id,
-            state: isLiveStatus,
+            state: parseInt(isLiveStatus),
           });
         }
       } catch (error) {
@@ -195,7 +196,12 @@ export default {
       }
     },
 
-    goToEdit() {},
+    goToEdit() {
+      this.$router.push({
+        name: 'admin-edit-slug',
+        params: { slug: this.postData.slug },
+      });
+    },
 
     deletePost(slug, id) {
       this.$emit('delete-post', slug, id);

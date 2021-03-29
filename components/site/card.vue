@@ -13,11 +13,11 @@
         >
           <span v-if="dataReady && postData.title">{{ postData.title }}</span>
         </div>
-        <span
+        <div
           v-if="dataReady"
           v-html="getBodyText(postData.body)"
           class="text-grey-darker text-base"
-        ></span>
+        ></div>
         <div v-else>
           <p
             class="leading-relaxed mb-3 w-full h-3 animate-pulse bg-gray-400"
