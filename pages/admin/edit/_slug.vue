@@ -127,7 +127,7 @@ export default {
         title: this.postTitle,
         body: this.postBodyRichText,
         is_live: this.postOptions[0].selected,
-        close_to_comments: this.postOptions[1].selected,
+        close_to_comment: this.postOptions[1].selected,
         category_id: Number(this.postCategoryId),
         slug: this.postSlug,
         tags: [],
@@ -162,7 +162,7 @@ export default {
         { display: 'Live', option: 'is_live', selected: !!isLiveStatus },
         {
           display: 'Disable comments',
-          option: 'close_to_comments',
+          option: 'close_to_comment',
           selected: !!commentStatus,
         },
       ];
