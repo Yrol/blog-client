@@ -34,7 +34,7 @@
       <div>
         <nav class="relative z-0 inline-flex shadow-sm">
           <nuxt-link
-            :to="{ name: 'posts-page-page', params: { page: prevPage } }"
+            :to="{ name: toPageName, params: { page: prevPage } }"
             :class="[previousBtnStyle]"
             aria-label="Previous"
           >
@@ -49,14 +49,14 @@
           <nuxt-link
             v-for="(item, index) in Array(totalPages)"
             :key="index"
-            :to="{ name: 'posts-page-page', params: { page: index + 1 } }"
+            :to="{ name: toPageName, params: { page: index + 1 } }"
             :class="paginationBtnStyle(index + 1)"
             @click="getPageNumber(index + 1)"
           >
             {{ index + 1 }}
           </nuxt-link>
           <nuxt-link
-            :to="{ name: 'posts-page-page', params: { page: nextPage } }"
+            :to="{ name: toPageName, params: { page: nextPage } }"
             :class="[nextBtnStyle]"
             aria-label="Next"
           >
@@ -90,6 +90,14 @@ export default {
     perPage: {
       type: Number,
       default: 0,
+    },
+    toPageName: {
+      type: String,
+      default: '',
+    },
+    buttonHighlightColor: {
+      type: String,
+      default: 'bg-pink-500 border-pink-500',
     },
   },
   computed: {
@@ -135,13 +143,17 @@ export default {
       this.$emit('update-pagenumber', pNumber);
     },
     paginationBtnStyle(pageId) {
-      return {
+      var styleObj = {
         '-ml-px relative inline-flex items-center px-4 py-2 border bg-white text-sm leading-5 font-medium': true,
-        'bg-pink-500 border-pink-500 text-white hover:text-white focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-white transition ease-in-out duration-150':
+        'text-white hover:text-white focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-white transition ease-in-out duration-150':
           this.currentPage == pageId,
         'text-gray-700 hover:text-gray-500 border-gray-300 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150':
           this.currentPage != pageId,
       };
+
+      styleObj[this.buttonHighlightColor] = this.currentPage == pageId;
+
+      return styleObj;
     },
   },
 };

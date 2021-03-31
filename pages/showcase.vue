@@ -237,6 +237,7 @@
           :total="20"
           :perPage="2"
           @update-pagenumber="updatePageNumber"
+          toPageName="posts-page-page"
         />
       </div>
     </div>

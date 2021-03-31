@@ -83,6 +83,16 @@
         </div>
       </Modal>
     </div>
+    <div class="flex flex-wrap border-t border-gray-200">
+      <div class="w-full">
+        <Pagination
+          :total="totalPosts"
+          :perPage="perPage"
+          toPageName="admin-posts-page-page"
+          buttonHighlightColor="bg-blue-500"
+        />
+      </div>
+    </div>
   </div>
 </template>
 <script>
