@@ -88,6 +88,7 @@ import FormCheckbox from '~/components/Input/FormCheckbox';
 import DropDown from '~/components/Input/DropDown';
 import AdminLoader from '~/components/Dashboard/AdminLoader';
 import agent from '~/api/agent';
+import { mapGetters } from 'vuex';
 export default {
   name: 'NewPost',
   head: {
@@ -133,7 +134,8 @@ export default {
       };
 
       try {
-        await agent.Posts.create(formData);
+        const newPost = await agent.Posts.create(formData);
+        this.$store.dispatch('admin/admin-posts/savePost', newPost);
         this.clearPostData();
         this.resetPostOptions();
         this.$toast.show({

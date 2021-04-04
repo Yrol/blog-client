@@ -3,7 +3,8 @@ import { post } from "jquery"
 export const state = () => ({
   totalPosts:0,
   perPagePosts:0,
-  posts:[]
+  posts:[],
+  currentSortKey: null
 })
 
 export const getters = {
@@ -30,8 +31,17 @@ export const getters = {
 }
 
 export const mutations = {
-  SET_POSTS(state, payload){
-    state.posts = payload
+  SET_POSTS(state, payload, sortKey = null){
+
+    if (payload.length > 0 ) {
+      sortPosts(state, payload, sortKey);
+    }
+  },
+  SET_POST(state, payload) {
+    state.posts.push(payload)
+    state.totalPosts++;
+
+    sortPosts(state, state.posts, 'acs_id')
   },
   SET_TOTAL(state, payload){
     state.totalPosts = payload
@@ -46,6 +56,10 @@ export const mutations = {
   DELETE_POST(state, payload){
     let postIndex = state.posts.findIndex(post => post.id === payload.id)
     state.posts.splice(postIndex, 1)
+
+    if(state.totalPosts > 0){
+      state.totalPosts--;
+    }
   }
 }
 
@@ -78,9 +92,28 @@ export const actions = {
       commit('DELETE_POST', payload);
     }
   },
+  savePost({commit}, payload){
+    if(payload && payload.hasOwnProperty('id')){
+      commit('SET_POST', payload);
+    }
+  },
   clear({commit}){
     commit('SET_TOTAL', 0)
     commit('SET_PER_PAGE', 0)
-    commit('SET_POSTS', [])
+    commit('SET_POSTS', []),
+    commit('DELETE_POST', {}),
+    commit('SET_POST', {})
+  }
+}
+
+const sortPosts = (state, payload, sortKey = null) => {
+  switch(sortKey) {
+    case "acs_id":
+      state.currentSortKey = 'acs_id'
+      state.posts = payload.sort((a, b) => Number(a.id) - Number(b.id));
+      break;
+    default://desc ID
+      state.currentSortKey = null
+      state.posts = payload.sort((a, b) => Number(b.id) - Number(a.id));
   }
 }
