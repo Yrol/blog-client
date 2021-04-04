@@ -21,11 +21,14 @@
     </div>
     <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
       <div>
-        <p class="text-sm leading-5 text-gray-700">
+        <p
+          v-if="paginationMeta && paginationMeta.to && paginationMeta.from"
+          class="text-sm leading-5 text-gray-700"
+        >
           Showing
-          <span class="font-medium">1</span>
+          <span class="font-medium">{{ paginationMeta.from }}</span>
           to
-          <span class="font-medium">10</span>
+          <span class="font-medium">{{ paginationMeta.to }}</span>
           of
           <span class="font-medium">{{ total }}</span>
           results
@@ -98,6 +101,10 @@ export default {
     buttonHighlightColor: {
       type: String,
       default: 'bg-pink-500 border-pink-500',
+    },
+    paginationMeta: {
+      type: Object,
+      default: null,
     },
   },
   computed: {

@@ -236,7 +236,9 @@
         <Pagination
           :total="20"
           :perPage="2"
+          totalPosts="8"
           @update-pagenumber="updatePageNumber"
+          :paginationMeta="paginationMeta"
           toPageName="posts-page-page"
         />
       </div>
@@ -335,6 +337,10 @@ export default {
       ],
       selectedCategory: '2',
       categories: '',
+      paginationMeta: {
+        from: 1,
+        to: 5,
+      },
     };
   },
   methods: {

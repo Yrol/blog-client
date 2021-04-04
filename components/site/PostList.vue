@@ -20,6 +20,7 @@
           @update-pagenumber="updatePageNumber"
           :total="totalPosts"
           :perPage="perPage"
+          :paginationMeta="meta"
           toPageName="posts-page-page"
         />
       </div>
@@ -53,6 +54,10 @@ export default {
     posts: {
       type: Array,
       default: Array,
+    },
+    meta: {
+      type: Object,
+      default: null,
     },
   },
   methods: {

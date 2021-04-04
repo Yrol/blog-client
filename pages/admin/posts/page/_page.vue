@@ -88,6 +88,7 @@
         <Pagination
           :total="totalPosts"
           :perPage="perPage"
+          :paginationMeta="paginationMeta"
           toPageName="admin-posts-page-page"
           buttonHighlightColor="bg-blue-500"
         />
@@ -129,6 +130,12 @@ export default {
       modalSubmitting: false,
       deletePostSlug: String,
       deletePostId: Number,
+      paginationFrom: Number,
+      paginationTo: Number,
+      paginationMeta: {
+        type: Object,
+        default: null,
+      },
     };
   },
   methods: {
@@ -172,6 +179,8 @@ export default {
       let posts = await agent.Posts.all(
         isNaN(this.$route.params.page) ? 1 : this.$route.params.page
       );
+      let meta = { to: posts.meta.to, from: posts.meta.from };
+      this.paginationMeta = meta;
       this.$store.dispatch('admin/admin-posts/totalPosts', posts);
       this.$store.dispatch('admin/admin-posts/perPagePosts', posts);
       this.$store.dispatch('admin/admin-posts/posts', posts);
