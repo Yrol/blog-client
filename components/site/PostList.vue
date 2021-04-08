@@ -10,7 +10,7 @@
           :postData="post"
         />
       </div>
-      <div class="w-ful md:w-1/4 lg:pl-0 md:pl-0 p-4">
+      <div class="w-full md:w-1/4 lg:pl-0 md:pl-0 p-4">
         <CategoriesCard />
       </div>
     </div>
