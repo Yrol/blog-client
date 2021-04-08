@@ -40,7 +40,6 @@ export default {
   async asyncData({ $axios, store, app, params, error }) {
     return await getSinglePost($axios, store, params, error)
       .then((res) => {
-        console.log(res);
         return {
           post: res.post.data,
         };

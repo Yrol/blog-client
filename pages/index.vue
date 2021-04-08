@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header />
-    <PostList :posts="posts" />
+    <PostList :posts="posts" :meta="meta" />
     <Footer />
   </div>
 </template>
@@ -22,6 +22,7 @@ export default {
       posts: [],
       totalPosts: 0,
       postsPerPage: 0,
+      meta: {},
     };
   },
   async asyncData({ $axios, store, app, params, error }) {
@@ -29,6 +30,7 @@ export default {
       .then((res) => {
         return {
           posts: res.allPosts.data,
+          meta: { to: res.allPosts.meta.to, from: res.allPosts.meta.from },
         };
       })
       .catch((e) => {});

@@ -90,9 +90,9 @@ export default {
         {
           id: 3,
           icon: 'folder',
-          title: 'New Category',
-          url: '/admin/new-category',
-          name: 'admin-new-category',
+          title: 'Categories',
+          url: '/admin/categories',
+          name: 'admin-categories',
         },
         {
           id: 4,
