@@ -69,6 +69,7 @@ const Posts = {
 
 const Categories = {
   categories: () => requests.get('categories/active').then(responseBody),
+  create: (categoryData) => requests.post('/categories', categoryData),
 }
 
 export default{

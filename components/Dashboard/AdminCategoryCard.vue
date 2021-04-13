@@ -22,17 +22,26 @@
           class="border-8:transparent w-full md:w-1/2 lg:w-2/4 md:h-16"
         >
           <div class="text-sm">
-            <!-- <p class="text-black leading-none">{{ author }}</p> -->
             <p class="text-gray-600">
               Slug: <span class="font-semibold">{{ categoryData.slug }} </span>
             </p>
             <p class="text-gray-600">
+              Articles:
+              <span class="font-semibold"
+                >{{ categoryData.articles_count }}
+              </span>
+            </p>
+            <p class="text-gray-600">
               Published:
-              <span class="font-semibold">{{ categoryData.created_at }} </span>
+              <span class="font-semibold"
+                >{{ categoryData.created_at_dates.created_at_format_2 }}
+              </span>
             </p>
             <p class="text-gray-600">
               Updated:
-              <span class="font-semibold">{{ categoryData.updated_at }} </span>
+              <span class="font-semibold"
+                >{{ categoryData.updated_at_dates.updated_at_format_2 }}
+              </span>
             </p>
           </div>
         </div>
@@ -56,7 +65,7 @@
             :loading="false"
             size="small"
             icon="edit"
-            @click="editCategory()"
+            @click="editCategory(categoryData.id, categoryData.slug)"
           >
           </Button>
           <Button
@@ -64,7 +73,7 @@
             :loading="false"
             size="small"
             icon="trash-alt"
-            @click="deleteCategory()"
+            @click="deleteCategory(categoryData.id, categoryData.slug)"
           >
           </Button>
         </div>
@@ -89,9 +98,13 @@ export default {
     },
   },
   methods: {
-    editCategory() {},
+    editCategory(slug, id) {
+      this.$emit('edit-category', slug, id);
+    },
 
-    deleteCategory() {},
+    deleteCategory(slug, id) {
+      this.$emit('delete-category', slug, id);
+    },
   },
 };
 </script>

@@ -1,5 +1,3 @@
-import { post } from "jquery"
-
 export const state = () => ({
   totalPosts:0,
   perPagePosts:0,
