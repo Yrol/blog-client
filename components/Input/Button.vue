@@ -77,6 +77,7 @@ export default {
       return {
         'base-spinner': this.loading == true,
         'cursor-not-allowed': this.disableButton == true,
+        'pointer-events-none': this.disableButton == true,
         'base-button inline-flex align-middle align-items-center justify-center text-sm font-medium rounded-md text-white focus:outline-none border-2': true,
 
         'rounded-lg': this.rounded === 'medium',

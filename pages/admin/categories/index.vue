@@ -38,7 +38,7 @@
       @close="modalStatus.addCategory = false"
     >
       <ValidationObserver ref="postForm" v-slot="{ handleSubmit }">
-        <form @submit.prevent="handleSubmit(addCategory)">
+        <form @submit.prevent="handleSubmit(addCategoryAction)">
           <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div class="sm:flex sm:items-start">
               <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
@@ -153,7 +153,11 @@ export default {
 
     deleteCategoryModalOpen(id, slug) {},
 
-    async addCategory() {
+    async addCategoryAction() {
+      if (!this.modalStatus.addCategory) {
+        return;
+      }
+
       if (this.modalSubmitting) {
         return;
       }
