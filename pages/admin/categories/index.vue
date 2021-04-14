@@ -37,7 +37,7 @@
       :visible="modalStatus.addCategory"
       @close="modalStatus.addCategory = false"
     >
-      <ValidationObserver ref="postForm" v-slot="{ handleSubmit }">
+      <ValidationObserver ref="categoryAddForm" v-slot="{ handleSubmit }">
         <form @submit.prevent="handleSubmit(addCategoryAction)">
           <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div class="sm:flex sm:items-start">
@@ -170,7 +170,23 @@ export default {
 
       try {
         const newCategory = await agent.Categories.create(formData);
+        this.$store.dispatch(
+          'admin/admin-categories/saveCategory',
+          newCategory
+        );
+        this.setModalStatus('addCategory', false);
       } catch (error) {
+        if (error.data.errors) {
+          let errors = error.data.errors;
+          this.$refs.categoryAddForm.setErrors(errors || {});
+          for (var key in errors) {
+            this.$toast.show({
+              type: 'danger',
+              title: 'Error',
+              message: errors[key][0],
+            });
+          }
+        }
       } finally {
         this.modalSubmitting = false;
       }
