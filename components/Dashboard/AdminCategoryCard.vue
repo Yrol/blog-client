@@ -65,7 +65,13 @@
             :loading="false"
             size="small"
             icon="edit"
-            @click="editCategory(categoryData.id, categoryData.slug)"
+            @click="
+              editCategory(
+                categoryData.id,
+                categoryData.slug,
+                categoryData.title
+              )
+            "
           >
           </Button>
           <Button
@@ -98,8 +104,8 @@ export default {
     },
   },
   methods: {
-    editCategory(slug, id) {
-      this.$emit('edit-category', slug, id);
+    editCategory(slug, id, title) {
+      this.$emit('edit-category', slug, id, title);
     },
 
     deleteCategory(slug, id) {

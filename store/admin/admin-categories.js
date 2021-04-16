@@ -27,6 +27,10 @@ export const mutations = {
     state.totalCategories = payload
   },
 
+  UPDATE_CATEGORY(state, payload){
+    state.categories[state.categories.findIndex(category => category.id === payload.id)] = payload
+  },
+
   DELETE_CATEGORY(state, payload) {
 
   }
@@ -42,6 +46,10 @@ export const actions = {
 
   saveCategory({commit}, payload){
     commit('SET_CATEGORY', payload);
+  },
+
+  updateCategory({commit}, payload){
+    commit('UPDATE_CATEGORY', payload);
   },
 
   clear({commit}){
