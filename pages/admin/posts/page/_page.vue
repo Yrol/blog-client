@@ -152,7 +152,7 @@ export default {
           id: this.deletePostId,
         });
       } catch (error) {
-        if (error.data.errors) {
+        if (error?.data?.errors) {
           let errors = error.data.errors;
           for (var key in errors) {
             this.$toast.show({

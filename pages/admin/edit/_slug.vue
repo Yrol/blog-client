@@ -142,7 +142,7 @@ export default {
         });
         this.redirect();
       } catch (error) {
-        if (error.data.errors) {
+        if (error?.data?.errors) {
           let errors = error.data.errors;
           this.$refs.postForm.setErrors(errors || {});
           for (var key in errors) {

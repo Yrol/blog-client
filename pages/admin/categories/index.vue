@@ -253,7 +253,7 @@ export default {
         );
         this.setModalStatus('addCategory', false);
       } catch (error) {
-        if (error.data.errors) {
+        if (error?.data?.errors) {
           let errors = error.data.errors;
           this.$refs?.categoryAddForm?.setErrors(errors || {});
           for (var key in errors) {
@@ -295,7 +295,7 @@ export default {
         );
         this.setModalStatus('editCategory', false);
       } catch (error) {
-        if (error.data.errors) {
+        if (error?.data?.errors) {
           let errors = error.data.errors;
           this.$refs?.categoryEditForm?.setErrors(errors || {});
           for (var key in errors) {
