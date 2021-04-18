@@ -12,7 +12,7 @@
     >
       <span class="block text-sm leading-5 text-gray-500">{{ label }}</span>
     </label>
-    <div class="relative text-lg w-48">
+    <div class="relative text-lg w-full">
       <div
         class="absolute inset-y-0 left-0 flex items-center pointer-events-none"
       >
