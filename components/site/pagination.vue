@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="totalPages > 0"
+    v-if="totalPages > 0 && perPage"
     class="bg-white px-4 py-3 flex items-center justify-between sm:px-6"
   >
     <div class="flex-1 flex justify-between sm:hidden">
