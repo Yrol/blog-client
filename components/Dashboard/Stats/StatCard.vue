@@ -1,5 +1,8 @@
 <template>
-  <div v-if="!loadingStatus" class="w-full mt-3 px-6 sm:w-1/2 xl:w-1/3 xl:mt-0">
+  <div
+    v-if="!loadingStatus && !error"
+    class="w-full mt-3 px-6 sm:w-1/2 xl:w-1/3 xl:mt-0"
+  >
     <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
       <div>
         <font-awesome-icon
@@ -15,6 +18,20 @@
         </div>
         <div class="text-gray-500">{{ title }}</div>
       </div>
+    </div>
+  </div>
+  <div v-else-if="error" class="w-full mt-3 px-6 sm:w-1/2 xl:w-1/3 xl:mt-0">
+    <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
+      <span class="text-sm text-gray-600"
+        >An error occurred while loading categories. Click
+        <button
+          class="text-sm text-gray-600 p-1 focus:outline-none hover:text-black"
+          v-on:click="loadData"
+        >
+          <strong>here</strong>
+        </button>
+        to reload.</span
+      >
     </div>
   </div>
   <div v-else class="w-full mt-3 px-6 sm:w-1/2 xl:w-1/3 xl:mt-0">
