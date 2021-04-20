@@ -181,8 +181,11 @@ export default {
       );
       let meta = { to: posts.meta.to, from: posts.meta.from };
       this.paginationMeta = meta;
-      this.$store.dispatch('admin/admin-posts/totalPosts', posts);
-      this.$store.dispatch('admin/admin-posts/perPagePosts', posts);
+      this.$store.dispatch('admin/admin-posts/totalPosts', posts?.meta?.total);
+      this.$store.dispatch(
+        'admin/admin-posts/perPagePosts',
+        posts?.meta?.per_page
+      );
       this.$store.dispatch('admin/admin-posts/posts', posts);
     } catch (error) {
       this.error = true;

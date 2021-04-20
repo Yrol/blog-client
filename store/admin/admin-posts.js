@@ -69,15 +69,9 @@ export const actions = {
     commit('SET_POSTS', payload)
   },
   totalPosts({ commit}, payload){
-    if(payload && payload.hasOwnProperty('meta')){
-      payload = payload.meta.total
-    }
     commit('SET_TOTAL', payload)
   },
   perPagePosts({ commit}, payload){
-    if(payload && payload.hasOwnProperty('meta')){
-      payload = payload.meta.per_page
-    }
     commit('SET_PER_PAGE', payload)
   },
   postStatus({commit}, payload){

@@ -65,12 +65,14 @@ const Posts = {
   update: (post) => requests.put(`/articles/${post.slug}`, post),
   delete: (slug) => requests.del(`/articles/${slug}`),
   updateStatus: (post, id) => requests.post(`/articles/${id}/publish`, post),
+  postCount: () => requests.get(`count/articles`),
 }
 
 const Categories = {
   categories: () => requests.get('categories/').then(responseBody),
   create: (categoryData) => requests.post('/categories', categoryData),
   update: (slug, categoryData) => requests.put(`/categories/${slug}`, categoryData),
+  categoriesCount: () => requests.get(`count/categories`),
 }
 
 export default{

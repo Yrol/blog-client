@@ -5,7 +5,7 @@
   </div>
 </template>
 <script>
-import StatsPanel from '~/components/Dashboard/StatsPanel';
+import StatsPanel from '~/components/Dashboard/Stats/StatsPanel';
 export default {
   name: 'Admin',
   head: {
