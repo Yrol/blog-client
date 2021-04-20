@@ -60,6 +60,7 @@ const requests = {
 
 const Posts = {
   all: (pageId) => requests.get(`/articles?page=${pageId}`),
+  adminAll: (pageId) => requests.get(`/articles/all?page=${pageId}`),
   details: (id) => requests.get(`/articles/${id}`),
   create: (post) => requests.post('/articles', post),
   update: (post) => requests.put(`/articles/${post.slug}`, post),

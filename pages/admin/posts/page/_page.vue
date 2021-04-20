@@ -176,7 +176,7 @@ export default {
     try {
       this.error = false;
       this.loading = true;
-      let posts = await agent.Posts.all(
+      let posts = await agent.Posts.adminAll(
         isNaN(this.$route.params.page) ? 1 : this.$route.params.page
       );
       let meta = { to: posts.meta.to, from: posts.meta.from };
