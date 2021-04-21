@@ -134,7 +134,8 @@ export default {
       };
 
       try {
-        await agent.Posts.update(formData);
+        let updatedPost = await agent.Posts.update(formData);
+        this.$store.dispatch('admin/admin-posts/updatePost', updatedPost);
         this.$toast.show({
           type: 'success',
           title: 'Success',

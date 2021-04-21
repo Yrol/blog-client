@@ -51,6 +51,9 @@ export const mutations = {
     let post = state.posts.find(post => post.id === payload.id)
     post.is_live = payload.state
   },
+  UPDATE_POST(state, payload){
+    state.posts[state.posts.findIndex(post => post.id === payload.id)] = payload
+  },
   DELETE_POST(state, payload){
     let postIndex = state.posts.findIndex(post => post.id === payload.id)
     state.posts.splice(postIndex, 1)
@@ -89,12 +92,16 @@ export const actions = {
       commit('SET_POST', payload);
     }
   },
+  updatePost({commit}, payload){
+    if(payload && payload.hasOwnProperty('id')){
+      commit('UPDATE_POST', payload)
+    }
+  },
+
   clear({commit}){
     commit('SET_TOTAL', 0)
     commit('SET_PER_PAGE', 0)
-    commit('SET_POSTS', []),
-    commit('DELETE_POST', {}),
-    commit('SET_POST', {})
+    commit('SET_POSTS', [])
   }
 }
 
