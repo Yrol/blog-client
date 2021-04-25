@@ -14,13 +14,12 @@
       <font-awesome-icon
         v-if="isChecked"
         :icon="['fas', 'dot-circle']"
-        class="fa-fw mr-1 text-purple-600 subpixel-antialiased"
+        :class="checkedClass"
       />
       <font-awesome-icon
         v-else
         :icon="['fas', 'circle']"
-        class="fa-fw mr-1 subpixel-antialiased"
-        :class="{ 'text-red-600': errors[0] }"
+        :class="[{ 'text-red-600': errors[0] }, uncheckedClass]"
       />
       <slot></slot>
     </label>
@@ -28,13 +27,21 @@
 </template>
 <script>
 export default {
-  name: "FormRadio",
+  name: 'FormRadio',
   inheritAttrs: true,
   props: {
     value: [String, Number, Boolean],
     val: [String, Number, Boolean],
     name: String,
     rules: String,
+    uncheckedColor: {
+      type: String,
+      default: 'text-gray-500',
+    },
+    checkedColor: {
+      type: String,
+      default: 'text-blue-600',
+    },
   },
   computed: {
     checked: {
@@ -48,6 +55,20 @@ export default {
     isChecked() {
       return this.value === this.val;
     },
+    checkedClass() {
+      var styleObj = {
+        'fa-fw mr-1 subpixel-antialiased': true,
+      };
+      styleObj[this.checkedColor] = true;
+      return styleObj;
+    },
+    uncheckedClass() {
+      var styleObj = {
+        'fa-fw mr-1 subpixel-antialiased': true,
+      };
+      styleObj[this.uncheckedColor] = true;
+      return styleObj;
+    },
   },
   data() {
     return {
@@ -57,7 +78,7 @@ export default {
   },
   methods: {
     change() {
-      this.$emit("input", this.proxy);
+      this.$emit('input', this.proxy);
     },
   },
 };

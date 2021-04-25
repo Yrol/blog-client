@@ -7,7 +7,7 @@
       <slot></slot>
     </span>
     <span
-      :class="{ 'bg-gray-200': !value, 'bg-purple-600': value }"
+      :class="{ 'bg-blue-200': !value, 'bg-blue-600': value }"
       class="relative inline-block flex-no-shrink h-6 w-11 border-2 border-transparent rounded-full transition-colors ease-in-out duration-200 focus:outline-none focus:shadow-outline"
       role="checkbox"
       tabindex="0"
@@ -32,7 +32,7 @@
 
 <script>
 export default {
-  name: "FormToggle",
+  name: 'FormToggle',
   inheritAttrs: true,
   props: {
     value: {
@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     toggle() {
-      this.$emit("input", !this.value);
+      this.$emit('input', !this.value);
     },
   },
 };

@@ -17,12 +17,12 @@
       <font-awesome-icon
         v-if="isChecked"
         :icon="['fas', 'check-square']"
-        class="fa-fw fa-lg fa-square fa-w-14 text-purple-600"
+        :class="checkedClass"
       ></font-awesome-icon>
       <font-awesome-icon
         v-else
         :icon="['fas', 'square']"
-        class="fa-fw fa-lg fa-square fa-w-14"
+        :class="uncheckedClass"
       ></font-awesome-icon>
       <slot></slot>
     </label>
@@ -37,6 +37,14 @@ export default {
     val: [String, Number, Object, Boolean],
     name: String,
     rules: String,
+    uncheckedColor: {
+      type: String,
+      default: 'text-gray-500',
+    },
+    checkedColor: {
+      type: String,
+      default: 'text-blue-600',
+    },
   },
   computed: {
     checked: {
@@ -54,6 +62,20 @@ export default {
         return this.value === true;
       }
       return this.val ? this.value.includes(this.val) : false;
+    },
+    checkedClass() {
+      var styleObj = {
+        'fa-fw fa-lg fa-square fa-w-14': true,
+      };
+      styleObj[this.checkedColor] = true;
+      return styleObj;
+    },
+    uncheckedClass() {
+      var styleObj = {
+        'fa-fw fa-lg fa-square fa-w-14': true,
+      };
+      styleObj[this.uncheckedColor] = true;
+      return styleObj;
     },
   },
   data() {
