@@ -22,11 +22,12 @@
       <p class="leading-relaxed mb-3 w-full h-3 animate-pulse bg-gray-400"></p>
     </div>
     <div v-else>
-      <span
+      <nuxt-link
         v-for="(item, index) in categoriesList"
         :key="index"
-        class="text-xs mb-2 font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 uppercase last:mr-0 mr-1"
-        >{{ item.title }}</span
+        :to="'/categories/' + item.slug"
+        :class="categoryStyles"
+        >{{ item.title }}</nuxt-link
       >
     </div>
   </div>
@@ -37,6 +38,20 @@ import agent from '~/api/agent';
 import { mapGetters } from 'vuex';
 export default {
   name: 'CategoriesCard',
+  props: {
+    backgroundColor: {
+      type: String,
+      default: 'bg-pink-200',
+    },
+    textColor: {
+      type: String,
+      default: 'text-pink-600',
+    },
+    hoverColor: {
+      type: String,
+      default: 'hover:bg-pink-100',
+    },
+  },
   data() {
     return {
       error: false,
@@ -46,6 +61,15 @@ export default {
     ...mapGetters({
       categoriesList: 'generic/categoriesList',
     }),
+    categoryStyles() {
+      var styleObj = {
+        'text-xs mb-2 font-semibold inline-block py-1 px-2 uppercase rounded-full uppercase last:mr-0 mr-1': true,
+      };
+      styleObj[this.backgroundColor] = true;
+      styleObj[this.textColor] = true;
+      styleObj[this.hoverColor] = true;
+      return styleObj;
+    },
   },
   methods: {
     async getCategories() {
