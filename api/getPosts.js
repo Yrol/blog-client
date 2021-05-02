@@ -9,8 +9,8 @@ export default async ($axios, store, params, error) => {
   }
 
   //storing pagination state
-  store.dispatch('pagination/totalPosts', allPosts);
-  store.dispatch('pagination/perPagePosts',allPosts);
+  store.dispatch('posts/totalPosts', allPosts);
+  store.dispatch('posts/perPagePosts',allPosts);
 
   return {
     allPosts

@@ -19,9 +19,9 @@
         <Pagination
           @update-pagenumber="updatePageNumber"
           :total="totalPosts"
-          :perPage="perPage"
+          :perPage="perPagePosts"
           :paginationMeta="meta"
-          toPageName="posts-page-page"
+          :toPageName="paginationToPage"
         />
       </div>
     </div>
@@ -31,19 +31,12 @@
 import Pagination from '~/components/Site/Pagination';
 import CategoriesCard from '~/components/Site/CategoriesCard';
 import Card from '~/components/Site/Card';
-import { mapGetters } from 'vuex';
 export default {
   name: 'PostList',
   components: {
     Pagination,
     CategoriesCard,
     Card,
-  },
-  computed: {
-    ...mapGetters({
-      totalPosts: 'pagination/totalPosts',
-      perPage: 'pagination/perPagePosts',
-    }),
   },
   data() {
     return {
@@ -58,6 +51,18 @@ export default {
     meta: {
       type: Object,
       default: null,
+    },
+    totalPosts: {
+      type: Number,
+      default: 0,
+    },
+    perPagePosts: {
+      type: Number,
+      default: 0,
+    },
+    paginationToPage: {
+      type: String,
+      default: '/',
     },
   },
   methods: {

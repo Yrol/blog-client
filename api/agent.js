@@ -16,12 +16,12 @@ axios.interceptors.request.use((config) => {
 })
 
 axios.interceptors.response.use(undefined, error => {
-  if (error.message === "Network Error" && !error.response) {
+  if (error.message === "Network Error" && !error?.response) {
 
   }
 
   //exposing the properties of the error response values such as header, data & etc
-  const { status, data, config, headers } = error.response;
+  const { status, data, config, headers } = error?.response;
 
   console.log(status)
 
@@ -66,7 +66,7 @@ const Posts = {
   update: (post) => requests.put(`/articles/${post.slug}`, post),
   delete: (slug) => requests.del(`/articles/${slug}`),
   updateStatus: (post, id) => requests.post(`/articles/${id}/publish`, post),
-  postCount: () => requests.get(`count/articles`),
+  postCount: () => requests.get(`count/articles`)
 }
 
 const Categories = {

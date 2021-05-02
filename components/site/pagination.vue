@@ -5,14 +5,14 @@
   >
     <div class="flex-1 flex justify-between sm:hidden">
       <nuxt-link
-        :to="{ name: 'posts-page-page', params: { page: prevPage } }"
+        :to="{ name: toPageName, params: { page: prevPage } }"
         aria-label="Previous"
         class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500"
       >
         Previous
       </nuxt-link>
       <nuxt-link
-        :to="{ name: 'posts-page-page', params: { page: nextPage } }"
+        :to="{ name: toPageName, params: { page: nextPage } }"
         aria-label="Next"
         class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500"
       >

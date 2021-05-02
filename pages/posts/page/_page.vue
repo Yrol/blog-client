@@ -1,7 +1,13 @@
 <template>
   <div>
     <Header />
-    <PostList :posts="posts" :meta="meta" />
+    <PostList
+      :posts="posts"
+      :meta="meta"
+      :totalPosts="total"
+      :perPagePosts="perPage"
+      paginationToPage="posts-page-page"
+    />
     <Footer />
   </div>
 </template>
@@ -10,6 +16,7 @@ import PostList from '~/components/Site/PostList';
 import Header from '~/components/Site/Header';
 import Footer from '~/components/Site/Footer';
 import getPosts from '~/api/getPosts';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'PostListPage',
@@ -18,11 +25,15 @@ export default {
     Header,
     Footer,
   },
+  computed: {
+    ...mapGetters({
+      total: 'posts/totalPosts',
+      perPage: 'posts/perPagePosts',
+    }),
+  },
   data() {
     return {
       posts: [],
-      totalPosts: 0,
-      postsPerPage: 0,
       meta: {},
     };
   },
