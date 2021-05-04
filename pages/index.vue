@@ -1,13 +1,20 @@
 <template>
-  <div>
+  <div class="flex flex-col h-screen">
     <Header />
-    <PostList
-      :posts="posts"
-      :meta="meta"
-      :totalPosts="total"
-      :perPagePosts="perPage"
-      paginationToPage="posts-page-page"
-    />
+    <main class="mb-auto">
+      <PostList :posts="posts" />
+    </main>
+    <div class="flex-wrap border-t border-gray-200">
+      <div class="w-full md:w-3/4">
+        <Pagination
+          @update-pagenumber="updatePageNumber"
+          :total="totalPosts"
+          :perPage="perPagePosts"
+          :paginationMeta="meta"
+          toPageName="posts-page-page"
+        />
+      </div>
+    </div>
     <Footer />
   </div>
 </template>
@@ -16,6 +23,7 @@ import PostList from '~/components/Site/PostList';
 import Header from '~/components/Site/Header';
 import Footer from '~/components/Site/Footer';
 import getPosts from '~/api/getPosts';
+import Pagination from '~/components/Site/Pagination';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -24,11 +32,12 @@ export default {
     PostList,
     Header,
     Footer,
+    Pagination,
   },
   computed: {
     ...mapGetters({
-      total: 'posts/totalPosts',
-      perPage: 'posts/perPagePosts',
+      totalPosts: 'posts/totalPosts',
+      perPagePosts: 'posts/perPagePosts',
     }),
   },
   data() {
@@ -36,6 +45,11 @@ export default {
       posts: [],
       meta: {},
     };
+  },
+  methods: {
+    updatePageNumber(e) {
+      console.log(e);
+    },
   },
   async asyncData({ $axios, store, app, params, error }) {
     return await getPosts($axios, store, params, error)

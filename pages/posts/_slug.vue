@@ -1,10 +1,12 @@
 <template>
-  <div>
+  <div class="flex flex-col h-screen">
     <Header />
-    <div v-if="error"></div>
-    <div v-else>
-      <PostView :articleData="post" />
-    </div>
+    <main class="mb-auto">
+      <div v-if="error"></div>
+      <div v-else>
+        <PostView :articleData="post" />
+      </div>
+    </main>
     <Footer />
   </div>
 </template>

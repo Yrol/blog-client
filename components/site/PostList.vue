@@ -14,27 +14,14 @@
         <CategoriesCard />
       </div>
     </div>
-    <div class="flex flex-wrap border-t border-gray-200">
-      <div class="w-full md:w-3/4">
-        <Pagination
-          @update-pagenumber="updatePageNumber"
-          :total="totalPosts"
-          :perPage="perPagePosts"
-          :paginationMeta="meta"
-          :toPageName="paginationToPage"
-        />
-      </div>
-    </div>
   </div>
 </template>
 <script>
-import Pagination from '~/components/Site/Pagination';
 import CategoriesCard from '~/components/Site/CategoriesCard';
 import Card from '~/components/Site/Card';
 export default {
   name: 'PostList',
   components: {
-    Pagination,
     CategoriesCard,
     Card,
   },
@@ -47,27 +34,6 @@ export default {
     posts: {
       type: Array,
       default: Array,
-    },
-    meta: {
-      type: Object,
-      default: null,
-    },
-    totalPosts: {
-      type: Number,
-      default: 0,
-    },
-    perPagePosts: {
-      type: Number,
-      default: 0,
-    },
-    paginationToPage: {
-      type: String,
-      default: '/',
-    },
-  },
-  methods: {
-    updatePageNumber(e) {
-      console.log(e);
     },
   },
 };
