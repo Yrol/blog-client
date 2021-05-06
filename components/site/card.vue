@@ -88,7 +88,7 @@
                 slug: postData.slug,
               },
             }"
-            class="bg-pink-500 lg:w-1/4 flex h-10 flex-wrap content-center justify-center text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1"
+            class="bg-blue-900 lg:w-1/4 flex h-10 flex-wrap content-center justify-center text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1"
             type="button"
             style="transition: all 0.15s ease"
           >

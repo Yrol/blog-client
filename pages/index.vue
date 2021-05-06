@@ -12,6 +12,7 @@
           :perPage="perPagePosts"
           :paginationMeta="meta"
           toPageName="posts-page-page"
+          buttonHighlightColor="bg-blue-900"
         />
       </div>
     </div>
