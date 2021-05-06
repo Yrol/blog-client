@@ -102,6 +102,12 @@ export default {
         // globalToken: true,
         // autoFetchUser: true
       }
+    },
+    redirect: {
+      login: '/mystery',
+      logout: '/',
+      callback: '/login',
+      home: '/admin'
     }
   },
 

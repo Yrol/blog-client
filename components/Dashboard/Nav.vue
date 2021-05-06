@@ -89,32 +89,43 @@
             class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
             >Profile</a
           >
-          <a
-            href="#"
-            class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
-            >Products</a
-          >
-          <nuxt-link
-            to="/"
-            class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
-            >Log out</nuxt-link
-          >
+          <form @submit.prevent="signout">
+            <button
+              type="submit"
+              class="block flex w-full px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
+            >
+              <span class="flex-start">Sign out</span>
+            </button>
+          </form>
         </div>
       </div>
     </div>
   </header>
 </template>
 <script>
+import { mapGetters } from 'vuex';
 export default {
+  name: 'AdminSiteHeader',
   data() {
     return {
       isOpen: false,
       dropdownOpen: false,
     };
   },
+  computed: {
+    ...mapGetters(['isAuthenticated', 'loggedInUser']),
+  },
   methods: {
     drawerEventhandler() {
       this.$bus.$emit('drawer-state', true);
+    },
+    async signout() {
+      await this.$auth.logout(/* .... */).then((res, redirect) => {
+        const path = '/';
+        if (this.$route.path !== path) {
+          this.$router.push(path);
+        }
+      });
     },
   },
 };
