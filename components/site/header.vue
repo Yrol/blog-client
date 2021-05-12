@@ -1,11 +1,11 @@
 <template>
   <header>
     <nav
-      class="relative flex flex-wrap items-center justify-between px-2 py-3 mb-3"
+      class="flex flex-wrap items-center justify-between px-2 py-3 mb-3"
       :class="navbarBackground"
     >
       <div
-        class="w-full relative flex justify-between lg:w-auto px-4 lg:static lg:block lg:justify-start"
+        class="w-full flex justify-between lg:w-auto px-4 lg:static lg:block lg:justify-start"
       >
         <nuxt-link
           class="text-lg font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
