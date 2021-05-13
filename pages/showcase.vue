@@ -66,6 +66,16 @@
             v-model="categories"
           />
         </client-only>
+        <client-only>
+          <FormSelect
+            v-model="selectedBrand"
+            :options="carbrands"
+            rules="required"
+            label="Brand"
+            icon="folder"
+            name="speed"
+          ></FormSelect>
+        </client-only>
       </div>
     </div>
     <div class="flex flex-wrap">
@@ -262,6 +272,7 @@ import FileDrop from '~/components/Input/FileDrop';
 import DropDown from '~/components/Input/DropDown';
 import Button from '~/components/Input/Button';
 import FormRadio from '~/components/Input/FormRadio';
+import FormSelect from '~/components/Input/FormSelect';
 import Modal from '~/components/Site/Modal';
 import Vue2Editor from '~/components/Input/Vue2Editor';
 import { mapGetters } from 'vuex';
@@ -284,6 +295,7 @@ export default {
     FormDatePicker,
     Button,
     FormRadio,
+    FormSelect,
     Vue2Editor,
   },
   head: {
@@ -309,6 +321,7 @@ export default {
       crd: null,
       tags: ['#react', '#javascript', '#tailwind'],
       carbrands: ['Toyota', 'Nissan', 'Isuzu', 'Ford'],
+      selectedBrand: 'Isuzu',
       processingDate: new Date(),
       endDate: new Date(+new Date() + 2678400000),
       radio: ['AM', 'PM'],
