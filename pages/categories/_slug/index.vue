@@ -50,6 +50,7 @@ export default {
     return {
       posts: [],
       meta: {},
+      errorResponse: {},
     };
   },
   computed: {
@@ -64,7 +65,6 @@ export default {
     };
   },
   async asyncData({ $axios, store, app, params, error }) {
-    console.log('execute');
     return await getPostsByCategory($axios, store, params, error)
       .then((res) => {
         return {
@@ -72,11 +72,7 @@ export default {
           meta: { to: res.posts.meta.to, from: res.posts.meta.from },
         };
       })
-      .catch((e) => {
-        return {
-          errorStatus: e?.response?.status,
-        };
-      });
+      .catch((error) => {});
   },
 };
 </script>

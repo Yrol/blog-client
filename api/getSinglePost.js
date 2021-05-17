@@ -4,10 +4,11 @@ export default async ($axios, store, params, error) => {
 
   try{
     const post = await $axios.$get(`/articles/${params.slug}`);
+
     return {
       post
     }
-  } catch (e) {
-    throw e
+  }catch(e){
+    throw error({ statusCode: e.response.status, message: typeof e.response?.data?.errors?.message !== 'undefined' ?  e.response?.data?.errors?.message : 'An unknown error occurred. Please try again later'});
   }
 }

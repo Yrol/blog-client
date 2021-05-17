@@ -64,7 +64,6 @@ export default {
     };
   },
   async asyncData({ $axios, store, app, params, error }) {
-    console.log('execute');
     return await getPostsByCategory($axios, store, params, error)
       .then((res) => {
         return {

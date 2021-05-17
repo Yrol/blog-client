@@ -2,10 +2,7 @@
   <div class="flex flex-col h-screen">
     <Header />
     <main class="mb-auto">
-      <div v-if="error"></div>
-      <div v-else>
-        <PostView :articleData="post" />
-      </div>
+      <PostView :articleData="post" />
     </main>
     <Footer />
   </div>
@@ -23,20 +20,9 @@ export default {
     Footer,
     PostView,
   },
-  computed: {
-    error() {
-      if (this.errorStatus == 404) {
-        return 'Page not found';
-      } else if (this.errorStatus && this.errorStatus != 404) {
-        return 'An internal error occurred';
-      } else {
-        return false;
-      }
-    },
-  },
   data() {
     return {
-      errorStatus: '',
+      errorResponse: {},
     };
   },
   async asyncData({ $axios, store, app, params, error }) {
@@ -46,11 +32,7 @@ export default {
           post: res.post.data,
         };
       })
-      .catch((e) => {
-        return {
-          errorStatus: e.response.status,
-        };
-      });
+      .catch((e) => {});
   },
   props: {
     title: {

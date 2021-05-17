@@ -4,17 +4,21 @@ export default async ($axios, store, params, error) => {
 
   $axios.defaults.baseURL = process.env.API_URL; // base url defined in the .env file
 
-  const posts = await $axios.$get(`/articles/category/${params.slug}?page=${typeof params.page === 'undefined' ? 1 : params.page }`);
+  try {
+    const posts = await $axios.$get(`/articles/category/${params.slug}?page=${typeof params.page === 'undefined' ? 1 : params.page }`);
 
-  if (!posts.data.length) {
-    throw error({ statusCode: 404, message: 'No articles found!' });
-  }
+    if (!posts.data.length) {
+      throw error({ statusCode: 404, message: 'No content found!' });
+    }
 
-  //storing pagination state
-  store.dispatch('categories/totalPosts', posts);
-  store.dispatch('categories/perPagePosts',posts);
+    //storing pagination state
+    store.dispatch('categories/totalPosts', posts);
+    store.dispatch('categories/perPagePosts',posts);
 
-  return {
-    posts
+    return {
+      posts
+    }
+  } catch(e) {
+    throw error({ statusCode: e.statusCode, message: e.message });
   }
 }
