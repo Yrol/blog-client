@@ -6,7 +6,7 @@ axios.interceptors.request.use((config) => {
 
   //Grab the token from localStorage pass it along with the request header as Bearer
   const token = window.localStorage.getItem("auth._token.local");
-  if (token) {
+  if (token && config.baseURL === process.env.API_URL) {
       config.headers.Authorization = token
   }
   return config;

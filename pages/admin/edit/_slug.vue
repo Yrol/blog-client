@@ -139,7 +139,7 @@ export default {
         this.$toast.show({
           type: 'success',
           title: 'Success',
-          message: 'Post has been created successfully.',
+          message: 'Post has been edited successfully.',
         });
         this.redirect();
       } catch (error) {
