@@ -6,7 +6,7 @@ axios.interceptors.request.use((config) => {
 
   //Grab the token from localStorage pass it along with the request header as Bearer
   const token = window.localStorage.getItem("auth._token.local");
-  if (token && config.baseURL === process.env.API_URL) {
+  if (token) {
       config.headers.Authorization = token
   }
   return config;
@@ -66,7 +66,8 @@ const Posts = {
   update: (post) => requests.put(`/articles/${post.slug}`, post),
   delete: (slug) => requests.del(`/articles/${slug}`),
   updateStatus: (post, id) => requests.post(`/articles/${id}/publish`, post),
-  postCount: () => requests.get(`count/articles`)
+  postCount: () => requests.get(`count/articles`),
+  uploadImage: (post) => requests.post(`/articles/imageupload`, post)
 }
 
 const Categories = {

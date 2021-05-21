@@ -13,7 +13,7 @@
 
 
 <script>
-import axios from 'axios';
+import agent from '~/api/agent';
 export default {
   name: 'Vue2Editor',
   props: {
@@ -28,34 +28,23 @@ export default {
     this.proxy = this.value;
   },
   methods: {
-    handleImageAdded: function (file, Editor, cursorLocation, resetUploader) {
-      const CLIENT_ID = '';
+    async handleImageAdded(file, Editor, cursorLocation, resetUploader) {
       var formData = new FormData();
-      formData.append('image', file);
-      axios({
-        url: 'https://api.imgur.com/3/image',
-        method: 'POST',
-        headers: {
-          Authorization: 'Client-ID ' + CLIENT_ID,
-          'Content-Type': 'multipart/form-data',
-        },
-        data: formData,
-      })
-        .then((result) => {
-          let url = result.data.data.link;
-          Editor.insertEmbed(cursorLocation, 'image', url);
-        })
-        .catch((err) => {
-          console.log(err);
-          this.$toast.show({
-            type: 'danger',
-            title: 'Error',
-            message: 'An error occurred while uploading the image.',
-          });
-        })
-        .finally(() => {
-          resetUploader();
+      formData.append('file', file);
+
+      try {
+        const imageUpload = await agent.Posts.uploadImage(formData);
+        Editor.insertEmbed(cursorLocation, 'image', imageUpload.data.data.link);
+      } catch (error) {
+        console.log(error);
+        this.$toast.show({
+          type: 'danger',
+          title: error.statusText,
+          message: `${error.status} ${error.statusText}`,
         });
+      }
+
+      resetUploader();
     },
   },
   watch: {
