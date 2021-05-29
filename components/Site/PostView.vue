@@ -11,8 +11,8 @@
   </div>
 </template>
 <script>
-import CategoriesCard from '../Site/CategoriesCard';
-import DetailsCard from '../Site/DetailsCard';
+import CategoriesCard from '~/components/Site/CategoriesCard';
+import DetailsCard from '~/components/Site/DetailsCard';
 export default {
   name: 'PostView',
   components: {

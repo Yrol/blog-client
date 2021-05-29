@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import getSinglePost from '../../api/getSinglePost';
+import getSinglePost from '~/api/getSinglePost';
 import Header from '~/components/Site/Header';
 import Footer from '~/components/Site/Footer';
 import PostView from '~/components/Site/PostView';
