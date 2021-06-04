@@ -77,7 +77,14 @@ const Categories = {
   categoriesCount: () => requests.get(`count/categories`),
 }
 
+const SettingsKeyValue = {
+  keyValues: () => requests.get('settings/keyvalue/').then(responseBody),
+  create: (settingData) => requests.post('/settings/keyvalue', settingData),
+  update: (slug, settingData) => requests.put(`/settings/keyvalue/${slug}`, settingData),
+}
+
 export default{
   Posts,
-  Categories
+  Categories,
+  SettingsKeyValue
 }
