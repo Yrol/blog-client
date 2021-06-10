@@ -81,6 +81,7 @@ const SettingsKeyValue = {
   keyValues: () => requests.get('settings/keyvalue/').then(responseBody),
   create: (settingData) => requests.post('/settings/keyvalue', settingData),
   update: (slug, settingData) => requests.put(`/settings/keyvalue/${slug}`, settingData),
+  delete: (slug) => requests.del(`/settings/keyvalue/${slug}`),
 }
 
 export default{
