@@ -223,12 +223,12 @@
                   class="text-lg leading-6 font-medium text-gray-900"
                   id="modal-headline"
                 >
-                  Create new Key Value
+                  Edit Key Value
                 </h3>
 
                 <div class="mt-2">
                   <p class="text-sm leading-5 text-gray-500">
-                    This action will edit a new Setting Key Value.
+                    This action will edit the Key Value below.
                   </p>
                   <p class="text-sm leading-5 text-gray-500"></p>
                 </div>
@@ -273,7 +273,7 @@
                 size="small"
                 width="full"
               >
-                Create
+                Update
               </Button>
             </span>
 
@@ -492,7 +492,48 @@ export default {
       }
     },
 
-    editSettingAction() {},
+    async editSettingAction() {
+      if (!this.modalStatus.editSetting) {
+        return;
+      }
+
+      if (this.modalSubmitting) {
+        return;
+      }
+
+      this.modalSubmitting = true;
+
+      let formData = {
+        key: this.settingKey,
+        value: this.settingValue,
+      };
+
+      try {
+        const settingKeyValue = await agent.SettingsKeyValue.update(
+          this.settingSlug,
+          formData
+        );
+        this.$store.dispatch(
+          'admin/settings-key-value/updateKeyValue',
+          settingKeyValue
+        );
+        this.setModalStatus('editSetting', false);
+      } catch (error) {
+        if (error?.data?.errors) {
+          let errors = error.data.errors;
+          this.$refs?.keyValueEditForm?.setErrors(errors || {});
+          for (var key in errors) {
+            this.$toast.show({
+              type: 'danger',
+              title: 'Error',
+              message: errors[key][0],
+            });
+          }
+        }
+      } finally {
+        this.modalSubmitting = false;
+      }
+    },
 
     async deleteSettingConfirmAction() {
       if (!this.modalStatus.deleteSetting) {
